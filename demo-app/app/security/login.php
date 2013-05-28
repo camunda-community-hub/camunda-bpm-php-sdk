@@ -40,14 +40,14 @@ if(isset($_POST['login'])) {
 <head>
   <title>camunda PHP incubation demo</title>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="../../assets/img/favicon.ico">
+  <link rel="shortcut icon" href="../../demo-app/assets/img/favicon.ico">
 
-  <link rel="stylesheet" type="text/css" href="../../assets/vendor/twitter/bootstrap/css/bootstrap.css" />
-  <link rel="stylesheet" type="text/css" href="../../assets/vendor/twitter/bootstrap/css/bootstrap-responsive.css" />
-  <link rel="stylesheet" type="text/css" href="../../assets/css/app.css" />
+  <link rel="stylesheet" type="text/css" href="../../demo-app/assets/vendor/twitter/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="../../demo-app/assets/vendor/twitter/bootstrap/css/bootstrap-responsive.css" />
+  <link rel="stylesheet" type="text/css" href="../../demo-app/assets/css/app.css" />
 
-  <script src="../../assets/vendor/jquery/js/jquery-1.9.1.js" language="javascript" type="text/javascript"></script>
-  <script src="../../assets/vendor/twitter/bootstrap/js/bootstrap.js" language="javascript" type="text/javascript"></script>
+  <script src="../../demo-app/assets/vendor/jquery/js/jquery-1.9.1.js" language="javascript" type="text/javascript"></script>
+  <script src="../../demo-app/assets/vendor/twitter/bootstrap/js/bootstrap.js" language="javascript" type="text/javascript"></script>
 </head>
 <body>
 <header class="navbar navbar-fixed-top">

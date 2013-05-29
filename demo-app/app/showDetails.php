@@ -12,7 +12,7 @@ session_start();
 
 require_once('../assets/php/Config.php');
 require_once('../assets/php/Login.php');
-require_once('../../libary/camundaPHP.php');
+require_once('../../library/camundaPHP.php');
 
 if(Config::$isDemo == true) {
   require_once('../assets/php/demo/RestRequest.php');

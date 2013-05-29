@@ -126,7 +126,7 @@ if(!$login->checkSession()) {
             ?>
             <tr>
               <td><?php echo $data->id; ?></td>
-              <td><a href="showDetails.php?type=processDefinition&id=<?php echo $data->definitionId; ?>"><?php echo $data->definitionId; ?></a></td>
+              <td><a href="showDetails.php?type=processDefinition&id=<?php echo $data->definitionId; ?>"><?php echo $restRequest->getSingleProcessDefinition($data->definitionId)->name; ?></a></td>
               <td><?php echo $data->businessKey; ?></td>
             </tr>
           <?php } ?>

@@ -12,11 +12,13 @@ session_start();
 
 require_once('../assets/php/Config.php');
 require_once('../assets/php/Login.php');
+require_once('../../libary/camundaPHP.php');
 
 if(Config::$isDemo == true) {
-  require_once('../assets/php/RestDemoRequest.php');
+  require_once('../assets/php/demo/RestRequest.php');
 } else {
   require_once('../assets/php/RestRequest.php');
+
 }
 
 $login = new Login();
@@ -24,6 +26,8 @@ if(!$login->checkSession()) {
   header('Location: security/login.php');
   exit();
 }
+$restRequest = new RestRequest("http://localhost:8080/engine-rest");
+$restRequest->saveXmlAsFile($_GET['id']);
 ?>
 <!doctype html>
 <html lang="en">
@@ -36,7 +40,27 @@ if(!$login->checkSession()) {
 
   <script src="../assets/vendor/jquery/js/jquery-1.9.1.js" language="javascript" type="text/javascript"></script>
   <script src="../assets/vendor/twitter/bootstrap/js/bootstrap.js" language="javascript" type="text/javascript"></script>
-  <script src="../assets/js/"
+  <script src="../assets/vendor/dojo/js/dojo/dojo.js" language="javascript" type="text/javascript" data-dojo-config="async: true, parseOnLoad: true, forceGfxRenderer: 'svg'"></script>
+  <script language="javascript" type="text/javascript">
+    require({
+      baseUrl: "./",
+      packages: [
+        { name: "dojo", location: "../assets/vendor/dojo/js/dojo" },
+        { name: "dojox", location: "../assets/vendor/dojo/js/dojox" },
+        { name: "bpmn", location: "../assets/js/bpmn"}
+      ]
+    });
+
+    require(["bpmn/Bpmn", "dojo/domReady!"], function(Bpmn) {
+      new Bpmn().renderUrl("../assets/bpmn/<?php echo $restRequest->cleanFileName($_GET['id']); ?>.bpmn",
+          {
+            diagramElement: "diagram",
+            overlayHtml: ''
+          }).then(function(bpmn) {
+            bpmn.zoom(0.8);
+          })
+    })
+  </script>
 </head>
 <body>
 <header class="navbar navbar-fixed-top">
@@ -67,8 +91,7 @@ if(!$login->checkSession()) {
           </button>
           <ul class="dropdown-menu">
             <?php
-            $processListRequest = new RestDemoRequest('ProcessDefinitions');
-            foreach($processListRequest->getData() AS $data) {
+            foreach($restRequest->getProcessDefinitions() AS $data) {
               ?>
               <li>
                 <a href="restService.php?action=startInstance&<?php echo $data->id; ?>"><?php echo $data->name; ?></a>
@@ -82,15 +105,19 @@ if(!$login->checkSession()) {
 </header>
 
 <nav class="container-fluid row-margin1 tabbable">
+  <p><a href="index.php">Overview</a> -> Process Definition: Invoice</p>
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#Details">Details</a></li>
+    <li class="active"><a href="#Diagram" data-toggle="tab">Diagramm</a></li>
   </ul>
 </nav>
 
 <section class="container-fluid CA-container-fixed-height">
   <div class="row-fluid">
-    <div class="span6 offset1">
-
+    <div class="span12 tab-content">
+      <div class="tab-pane active" id="Diagram">
+        <p>Invoice</p>
+        <div id="diagram"></div>
+      </div>
     </div>
   </div>
 </section>

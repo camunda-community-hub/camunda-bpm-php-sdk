@@ -15,6 +15,7 @@ namespace org\camunda\demo\php;
 
 session_start();
 
+require_once('../../assets/php/Config.php');
 require_once('../../assets/php/Error.php');
 require_once('../../assets/php/Login.php');
 
@@ -53,11 +54,6 @@ if(isset($_POST['login'])) {
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
-      <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="brand" href="#"></a>
     </div>
   </div>
@@ -91,7 +87,7 @@ if(isset($_POST['login'])) {
 </section>
 
 <footer class="container-fluid">
-  <p><a href="http://camunda.org">powered by camunda BPM</a>
+  <p><a href="http://camunda.org">powered by camunda BPM</a> - Version: <?php echo Config::$applicationVersion ?></p>
 </footer>
 </body>
 </html>

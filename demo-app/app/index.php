@@ -12,10 +12,13 @@ session_start();
 
 require_once('../assets/php/Config.php');
 require_once('../assets/php/Login.php');
+require_once('../../libary/camundaPHP.php');
+
 if(Config::$isDemo == true) {
-  require_once('../assets/php/RestDemoRequest.php');
+  require_once('../assets/php/demo/RestRequest.php');
 } else {
   require_once('../assets/php/RestRequest.php');
+  $restRequest = new RestRequest("http://localhost:8080/engine-rest");
 }
 
 $login = new Login();
@@ -65,8 +68,7 @@ if(!$login->checkSession()) {
           </button>
           <ul class="dropdown-menu">
             <?php
-            $processListRequest = new RestDemoRequest('ProcessDefinitions');
-            foreach($processListRequest->getData() AS $data) {
+            foreach($restRequest->getProcessDefinitions() AS $data) {
               ?>
               <li>
                 <a href="restService.php?action=startInstance&<?php echo $data->id; ?>"><?php echo $data->name; ?></a>
@@ -100,8 +102,7 @@ if(!$login->checkSession()) {
             <th>Due-Date</th>
           </tr>
           <?php
-          $taskRequest = new RestDemoRequest('Tasks');
-          foreach($taskRequest->getData() AS $data) {
+          foreach($restRequest->getTasks() AS $data) {
             ?>
             <tr>
               <td><?php echo $data->id; ?></td>
@@ -121,8 +122,7 @@ if(!$login->checkSession()) {
             <th>Business Key</th>
           </tr>
           <?php
-          $processInstanceRequest = new RestDemoRequest('ProcessInstances');
-          foreach($processInstanceRequest->getData() AS $data) {
+          foreach($restRequest->getProcessInstances() AS $data) {
             ?>
             <tr>
               <td><?php echo $data->id; ?></td>
@@ -142,8 +142,7 @@ if(!$login->checkSession()) {
             <th>Action</th>
           </tr>
           <?php
-          $processDefinitionsRequest = new RestDemoRequest('ProcessDefinitions');
-          foreach($processDefinitionsRequest->getData() AS $data) {
+          foreach($restRequest->getProcessDefinitions() AS $data) {
             ?>
             <tr>
               <td><?php echo $data->id; ?></td>
@@ -151,7 +150,7 @@ if(!$login->checkSession()) {
               <td><?php echo $data->version; ?></td>
               <td><?php echo $data->category; ?></td>
               <td>
-                <a href="showDetails.php?type=processDefinition&id=<?php echo $data->id; ?>" class="btn btn-mini">Details</a>
+                <a href="showDetails.php?id=<?php echo $data->id; ?>" class="btn btn-mini">Diagram</a>
                 <a href="restService.php?action=startInstance&<?php echo $data->id; ?>" class="btn btn-mini">Start Instance</a>
               </td>
             </tr>
@@ -163,7 +162,7 @@ if(!$login->checkSession()) {
 </section>
 
 <footer class="container-fluid">
-  <p><a href="http://camunda.org">powered by camunda BPM</a> - Version: <?php echo Config::$applicationVersion ?>
+  <p><a href="http://camunda.org">powered by camunda BPM</a> - Version: <?php echo Config::$applicationVersion ?></p>
 </footer>
 </body>
 </html>

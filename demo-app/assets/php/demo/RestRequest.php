@@ -10,7 +10,7 @@
 namespace org\camunda\demo\php;
 
 
-class RestDemoRequest {
+class RestRequest {
   private $PATH = '../assets/json/';
   private $filename;
 

@@ -14,7 +14,7 @@ require_once('../assets/php/Config.php');
 require_once('../assets/php/Login.php');
 
 if(Config::$isDemo == true) {
-  require_once('../assets/php/RestDemoRequest.php');
+  require_once('../assets/php/demo/RestRequest.php');
 } else {
   require_once('../assets/php/RestRequest.php');
 }

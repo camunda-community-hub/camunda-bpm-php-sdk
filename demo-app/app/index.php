@@ -91,7 +91,7 @@ if(!$login->checkSession()) {
 
 <section class="container-fluid CA-container-fixed-height">
   <div class="row-fluid">
-    <div class="span6 offset1 tab-content">
+    <div class="span10 offset1 tab-content">
       <div class="tab-pane active" id="tasks">
         <table class="table table-bordered table-striped">
           <tr>
@@ -150,7 +150,7 @@ if(!$login->checkSession()) {
               <td><?php echo $data->version; ?></td>
               <td><?php echo $data->category; ?></td>
               <td>
-                <a href="showDetails.php?id=<?php echo $data->id; ?>" class="btn btn-mini">Diagram</a>
+                <a href="showDetails.php?id=<?php echo $data->id; ?>" class="btn btn-mini">Details</a>
                 <a href="restService.php?action=startInstance&<?php echo $data->id; ?>" class="btn btn-mini">Start Instance</a>
               </td>
             </tr>

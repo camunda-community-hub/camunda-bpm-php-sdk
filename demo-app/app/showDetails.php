@@ -107,15 +107,28 @@ $restRequest->saveXmlAsFile($_GET['id']);
 <nav class="container-fluid row-margin1 tabbable">
   <p><a href="index.php">Overview</a> -> Process Definition: Invoice</p>
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#Diagram" data-toggle="tab">Diagramm</a></li>
+    <li class="active"><a href="#Details" data-toggle="tab">Details</a></li>
+    <li><a href="#Diagram" data-toggle="tab">Diagramm</a></li>
   </ul>
 </nav>
 
 <section class="container-fluid CA-container-fixed-height">
   <div class="row-fluid">
     <div class="span12 tab-content">
-      <div class="tab-pane active" id="Diagram">
-        <p>Invoice</p>
+      <div class="tab-pane active" id="Details">
+        <table class="table table-bordered table-striped">
+          <?php
+            foreach($restRequest->getSingleProcessDefinition($_GET['id']) AS $key => $value) {
+          ?>
+            <tr>
+              <td><?php echo $key; ?></td>
+              <td><?php echo $value; ?></td>
+            </tr>
+          <?php } ?>
+        </table>
+      </div>
+
+      <div class="tab-pane" id="Diagram">
         <div id="diagram"></div>
       </div>
     </div>

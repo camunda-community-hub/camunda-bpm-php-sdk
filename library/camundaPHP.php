@@ -53,7 +53,7 @@ class camundaPHP {
 
   /**
    * Retrieves the names of all process engines available on your platform.
-   * (see http://docs.camunda.org/api-references/rest/#!/engine/get-names)
+   * @link http://docs.camunda.org/api-references/rest/#!/engine/get-names
    *
    * @return mixed  returns the server response
    */
@@ -67,7 +67,7 @@ class camundaPHP {
 
   /**
    * get a single process instance from the REST API
-   * (see http://docs.camunda.org/api-references/rest/#!/process-instance/get)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get
    *
    * @param String $id Id of the process instance
    * @return mixed  returns the server response
@@ -79,7 +79,7 @@ class camundaPHP {
 
   /**
    * get all process instances from the REST API
-   *(see http://docs.camunda.org/api-references/rest/#!/process-instance/get-query)
+   *@link http://docs.camunda.org/api-references/rest/#!/process-instance/get-query
    *
    * @param Array $parameterArray
    * @return mixed returns the server response
@@ -91,7 +91,7 @@ class camundaPHP {
 
   /**
    * get count of all requested process instances
-   * (see http://docs.camunda.org/api-references/rest/#!/process-instance/get-query-count)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get-query-count
    *
    * @param Array $parameterArray
    * @return mixed returns the server response
@@ -103,7 +103,7 @@ class camundaPHP {
 
   /**
    * get all process instances with POST-Request
-   * (see http://docs.camunda.org/api-references/rest/#!/process-instance/post-query)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-instance/post-query
    *
    * @param Array $parameterArray
    * @return mixed returns the server response
@@ -115,7 +115,7 @@ class camundaPHP {
 
   /**
    * get count of all requested process instances with POST-Request
-   * (see http://docs.camunda.org/api-references/rest/#!/process-instance/post-query-count)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-instance/post-query-count
    *
    * @param Array $parameterArray
    * @return mixed returns the server response
@@ -127,7 +127,7 @@ class camundaPHP {
 
   /**
    * Retrieves all variables of a given process instance.
-   * (see http://docs.camunda.org/api-references/rest/#!/process-instance/get-variables)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get-variables
    *
    * @param String $id Id of the process instance
    * @return mixed  returns the server response
@@ -142,7 +142,7 @@ class camundaPHP {
 
   /**
    * get a single process definition from the REST API
-   * (see http://docs.camunda.org/api-references/rest/#!/process-definition/get)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get
    *
    * @param String $id Id of the process definition
    * @return mixed  returns the server response
@@ -154,7 +154,7 @@ class camundaPHP {
 
   /**
    * get all process definitions from the REST API
-   * (see http://docs.camunda.org/api-references/rest/#!/process-definition/get-query)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-query
    *
    * @param Array $parameterArray
    * @return mixed returns the server-response
@@ -166,7 +166,7 @@ class camundaPHP {
 
   /**
    * get count of all requested process definitions
-   * (see http://docs.camunda.org/api-references/rest/#!/process-definition/get-query-count)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-query-count
    *
    * @param Array $parameterArray
    * @return mixed returns the server response
@@ -178,7 +178,7 @@ class camundaPHP {
 
   /**
  * Retrieves the BPMN 2.0 XML of this process definition.
- * (see http://docs.camunda.org/api-references/rest/#!/process-definition/get-xml)
+ * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-xml
  *
  * @param String $id id of the process definition
  * @return mixed returns the server response
@@ -190,7 +190,7 @@ class camundaPHP {
 
   /**
    * Instantiates a given process definition. Process variables may be supplied in the request body.
-   * (see http://docs.camunda.org/api-references/rest/#!/process-definition/post-start-process-instance)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/post-start-process-instance
    *
    * @param String $id id of the process definition
    * @param Array $processVariables variables attached to the process instance
@@ -204,7 +204,7 @@ class camundaPHP {
   /**
    * Retrieves runtime statistics of the process engine grouped by process definitions.
    * These statistics include the number of running process instances and optionally the number of failed jobs.
-   * (see http://docs.camunda.org/api-references/rest/#!/process-definition/get-statistics)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-statistics
    *
    * @param Array $parameterArray parameters
    * @return mixed returns the server response
@@ -217,7 +217,7 @@ class camundaPHP {
   /**
    * Retrieves runtime statistics of a given process definition grouped by activities.
    * These statistics include the number of running activity instances and optionally the number of failed jobs.
-   * (see http://docs.camunda.org/api-references/rest/#!/process-definition/get-activity-statistics)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-activity-statistics
    *
    * @param String $id id of the process definition
    * @param Array $parameterArray parameters
@@ -231,7 +231,7 @@ class camundaPHP {
   /**
    * Retrieves the key of the start form for a process definition. The form key corresponds to the FormData#formKey
    * property in the engine
-   * (see http://docs.camunda.org/api-references/rest/#!/process-definition/get-start-form-key)
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-start-form-key
    *
    * @param String $id id of the process definition
    * @return mixed returns the server response
@@ -246,7 +246,7 @@ class camundaPHP {
 
   /**
    * Retrieves a single task by its id.
-   * (see http://docs.camunda.org/api-references/rest/#!/task/get)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/get
    *
    * @param String $id task id
    * @return mixed
@@ -258,7 +258,7 @@ class camundaPHP {
 
   /**
    * get all tasks from the rest api
-   * (see http://docs.camunda.org/api-references/rest/#!/task/get-query)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/get-query
    *
    * @param Array $parameterArray url parameter
    * @return mixed returns the server-response
@@ -270,7 +270,7 @@ class camundaPHP {
 
   /**
    * get count of all requested process definitions
-   * (see http://docs.camunda.org/api-references/rest/#!/task/get-query-count)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/get-query-count
    *
    * @param Array $parameterArray url parameter
    * @return mixed returns the server response
@@ -282,7 +282,7 @@ class camundaPHP {
 
   /**
    * get all tasks from the rest api with POST-Request
-   * (see http://docs.camunda.org/api-references/rest/#!/task/post-query)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/post-query
    *
    * @param Array $parameterArray url parameter
    * @return mixed returns the server-response
@@ -294,7 +294,7 @@ class camundaPHP {
 
   /**
    * get count of all requested process definitions with POST-Request
-   * (see http://docs.camunda.org/api-references/rest/#!/task/post-query-count)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/post-query-count
    *
    * @param Array $parameterArray url parameter
    * @return mixed returns the server response
@@ -307,7 +307,7 @@ class camundaPHP {
   /**
    * Retrieves the form key for a task. The form key corresponds to the FormData#formKey property in the engine.
    * This key can be used to do task-specific form rendering in client applications.
-   * (see http://docs.camunda.org/api-references/rest/#!/task/get-form-key)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/get-form-key
    *
    * @param String $id id of the task
    * @return mixed returns the server response
@@ -319,7 +319,7 @@ class camundaPHP {
 
   /**
    * Claim a task for a specific user.
-   * (see http://docs.camunda.org/api-references/rest/#!/task/post-claim)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/post-claim
    *
    * @param String $id id of the task
    * @param Array $parameterArray url parameter
@@ -332,7 +332,7 @@ class camundaPHP {
 
   /**
    * Resets a task's assignee. If successful, the task is not assigned to a user.
-   * (see http://docs.camunda.org/api-references/rest/#!/task/post-unclaim)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/post-unclaim
    *
    * @param String $id id of the task
    * @return mixed returns the server response
@@ -344,7 +344,7 @@ class camundaPHP {
 
   /**
  * Complete a task and update process variables.
- * (see http://docs.camunda.org/api-references/rest/#!/task/post-complete)
+ * @link http://docs.camunda.org/api-references/rest/#!/task/post-complete
  *
  * @param String $id id of the task
  * @param Array $parameterArray url parameter
@@ -357,7 +357,7 @@ class camundaPHP {
 
   /**
    * Resolve a task and update execution variables.
-   * (see http://docs.camunda.org/api-references/rest/#!/task/post-resolve)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/post-resolve
    *
    * @param String $id id of the task
    * @param Array $parameterArray url parameter
@@ -370,7 +370,7 @@ class camundaPHP {
 
   /**
    * Delegate a task to another user.
-   * (see http://docs.camunda.org/api-references/rest/#!/task/post-delegate)
+   * @link http://docs.camunda.org/api-references/rest/#!/task/post-delegate)
    *
    * @param String $id id of the task
    * @param Array $parameterArray url parameter
@@ -386,7 +386,7 @@ class camundaPHP {
 
   /**
    * Deliver a message to the process engine to either trigger a message start or intermediate message catching event.
-   * (see hhttp://docs.camunda.org/api-references/rest/#!/message/post-message)
+   * @link http://docs.camunda.org/api-references/rest/#!/message/post-message
    *
    * @param Array $parameterArray url parameter
    * @return mixed returns the server response
@@ -401,7 +401,7 @@ class camundaPHP {
 
   /**
    * Gets the groups of a user and all users that share a group with the given user.
-   * (see http://docs.camunda.org/api-references/rest/#!/identity/get-group-info)
+   * @link http://docs.camunda.org/api-references/rest/#!/identity/get-group-info
    *
    * @param Array $parameterArray url parameter
    * @return mixed returns the server-response

@@ -1,24 +1,37 @@
 <?php
 /**
+ * Copyright 2013 camunda services GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ *limitations under the License.
+ *
  * Created by IntelliJ IDEA.
  * User: hentschel
  * Date: 24.05.13
  * Time: 10:32
  * To change this template use File | Settings | File Templates.
  */
-namespace org\camunda\demo\php;
+namespace org\camunda\php\example\overview;
 
 session_start();
 
 require_once('../assets/php/Config.php');
 require_once('../assets/php/Login.php');
-require_once('../../library/camundaPHP.php');
+require_once('../../../sdk/camundaAPI.php');
 
 if(Config::$isDemo == true) {
-  require_once('../assets/php/demo/RestRequest.php');
+  require_once('../assets/php/example/RestRequest.php');
 } else {
   require_once('../assets/php/RestRequest.php');
-  $restRequest = new RestRequest("http://localhost:8080/engine-rest");
 }
 
 $login = new Login();
@@ -26,6 +39,7 @@ if(!$login->checkSession()) {
   header('Location: security/login.php');
   exit();
 }
+$restRequest = new RestRequest("http://localhost:8080/engine-rest");
 ?>
 <!doctype html>
 <html lang="en">
@@ -71,7 +85,7 @@ if(!$login->checkSession()) {
             foreach($restRequest->getProcessDefinitions() AS $data) {
               ?>
               <li>
-                <a href="restService.php?action=startInstance&<?php echo $data->id; ?>"><?php echo $data->name; ?></a>
+                <a href="restService.php?action=startInstance&id=<?php echo $data->deploymentId ?>"><?php echo $data->name; ?></a>
               </li>
             <?php } ?>
           </ul>
@@ -93,6 +107,7 @@ if(!$login->checkSession()) {
   <div class="row-fluid">
     <div class="span10 offset1 tab-content">
       <div class="tab-pane active" id="tasks">
+        <p>Total: <?php echo $restRequest->getTaskCount()->count ?></p>
         <table class="table table-bordered table-striped">
           <tr>
             <th>Id</th>
@@ -115,6 +130,7 @@ if(!$login->checkSession()) {
         </table>
       </div>
       <div class="tab-pane" id="processInstances">
+        <p>Total: <?php echo $restRequest->getProcessInstanceCount()->count ?></p>
         <table class="table table-bordered table-striped">
           <tr>
             <th>Id</th>
@@ -126,13 +142,14 @@ if(!$login->checkSession()) {
             ?>
             <tr>
               <td><?php echo $data->id; ?></td>
-              <td><a href="showDetails.php?type=processDefinition&id=<?php echo $data->definitionId; ?>"><?php echo $restRequest->getSingleProcessDefinition($data->definitionId)->name; ?></a></td>
+              <td><a href="showDetails.php?type=processDefinition&id=<?php echo $data->id; ?>"><?php echo $restRequest->getSingleProcessDefinition($data->definitionId)->name; ?></a></td>
               <td><?php echo $data->businessKey; ?></td>
             </tr>
           <?php } ?>
         </table>
       </div>
       <div class="tab-pane" id="processDefinitions">
+        <p>Total: <?php echo $restRequest->getProcessDefinitionCount()->count ?></p>
         <table class="table table-bordered table-striped">
           <tr>
             <th>Id</th>
@@ -151,7 +168,7 @@ if(!$login->checkSession()) {
               <td><?php echo $data->category; ?></td>
               <td>
                 <a href="showDetails.php?id=<?php echo $data->id; ?>" class="btn btn-mini">Details</a>
-                <a href="restService.php?action=startInstance&<?php echo $data->id; ?>" class="btn btn-mini">Start Instance</a>
+                <a href="restService.php?action=startInstance&id=<?php echo $data->id; ?>" class="btn btn-mini">Start Instance</a>
               </td>
             </tr>
           <?php } ?>

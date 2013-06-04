@@ -17,14 +17,24 @@
  * Created by IntelliJ IDEA.
  * User: hentschel
  * Date: 27.05.13
- * Time: 15:42
+ * Time: 15:53
  * To change this template use File | Settings | File Templates.
  */
 
 namespace org\camunda\php\example\overview;
 
 
-class Config {
-  public static $applicationVersion = '0.0.1';
-  public static $isDemo = false;
+class RestRequest extends \org\camunda\php\sdk\camundaAPI {
+  public function saveXmlAsFile($id) {
+    $diagram = $this->getBpmnXml($id);
+    $filename = '../assets/bpmn/'.$this->cleanFileName($diagram->id).'.bpmn';
+    $handle = fopen($filename, 'c+');
+    ftruncate($handle, filesize($filename));
+    fwrite($handle, $diagram->bpmn20Xml);
+    fclose($handle);
+  }
+
+  public function cleanFileName($fileName) {
+    return preg_replace('/\:/','.', $fileName);
+  }
 }

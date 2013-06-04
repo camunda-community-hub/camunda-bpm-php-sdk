@@ -14,17 +14,8 @@
  * See the License for the specific language governing permissions and
  *limitations under the License.
  *
- * Created by IntelliJ IDEA.
- * User: hentschel
- * Date: 27.05.13
- * Time: 15:42
- * To change this template use File | Settings | File Templates.
  */
-
-namespace org\camunda\php\example\overview;
-
-
-class Config {
-  public static $applicationVersion = '0.0.1';
-  public static $isDemo = false;
-}
+header("HTTP/1.1 301 Moved Permanently");
+header("Location: ./app/index.php");
+header("Connection: close");
+?>

@@ -16,15 +16,26 @@
  *
  * Created by IntelliJ IDEA.
  * User: hentschel
- * Date: 27.05.13
- * Time: 15:42
+ * Date: 24.05.13
+ * Time: 13:06
  * To change this template use File | Settings | File Templates.
  */
 
 namespace org\camunda\php\example\overview;
 
 
-class Config {
-  public static $applicationVersion = '0.0.1';
-  public static $isDemo = false;
+class Error {
+  private $message;
+
+  public function __construct() {
+    $this->message = '';
+  }
+
+  public function setMessage($message) {
+    $this->message = $message;
+  }
+
+  public function getMessage() {
+    return $this->message;
+  }
 }

@@ -29,7 +29,7 @@ namespace org\camunda\php\sdk;
  * Class camundaAPI
  * @package org\camunda\php\sdk
  */
-class camundaAPI {
+class camundaRestClient {
 
   private $engineUrl;
   private $cookieFilePath = './';
@@ -127,7 +127,7 @@ class camundaAPI {
    * @param Array $parameterArray
    * @return mixed returns the server response
    */
-  public function getProcessInstancesByPost($parameterArray = null) {
+  public function getProcessInstanceByPost($parameterArray = null) {
     $query = 'process-instance';
     return $this->restPostRequest($query, $parameterArray);
   }
@@ -144,6 +144,46 @@ class camundaAPI {
     return $this->restPostRequest($query, $parameterArray);
   }
 
+
+  /**
+   * Retrieves a variable of a given process instance.
+   * @Link http://docs.camunda.org/api-references/rest/#!/process-instance/get-single-variable
+   *
+   * @param String $id
+   * @param String $varId
+   * @param Array $parameterArray
+   * @return mixed returns the server response
+   */
+  public function getSingleProcessVariable($id, $varId, $parameterArray = null) {
+    $query = 'process-instance/'.$id.'/variables/'.$varId;
+    return $this->restGetRequest($query, $parameterArray);
+  }
+
+  /**
+   * Sets a variable of a given process instance.
+   * @Link http://docs.camunda.org/api-references/rest/#!/process-instance/put-single-variable
+   *
+   * @param String $id Process-Instance ID
+   * @param String $varId Variable ID
+   * @param mixed $value Variable value
+   */
+  public function putSingleProcessVariable($id, $varId, $value) {
+    $query = 'process-instance/'.$id.'/variables/'.$varId;
+    $this->restPutRequest($query, $value);
+  }
+
+  /**
+   * Deletes a variable of a given process instance.
+   * @Link http://docs.camunda.org/api-references/rest/#!/process-instance/delete-single-variable
+   *
+   * @param String $id Process-Instance ID
+   * @param String $varId Variable ID
+   */
+  public function deleteSingleProcessVariable($id, $varId) {
+    $query = 'process-instance/'.$id.'/variables/'.$varId;
+    $this->restDeleteRequest($query);
+  }
+
   /**
    * Retrieves all variables of a given process instance.
    * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get-variables
@@ -154,6 +194,173 @@ class camundaAPI {
   public function getProcessVariables($id) {
     $query = 'process-instance/'.$id.'/variables';
     return $this->restGetRequest($query, null);
+  }
+
+  /**
+   * Updates or deletes the variables of a process instance.
+   * Updates precede deletes. So if a variable is updated AND deleted, the deletion overrides the update.
+   * @Link http://docs.camunda.org/api-references/rest/#!/process-instance/post-variables
+   *
+   * @param String $id Process-Instance ID
+   * @param Array $parameterArray Request Parameters
+   */
+  public function updateOrRemoveProcessVariables($id, $parameterArray) {
+    $query = 'process-instance/'.$id.'/variables';
+    $this->restPostRequest($query, $parameterArray);
+  }
+
+  /**
+   * Deletes a running process instance.
+   * @Link http://docs.camunda.org/api-references/rest/#!/process-instance/delete
+   *
+   * @param String $id Process-Instance ID
+   * @param String $reason Reason for delete
+   */
+  public function deleteProcessInstance($id, $reason) {
+    $query = 'process-instance/'.$id;
+    $this->restDeleteRequest($query, $reason);
+  }
+
+
+/*---------------------- EXECUTIONS -------------------------------------*/
+
+  /**
+   * Retrieves a single execution according to the Execution interface in the engine
+   * @link http://docs.camunda.org/api-references/rest/#!/execution/get
+   *
+   * @param String $id Id of the execution
+   * @return mixed  returns the server response
+   */
+  public function getSingleExecution($id) {
+    $query = 'execution/'.$id;
+    return $this->restGetRequest($query, null);
+  }
+
+  /**
+   * Query for the number of executions that fulfill given parameters.
+   * Parameters may be static as well as dynamic runtime properties of executions.
+   * @link http://docs.camunda.org/api-references/rest/#!/execution/get-query
+   *
+   * @param Array $parameterArray Request parameters
+   * @return mixed returns the server response
+   */
+  public function getExecutions($parameterArray = null) {
+    $query = 'execution';
+    return $this->restGetRequest($query, $parameterArray);
+  }
+
+  /**
+   * Query for the number of executions that fulfill given parameters.
+   * @link http://docs.camunda.org/api-references/rest/#!/execution/get-query-count
+   *
+   * @param Array $parameterArray Request parameters
+   * @return mixed returns the server response
+   */
+  public function getExecutionCount($parameterArray = null) {
+    $query = 'execution/count';
+    return $this->restGetRequest($query, $parameterArray);
+  }
+
+  /**
+   * Query for executions that fulfill given parameters through a json object.
+   * @link http://docs.camunda.org/api-references/rest/#!/execution/post-query
+   *
+   * @param Array $parameterArray Request Parameter
+   * @return mixed returns the server response
+   */
+  public function getExecutionByPost($parameterArray = null) {
+    $query = 'execution';
+    return $this->restPostRequest($query, $parameterArray);
+  }
+
+  /**
+   * Query for the number of executions that fulfill given parameters.
+   * @link http://docs.camunda.org/api-references/rest/#!/execution/post-query-count
+   *
+   * @param Array $parameterArray Request parameter
+   * @return mixed returns the server response
+   */
+  public function getExecutionCountByPost($parameterArray = null) {
+    $query = 'execution/count';
+    return $this->restPostRequest($query, $parameterArray);
+  }
+
+  /**
+   * Retrieves a variable from the context of a given execution. Does not traverse the parent execution hierarchy.
+   * @Link http://docs.camunda.org/api-references/rest/#!/execution/get-local-variable
+   *
+   * @param String $id execution ID
+   * @param String $varId variables ID
+   * @return mixed all found executions
+   */
+  public function getLocalExecutionVariable($id, $varId) {
+    $query = 'execution/'.$id.'/localVariables/'.$varId;
+    return $this->restGetRequest($query, null);
+  }
+
+  /**
+   * Sets a variable in the context of a given execution. Update does not propagate upwards in the execution hierarchy.
+   * @Link http://docs.camunda.org/api-references/rest/#!/execution/put-local-variable
+   *
+   * @param String $id execution ID
+   * @param String $varId variables ID
+   * @param mixed $value variables value
+   */
+  public function putLocalExecutionVariable($id, $varId, $value) {
+    $query = 'execution/'.$id.'/localVariables/'.$varId;
+    $this->restPutRequest($query, $value);
+  }
+
+  /**
+   * Deletes a variable in the context of a given execution. Deletion does not propagate upwards in the
+   * execution hierarchy.
+   * @Link http://docs.camunda.org/api-references/rest/#!/execution/delete-local-variable
+   *
+   * @param $id
+   * @param $varId
+   */
+  public function deleteLocalExecutionVariable($id, $varId) {
+    $query = 'execution/'.$id.'/localVariables/'.$varId;
+    $this->restDeleteRequest($query);
+  }
+
+  /**
+   * Retrieves all variables of a given execution
+   * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get-variables
+   *
+   * @param String $id Id of the process instance
+   * @return mixed  returns the server response
+   */
+  public function getLocalExecutionVariables($id) {
+    $query = 'execution/'.$id.'/variables';
+    return $this->restGetRequest($query, null);
+  }
+
+  /**
+   * Updates or deletes the variables in the context of an execution. The updates do not propagate upwards in the
+   * execution hierarchy. Updates precede deletes. So if a variable is updated AND deleted, the deletion overrides
+   * the update.
+   * @Link http://docs.camunda.org/api-references/rest/#!/execution/post-local-variables
+   *
+   * @param String $id execution ID
+   * @param Array $parameterArray Request parameters
+   */
+  public function updateOrRemoveLocalExecutionVariables($id, $parameterArray) {
+    $query = 'execution/'.$id.'/localVariables';
+    $this->restPostRequest($query, $parameterArray);
+  }
+
+  /**
+   * Signals a single execution. Can for example be used to explicitly skip user tasks or signal asynchronous
+   * continuations.
+   * @Link http://docs.camunda.org/api-references/rest/#!/execution/post-signal
+   *
+   * @param String $id
+   * @param Array $parameterArray Request Parameter
+   */
+  public function triggerExecution($id, $parameterArray) {
+    $query = 'execution/'.$id.'/signal';
+    $this->restPostRequest($query, $parameterArray);
   }
 
 
@@ -512,6 +719,109 @@ class camundaAPI {
       );
 
       $request = file_get_contents($this->engineUrl.$query, null, $streamContext);
+    }
+
+    return json_decode($request);
+
+  }
+
+  /**
+   * requests the data from the rest api as POST-REQUEST via curl or with stream api fallback
+   *
+   * @param String $query asked query of the rest api
+   * @param String $value Put parameters
+   * @return mixed returns the server-response
+   */
+  private function restPutRequest($query, $value) {
+    $dataString = '{"value":'.$value.'}';
+
+
+    if($this->checkCurl()) {
+      $ch = curl_init($this->engineUrl.$query);
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: '.strlen($dataString)
+      ));
+
+      $request = curl_exec($ch);
+      echo $request;
+      curl_close($ch);
+    } else {
+      $streamContext = stream_context_create(array(
+          'http' => array(
+            'method' => 'PUT',
+            'header' => 'Content-Type: application/json'."\r\n"
+                .'Content-Length:'.strlen($dataString)."\r\n",
+            'content' => $dataString
+          )
+        )
+      );
+
+      $request = file_get_contents($this->engineUrl.$query, null, $streamContext);
+    }
+
+    return json_decode($request);
+
+  }
+
+  /**
+   * requests a deletion of data from the REST API via DELETE
+   *
+   * @param String $query asked query of the rest api
+   * @param String $value Reason of deletion (optional
+   * @return mixed returns the server-response
+   */
+  private function restDeleteRequest($query, $value = '') {
+    if(!empty($value)) {
+      $dataString = '{"deleteReason":'.$value.'}';
+
+      if($this->checkCurl()) {
+        $ch = curl_init($this->engineUrl.$query);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+          'Content-Type: application/json',
+          'Content-Length: '.strlen($dataString)
+        ));
+
+        $request = curl_exec($ch);
+        echo $request;
+        curl_close($ch);
+      } else {
+        $streamContext = stream_context_create(array(
+            'http' => array(
+              'method' => 'PUT',
+              'header' => 'Content-Type: application/json'."\r\n"
+                  .'Content-Length:'.strlen($dataString)."\r\n",
+              'content' => $dataString
+            )
+          )
+        );
+
+        $request = file_get_contents($this->engineUrl.$query, null, $streamContext);
+      }
+    } else {
+      if($this->checkCurl()) {
+        $ch = curl_init($this->engineUrl.$query);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+
+        $request = curl_exec($ch);
+        echo $request;
+        curl_close($ch);
+      } else {
+        $streamContext = stream_context_create(array(
+            'http' => array(
+              'method' => 'PUT'
+            )
+          )
+        );
+
+        $request = file_get_contents($this->engineUrl.$query, null, $streamContext);
+      }
     }
 
     return json_decode($request);

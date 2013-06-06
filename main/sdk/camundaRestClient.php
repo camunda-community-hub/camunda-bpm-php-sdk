@@ -332,7 +332,7 @@ class camundaRestClient {
    * @return mixed  returns the server response
    */
   public function getLocalExecutionVariables($id) {
-    $query = 'execution/'.$id.'/variables';
+    $query = 'execution/'.$id.'/localVariables';
     return $this->restGetRequest($query, null);
   }
 

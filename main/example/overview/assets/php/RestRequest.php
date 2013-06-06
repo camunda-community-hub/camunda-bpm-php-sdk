@@ -22,9 +22,10 @@
  */
 
 namespace org\camunda\php\example\overview;
+use org\camunda\php\sdk\camundaRestClient;
 
 
-class RestRequest extends \org\camunda\php\sdk\camundaRestClient {
+class RestRequest extends camundaRestClient {
   public function saveXmlAsFile($id) {
     $diagram = $this->getBpmnXml($id);
     $filename = '../assets/bpmn/'.$this->cleanFileName($diagram->id).'.bpmn';

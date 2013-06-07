@@ -718,7 +718,7 @@ class camundaRestClient {
         )
       );
 
-      $request = file_get_contents($this->engineUrl.$query, null, $streamContext);
+      $request = file_get_contents($this->engineUrl.$requestString, null, $streamContext);
     }
 
     return json_decode($request);

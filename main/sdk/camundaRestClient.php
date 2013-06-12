@@ -539,7 +539,7 @@ class camundaRestClient {
    * @return mixed returns the server response
    */
   public function getFormKey($id) {
-    $query = 'task/'.$id.'/count';
+    $query = 'task/'.$id.'/form';
     return $this->restGetRequest($query, null);
   }
 

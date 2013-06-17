@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Camunda BPM PHP SDK</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="assets/vendor/twitter/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="assets/vendor/twitter/bootstrap/css/bootstrap-responsive.css" />
+  <link rel="stylesheet" type="text/css" href="assets/app/css/app.css" />
+
+  <script src="assets/vendor/jquery/js/jquery-1.9.1.js" language="javascript" type="text/javascript"></script>
+  <script src="assets/vendor/twitter/bootstrap/js/bootstrap.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+  <header id="navigation" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a href="index.html" class="brand">Camunda BPM PHP SDK</a>
+      </div>
+    </div>
+  </header>
+  <div class="container-fluid container-fixed-top">
+    <div class="row-fluid">
+      <section class="span2">
+        <div class="well">
+          <ul class="nav nav-list">
+            <li><a href="#">Top</a></li>
+            <li><a href="#introduce">Introduce</a></li>
+            <li><a href="#gettingStarted">Getting Started</a></li>
+            <li><a href="#architecture">Architecture Overview</a></li>
+            <li class="divider"></li>
+            <li class="nav-header">Getting Started</li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#using">Using the sdk</a></li>
+            <li><a href="#example">Example</a></li>
+            <li class="divider"></li>
+            <li class="nav-header">Example</li>
+            <li><a href="#code">Code</a></li>
+            <li><a href="#explanation">Explanation</a></li>
+          </ul>
+        </div>
+      </section>
+      <section class="span5">
+        <h2 id="introduce">Introduce</h2>
+        <p>
+          The <strong>Camunda BPM PHP SDK</strong> enables PHP developers to easily integrate the camunda BPM process
+          solutions into their projects.
+        </p>
+        <h2 id="gettingStarted">Getting Started</h2>
+        <h3 id="installation">Installation</h3>
+        <p>
+          The fastest way to get started with the SDK is to download the full github repository as zip and extract the
+          <strong><i>camundaRestClient.php</i></strong> from main/sdk/camundaRestClient.php to your project folder and
+          include it via:
+        </p>
+        <code>include_once('camundaRestClient.php')</code>
+        <h3 id="using">Using the sdk</h3>
+        <p>
+          After the inclusion of camundaRestClient.php you can instantiate the API and use it to get your requested data.
+          Below is a simple example which shows how to use the API.
+        </p>
+        <h4 id="example">Example:</h4>
+        <p>In this example we will request all process definitions and output the deployment id of each definition.</p>
+        <h5 id="code">Code:</h5>
+        <code>
+          $restRequest = new RestRequest('http://localhost:8080/engine-rest');
+          $processDefinitions = $restRequest->getProcessDefinitions;
+
+          foreach($processDefinitions AS $data) {
+            echo 'Process deployment id: ' . $data->deploymentId . '&lt;br /&gt;';
+          }
+        </code>
+        <h5 id="explanation">Explanation:</h5>
+        <p>
+          Instantiate the rest client (this example uses our prepackaged tomcat release in a local installation):<br />
+          <code>
+          $restRequest = new RestRequest('http://localhost:8080/engine-rest');
+          </code>
+        </p>
+        <p>
+          Get all process definitions:<br />
+          <code>
+          $processDefinitions = $restRequest->getProcessDefinitions();
+          </code>
+        </p>
+        <p>
+          output the deployment id for each process definition:<br />
+          <code>
+          foreach($processDefinitions AS $data) {
+            echo 'Process Deployment ID: ' . . $data->deploymentId . '&lt;br /&gt;';
+          }
+          </code>
+        </p>
+        <h2 id="architecture">Architecture Overview</h2>
+      </section>
+    </div>
+  </div>
+
+</body>
+</html>

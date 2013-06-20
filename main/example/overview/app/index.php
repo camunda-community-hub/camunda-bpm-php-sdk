@@ -85,7 +85,7 @@ $restRequest = new RestRequest("http://localhost:8080/engine-rest");
             foreach($restRequest->getProcessDefinitions() AS $data) {
               ?>
               <li>
-                <a href="restService.php?action=startInstance&id=<?php echo $data->deploymentId ?>"><?php echo $data->name; ?></a>
+                <a href="restService.php?action=startInstance&id=<?php echo $data->id ?>"><?php echo $data->name; ?></a>
               </li>
             <?php } ?>
           </ul>

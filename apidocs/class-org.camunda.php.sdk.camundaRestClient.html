@@ -4,9 +4,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class org\camunda\php\sdk\camundaRestClient | camunda-bpm-php-sdk Documentation</title>
+	<title>Class org\camunda\php\sdk\camundaRestClient | camunda BPM PHP SDK</title>
 
-	<script type="text/javascript" src="resources/combined.js?1962671793"></script>
+	<script type="text/javascript" src="resources/combined.js?522072721"></script>
 	<script type="text/javascript" src="elementlist.js?181292786"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822" />
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609" />
@@ -17,7 +17,7 @@
 	<div id="navigation" class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a href="index.html" class="brand">camunda-bpm-php-sdk Documentation</a>
+				<a href="index.html" class="brand">camunda BPM PHP SDK</a>
 				<div class="nav-collapse">
 					<ul class="nav">
 						<li>
@@ -32,7 +32,11 @@
 							<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
 						</li>
 
+						<li class="divider-vertical"></li>
 
+						<li>
+							<a href="camunda-bpm-php-sdk-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -108,7 +112,7 @@
 		<b>Namespace:</b> <a href="namespace-org.html">org</a>\<a href="namespace-org.camunda.html">camunda</a>\<a href="namespace-org.camunda.php.html">php</a>\<a href="namespace-org.camunda.php.sdk.html">sdk</a><br />
 		<b>Package:</b> org\camunda\php\sdk<br />
 
-		<b>Located at</b> <a href="source-class-org.camunda.php.sdk.camundaRestClient.html#26-834" title="Go to source code">camundaRestClient.php</a><br />
+		<b>Located at</b> <a href="source-class-org.camunda.php.sdk.camundaRestClient.html#26-859" title="Go to source code">camundaRestClient.php</a><br />
 	</div>
 
 
@@ -1288,6 +1292,97 @@ href="http://docs.camunda.org/api-references/rest/#">http://docs.camunda.org/api
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="getMessageEventSubscription" id="_getMessageEventSubscription">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getMessageEventSubscription">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#353-363" title="Go to source code">getMessageEventSubscription</a>( <span>String <var>$id</var></span>, <span>String <var>$messageName</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Get a message event subscription for a specific execution and a message
+name.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get a message event subscription for a specific execution and a message
+name.</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd><code>String</code><br>$id</dd>
+						<dt><var>$messageName</var></dt>
+						<dd><code>String</code><br>$messageName</dd>
+					</dl></div>
+
+
+
+					<h4>Link</h4>
+					<div class="list">
+							<a
+href="http://docs.camunda.org/api-references/rest/#">http://docs.camunda.org/api-references/rest/#</a>!/execution/get-message-subscription<br />
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="triggerMessageEventSubscription" id="_triggerMessageEventSubscription">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_triggerMessageEventSubscription">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#365-376" title="Go to source code">triggerMessageEventSubscription</a>( <span>String <var>$id</var></span>, <span>String <var>$messageName</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Deliver a message to a specific execution to trigger an existing message
+event subscription. Inject process variables as the message's payload.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Deliver a message to a specific execution to trigger an existing message
+event subscription. Inject process variables as the message's payload.</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd><code>String</code><br>$id</dd>
+						<dt><var>$messageName</var></dt>
+						<dd><code>String</code><br>$messageName</dd>
+						<dt><var>$parameterArray</var></dt>
+						<dd><code>Array</code><br>$parameterArray</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="triggerExecution" id="_triggerExecution">
 
 			<td class="attributes"><code>
@@ -1299,7 +1394,7 @@ href="http://docs.camunda.org/api-references/rest/#">http://docs.camunda.org/api
 
 			<td class="name"><div>
 			<a class="anchor" href="#_triggerExecution">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#353-364" title="Go to source code">triggerExecution</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#378-389" title="Go to source code">triggerExecution</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1346,7 +1441,7 @@ href="http://docs.camunda.org/api-references/rest/#">http://docs.camunda.org/api
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getSingleProcessDefinition">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#369-379" title="Go to source code">getSingleProcessDefinition</a>( <span>String <var>$id</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#394-404" title="Go to source code">getSingleProcessDefinition</a>( <span>String <var>$id</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1392,7 +1487,7 @@ href="http://docs.camunda.org/api-references/rest/#">http://docs.camunda.org/api
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getProcessDefinitions">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#381-391" title="Go to source code">getProcessDefinitions</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#406-416" title="Go to source code">getProcessDefinitions</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1438,7 +1533,7 @@ href="http://docs.camunda.org/api-references/rest/#">http://docs.camunda.org/api
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getProcessDefinitionCount">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#393-403" title="Go to source code">getProcessDefinitionCount</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#418-428" title="Go to source code">getProcessDefinitionCount</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1484,7 +1579,7 @@ href="http://docs.camunda.org/api-references/rest/#">http://docs.camunda.org/api
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBpmnXml">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#405-415" title="Go to source code">getBpmnXml</a>( <span>String <var>$id</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#430-440" title="Go to source code">getBpmnXml</a>( <span>String <var>$id</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1530,7 +1625,7 @@ href="http://docs.camunda.org/api-references/rest/#">http://docs.camunda.org/api
 
 			<td class="name"><div>
 			<a class="anchor" href="#_startProcessInstance">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#417-428" title="Go to source code">startProcessInstance</a>( <span>String <var>$id</var></span>, <span>Array <var>$processVariables</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#442-453" title="Go to source code">startProcessInstance</a>( <span>String <var>$id</var></span>, <span>Array <var>$processVariables</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1580,7 +1675,7 @@ the request body.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getProcessInstanceStatistics">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#430-441" title="Go to source code">getProcessInstanceStatistics</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#455-466" title="Go to source code">getProcessInstanceStatistics</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1630,7 +1725,7 @@ and optionally the number of failed jobs.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getActivityInstanceStatistics">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#443-455" title="Go to source code">getActivityInstanceStatistics</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#468-480" title="Go to source code">getActivityInstanceStatistics</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1682,7 +1777,7 @@ and optionally the number of failed jobs.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getStartFormKey">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#457-468" title="Go to source code">getStartFormKey</a>( <span>String <var>$id</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#482-493" title="Go to source code">getStartFormKey</a>( <span>String <var>$id</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1730,7 +1825,7 @@ corresponds to the FormData#formKey property in the engine</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getSingleTask">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#473-483" title="Go to source code">getSingleTask</a>( <span>String <var>$id</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#498-508" title="Go to source code">getSingleTask</a>( <span>String <var>$id</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1776,7 +1871,7 @@ corresponds to the FormData#formKey property in the engine</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getTasks">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#485-495" title="Go to source code">getTasks</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#510-520" title="Go to source code">getTasks</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1822,7 +1917,7 @@ corresponds to the FormData#formKey property in the engine</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getTaskCount">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#497-507" title="Go to source code">getTaskCount</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#522-532" title="Go to source code">getTaskCount</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1868,7 +1963,7 @@ corresponds to the FormData#formKey property in the engine</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getTasksByPost">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#509-519" title="Go to source code">getTasksByPost</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#534-544" title="Go to source code">getTasksByPost</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1914,7 +2009,7 @@ corresponds to the FormData#formKey property in the engine</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getTaskCountByPost">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#521-531" title="Go to source code">getTaskCountByPost</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#546-556" title="Go to source code">getTaskCountByPost</a>( <span>Array <var>$parameterArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				
@@ -1960,7 +2055,7 @@ corresponds to the FormData#formKey property in the engine</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getFormKey">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#533-544" title="Go to source code">getFormKey</a>( <span>String <var>$id</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#558-569" title="Go to source code">getFormKey</a>( <span>String <var>$id</var></span> )</code>
 
 			<div class="description short">
 				
@@ -2010,7 +2105,7 @@ task-specific form rendering in client applications.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_claimTask">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#546-557" title="Go to source code">claimTask</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#571-582" title="Go to source code">claimTask</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
 
 			<div class="description short">
 				
@@ -2058,7 +2153,7 @@ task-specific form rendering in client applications.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_unclaimTask">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#559-569" title="Go to source code">unclaimTask</a>( <span>String <var>$id</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#584-594" title="Go to source code">unclaimTask</a>( <span>String <var>$id</var></span> )</code>
 
 			<div class="description short">
 				
@@ -2106,7 +2201,7 @@ user.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_completeTask">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#571-582" title="Go to source code">completeTask</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#596-607" title="Go to source code">completeTask</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
 
 			<div class="description short">
 				
@@ -2154,7 +2249,7 @@ user.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_resolveTask">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#584-595" title="Go to source code">resolveTask</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#609-620" title="Go to source code">resolveTask</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
 
 			<div class="description short">
 				
@@ -2202,7 +2297,7 @@ user.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_delegateTask">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#597-608" title="Go to source code">delegateTask</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#622-633" title="Go to source code">delegateTask</a>( <span>String <var>$id</var></span>, <span>Array <var>$parameterArray</var></span> )</code>
 
 			<div class="description short">
 				
@@ -2250,7 +2345,7 @@ user.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_message">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#613-623" title="Go to source code">message</a>( <span>Array <var>$parameterArray</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#638-648" title="Go to source code">message</a>( <span>Array <var>$parameterArray</var></span> )</code>
 
 			<div class="description short">
 				
@@ -2298,7 +2393,7 @@ intermediate message catching event.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUserGroups">#</a>
-			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#628-638" title="Go to source code">getUserGroups</a>( <span>Array <var>$parameterArray</var></span> )</code>
+			<code><a href="source-class-org.camunda.php.sdk.camundaRestClient.html#653-663" title="Go to source code">getUserGroups</a>( <span>Array <var>$parameterArray</var></span> )</code>
 
 			<div class="description short">
 				
@@ -2352,7 +2447,7 @@ user.</p>
 	</div>
 
 	<div id="footer">
-		camunda-bpm-php-sdk Documentation API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		camunda BPM PHP SDK API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </body>

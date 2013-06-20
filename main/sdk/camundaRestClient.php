@@ -351,6 +351,31 @@ class camundaRestClient {
   }
 
   /**
+   * Get a message event subscription for a specific execution and a message name.
+   * @Link http://docs.camunda.org/api-references/rest/#!/execution/get-message-subscription
+   *
+   * @param String $id
+   * @param String $messageName
+   */
+  public function getMessageEventSubscription($id, $messageName) {
+    $query = 'execution/'.$id.'/messageSubscriptions/'.$messageName;
+    $this->restGetRequest($query, null);
+  }
+
+  /**
+   * Deliver a message to a specific execution to trigger an existing message event subscription.
+   * Inject process variables as the message's payload.
+   *
+   * @param String $id
+   * @param String $messageName
+   * @param Array $parameterArray
+   */
+  public function triggerMessageEventSubscription($id, $messageName, $parameterArray) {
+    $query = 'execution/'.$id.'/messageSubscriptions/'.$messageName.'/trigger';
+    $this->restPostRequest($query, $parameterArray);
+  }
+
+  /**
    * Signals a single execution. Can for example be used to explicitly skip user tasks or signal asynchronous
    * continuations.
    * @Link http://docs.camunda.org/api-references/rest/#!/execution/post-signal

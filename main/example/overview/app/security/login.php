@@ -96,6 +96,10 @@ if(isset($_POST['login'])) {
         <br />
         <button type="submit" id="login" name="login" value="Login">Login</button>
       </form>
+      <div class="alert alert-info">
+        <strong>Be Aware!</strong><br />You need no credentials!. All you need is that the password field and the
+        username field are filled.
+      </div>
     </div>
   </div>
 </section>

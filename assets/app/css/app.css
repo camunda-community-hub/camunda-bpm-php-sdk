@@ -19,3 +19,10 @@ code {
 .container-fixed-top {
   padding-top: 60px;
 }
+
+.fork-me-ribbon {
+  position: fixed;
+  top: 40px;
+  right: 0px;
+  border: 0;
+}

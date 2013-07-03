@@ -1,0 +1,15 @@
+{
+  "name": "camunda/camunda-bpm-php-sdk",
+  "description": "PHP SDK for camundaBPM process services",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Stefan Hentschel",
+      "email": "stefan.hentschel@camunda.com"
+    }
+  ],
+
+  "require-dev": {
+    "phpunit/phpunit": "3.7.21"
+  }
+}

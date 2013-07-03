@@ -11,5 +11,14 @@
 
   "require-dev": {
     "phpunit/phpunit": "3.7.21"
+  },
+
+  "archive": {
+    "exclude": [
+      "/procedual/test",
+      "/procedual/test/*",
+      "/oop/test",
+      "/oop/test/*"
+    ]
   }
 }

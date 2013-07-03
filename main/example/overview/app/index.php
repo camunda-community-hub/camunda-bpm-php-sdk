@@ -155,7 +155,6 @@ $restRequest = new RestRequest("http://localhost:8080/engine-rest");
             <th>Id</th>
             <th>Name</th>
             <th>Version</th>
-            <th>Category</th>
             <th>Action</th>
           </tr>
           <?php

@@ -165,7 +165,6 @@ $restRequest = new RestRequest("http://localhost:8080/engine-rest");
               <td><?php echo $data->id; ?></td>
               <td><?php echo $data->name; ?></td>
               <td><?php echo $data->version; ?></td>
-              <td><?php echo $data->category; ?></td>
               <td>
                 <a href="showDetails.php?id=<?php echo $data->id; ?>" class="btn btn-mini">Details</a>
                 <a href="restService.php?action=startInstance&id=<?php echo $data->id; ?>" class="btn btn-mini">Start Instance</a>

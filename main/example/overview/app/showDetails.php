@@ -133,12 +133,13 @@ $restRequest->saveXmlAsFile($_GET['id']);
         <table class="table table-bordered table-striped">
           <?php
             foreach($restRequest->getSingleProcessDefinition($_GET['id']) AS $key => $value) {
+              if($key != "category") {
           ?>
             <tr>
               <td><?php echo $key; ?></td>
               <td><?php echo $value; ?></td>
             </tr>
-          <?php } ?>
+          <?php }} ?>
         </table>
       </div>
 

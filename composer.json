@@ -3,12 +3,18 @@
   "description": "PHP SDK for camundaBPM process services",
   "license": "Apache-2.0",
   "minimum-stability": "stable",
+  "keywords": ["sdk","camunda", "camunda bpm"],
+  "homepage": "http://camunda.org",
   "authors": [
     {
       "name": "Stefan Hentschel",
       "email": "stefan.hentschel@camunda.com"
     }
   ],
+
+  "require": {
+    "php": ">=5.3.0"
+  },
 
   "require-dev": {
     "phpunit/phpunit": "3.7.21"

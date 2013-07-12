@@ -8,7 +8,6 @@
  */
 
 namespace org\camunda\php\sdk;
-require('../../vendor/autoload.php');
 
 use org\camunda\php\sdk\service\TaskService;
 use org\camunda\php\sdk\service\ExecutionService;

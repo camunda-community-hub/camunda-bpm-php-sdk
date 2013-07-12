@@ -1,0 +1,65 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "5304582ba1a6adb984d2423fd0bf198d",
+    "packages": [
+        {
+            "name": "camunda/camunda-bpm-php-sdk",
+            "version": "dev-1.1.0-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/camunda/camunda-bpm-php-sdk.git",
+                "reference": "5e488875dac5e5de16b2ec999c094c95046f0f69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/camunda/camunda-bpm-php-sdk/zipball/5e488875dac5e5de16b2ec999c094c95046f0f69",
+                "reference": "5e488875dac5e5de16b2ec999c094c95046f0f69",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.21"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Hentschel",
+                    "email": "stefan.hentschel@camunda.com"
+                }
+            ],
+            "description": "PHP SDK for camundaBPM process services",
+            "homepage": "http://camunda.org",
+            "keywords": [
+                "camunda",
+                "camunda bpm",
+                "sdk"
+            ],
+            "time": "2013-07-08 07:48:48"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "camunda/camunda-bpm-php-sdk": 20
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}

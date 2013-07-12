@@ -21,30 +21,29 @@
  * Time: 15:59
  */
 namespace org\camunda\php\example\overview;
+use org\camunda\php\sdk\Api;
+use org\camunda\php\sdk\entity\request\ProcessDefinitionRequest;
+
+require_once('../../../../vendor/autoload.php');
+
 
 session_start();
 
 require_once('../assets/php/Config.php');
 require_once('../assets/php/Login.php');
-require_once('../../../../vendor/autoload.php');
 
-if(Config::$isDemo == true) {
-  require_once('../assets/php/example/RestRequest.php');
-} else {
-  require_once('../assets/php/RestRequest.php');
-}
+$api = new Api();
 
 $login = new Login();
 if(!$login->checkSession()) {
   header('Location: security/login.php');
   exit();
 }
-$restRequest = new RestRequest("http://localhost:8080/engine-rest");
 
 if(isset($_GET['action'])) {
   switch($_GET['action']) {
     case 'startInstance':
-      $restRequest->startProcessInstance($_GET['id']);
+      $api->processDefinition->startInstance($_GET['id'], new ProcessDefinitionRequest());
       header('Location: index.php#processInstances');
       break;
     default:

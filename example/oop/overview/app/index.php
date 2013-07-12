@@ -21,25 +21,26 @@
  * To change this template use File | Settings | File Templates.
  */
 namespace org\camunda\php\example\overview;
+require_once('../../../../vendor/autoload.php');
+
+use org\camunda\php\sdk\Api;
+use org\camunda\php\sdk\entity\request\ProcessDefinitionRequest;
+use org\camunda\php\sdk\entity\request\ProcessInstanceRequest;
+use org\camunda\php\sdk\entity\request\TaskRequest;
 
 session_start();
 
-require_once('../../../../vendor/autoload.php');
 require_once('../assets/php/Config.php');
 require_once('../assets/php/Login.php');
 
-if(Config::$isDemo == true) {
-  require_once('../assets/php/example/RestRequest.php');
-} else {
-  require_once('../assets/php/RestRequest.php');
-}
 
 $login = new Login();
 if(!$login->checkSession()) {
   header('Location: security/login.php');
   exit();
 }
-$restRequest = new RestRequest("http://localhost:8080/engine-rest");
+
+$api = new Api();
 ?>
 <!doctype html>
 <html lang="en">
@@ -82,10 +83,10 @@ $restRequest = new RestRequest("http://localhost:8080/engine-rest");
           </button>
           <ul class="dropdown-menu">
             <?php
-            foreach($restRequest->getProcessDefinitions() AS $data) {
+            foreach($api->processDefinition->getDefinitions(new ProcessDefinitionRequest()) AS $data) {
               ?>
               <li>
-                <a href="restService.php?action=startInstance&id=<?php echo $data->id ?>"><?php echo $data->name; ?></a>
+                <a href="restService.php?action=startInstance&id=<?php echo $data->getId() ?>"><?php echo $data->getName(); ?></a>
               </li>
             <?php } ?>
           </ul>
@@ -107,7 +108,7 @@ $restRequest = new RestRequest("http://localhost:8080/engine-rest");
   <div class="row-fluid">
     <div class="span10 offset1 tab-content">
       <div class="tab-pane active" id="tasks">
-        <p>Total: <?php echo $restRequest->getTaskCount()->count ?></p>
+        <p>Total: <?php echo $api->task->getTaskCount(new TaskRequest()) ?></p>
         <table class="table table-bordered table-striped">
           <tr>
             <th>Id</th>
@@ -117,20 +118,20 @@ $restRequest = new RestRequest("http://localhost:8080/engine-rest");
             <th>Due-Date</th>
           </tr>
           <?php
-          foreach($restRequest->getTasks() AS $data) {
+          foreach($api->task->getTasks(new TaskRequest()) AS $data) {
             ?>
             <tr>
-              <td><?php echo $data->id; ?></td>
-              <td><?php echo $data->name; ?></td>
-              <td><?php echo $data->assignee; ?></td>
-              <td><?php echo $data->created; ?></td>
-              <td><?php echo $data->due; ?></td>
+              <td><?php echo $data->getId(); ?></td>
+              <td><?php echo $data->getName(); ?></td>
+              <td><?php echo $data->getAssignee(); ?></td>
+              <td><?php echo $data->getCreated(); ?></td>
+              <td><?php echo $data->getDue(); ?></td>
             </tr>
           <?php } ?>
         </table>
       </div>
       <div class="tab-pane" id="processInstances">
-        <p>Total: <?php echo $restRequest->getProcessInstanceCount()->count ?></p>
+        <p>Total: <?php echo $api->processInstance->getInstanceCount(new ProcessInstanceRequest()) ?></p>
         <table class="table table-bordered table-striped">
           <tr>
             <th>Id</th>
@@ -138,18 +139,18 @@ $restRequest = new RestRequest("http://localhost:8080/engine-rest");
             <th>Business Key</th>
           </tr>
           <?php
-          foreach($restRequest->getProcessInstances() AS $data) {
+          foreach($api->processInstance->getInstances(new ProcessInstanceRequest) AS $data) {
             ?>
             <tr>
-              <td><?php echo $data->id; ?></td>
-              <td><a href="showDetails.php?type=processDefinition&id=<?php echo $data->id; ?>"><?php echo $restRequest->getSingleProcessDefinition($data->definitionId)->name; ?></a></td>
-              <td><?php echo $data->businessKey; ?></td>
+              <td><?php echo $data->getId(); ?></td>
+              <td><a href="showDetails.php?type=processDefinition&id=<?php echo $data->getDefinitionId(); ?>"><?php echo $api->processDefinition->getDefinition($data->getDefinitionId())->getName(); ?></a></td>
+              <td><?php echo $data->getBusinessKey(); ?></td>
             </tr>
           <?php } ?>
         </table>
       </div>
       <div class="tab-pane" id="processDefinitions">
-        <p>Total: <?php echo $restRequest->getProcessDefinitionCount()->count ?></p>
+        <p>Total: <?php echo $api->processDefinition->getDefinitionCount(new ProcessDefinitionRequest()); ?></p>
         <table class="table table-bordered table-striped">
           <tr>
             <th>Id</th>
@@ -158,15 +159,15 @@ $restRequest = new RestRequest("http://localhost:8080/engine-rest");
             <th>Action</th>
           </tr>
           <?php
-          foreach($restRequest->getProcessDefinitions() AS $data) {
+          foreach($api->processDefinition->getDefinitions(new ProcessDefinitionRequest()) AS $data) {
             ?>
             <tr>
-              <td><?php echo $data->id; ?></td>
-              <td><?php echo $data->name; ?></td>
-              <td><?php echo $data->version; ?></td>
+              <td><?php echo $data->getId(); ?></td>
+              <td><?php echo $data->getName(); ?></td>
+              <td><?php echo $data->getVersion(); ?></td>
               <td>
-                <a href="showDetails.php?id=<?php echo $data->id; ?>" class="btn btn-mini">Details</a>
-                <a href="restService.php?action=startInstance&id=<?php echo $data->id; ?>" class="btn btn-mini">Start Instance</a>
+                <a href="showDetails.php?id=<?php echo $data->getId(); ?>" class="btn btn-mini">Details</a>
+                <a href="restService.php?action=startInstance&id=<?php echo $data->getId(); ?>" class="btn btn-mini">Start Instance</a>
               </td>
             </tr>
           <?php } ?>

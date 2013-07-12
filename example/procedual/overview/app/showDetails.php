@@ -26,7 +26,7 @@ session_start();
 
 require_once('../assets/php/Config.php');
 require_once('../assets/php/Login.php');
-require_once('../../../sdk/camundaRestClient.php');
+require_once('../../../../vendor/autoload.php');
 
 if(Config::$isDemo == true) {
   require_once('../assets/php/example/RestRequest.php');

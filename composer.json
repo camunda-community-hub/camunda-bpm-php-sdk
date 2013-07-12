@@ -1,0 +1,15 @@
+{
+  "name": "camunda/camunda-bpm-php-sdk-examples",
+  "description": "Examples for camundaBPM php sdk",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Stefan Hentschel",
+      "email": "stefan.hentschel@camunda.com"
+    }
+  ],
+
+  "require": {
+   "camunda/camunda-bpm-php-sdk": "dev-1.1.0-dev"
+  }
+}

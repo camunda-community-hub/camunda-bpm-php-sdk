@@ -27,5 +27,15 @@
       "/oop/test",
       "/oop/test/*"
     ]
+  },
+
+  "autoload": {
+    "psr-0":  {
+      "org\\camunda\\php\\sdk\\entity\\request\\": "oop/main/entity/request/",
+      "org\\camunda\\php\\sdk\\entity\\response\\": "oop/main/entity/response/",
+      "org\\camunda\\php\\sdk\\helper\\": "oop/main/helper/",
+      "org\\camunda\\php\\sdk\\service\\": "oop/main/service/",
+      "org\\camunda\\php\\sdk": "oop/main/"
+    }
   }
 }

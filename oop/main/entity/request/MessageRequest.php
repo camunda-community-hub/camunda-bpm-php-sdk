@@ -10,16 +10,18 @@
 namespace org\camunda\php\sdk\entity\request;
 
 class MessageRequest extends Request {
-  private $messageName;
-  private $businessKey;
-  private $correlationKeys;
-  private $processVariables;
+  protected $messageName;
+  protected $businessKey;
+  protected $correlationKeys;
+  protected $processVariables;
 
   /**
    * @param mixed $businessKey
+   * @return $this
    */
   public function setBusinessKey($businessKey) {
     $this->businessKey = $businessKey;
+    return $this;
   }
 
   /**
@@ -31,9 +33,11 @@ class MessageRequest extends Request {
 
   /**
    * @param mixed $correlationKeys
+   * @return $this
    */
   public function setCorrelationKeys($correlationKeys) {
     $this->correlationKeys = $correlationKeys;
+    return $this;
   }
 
   /**
@@ -45,9 +49,11 @@ class MessageRequest extends Request {
 
   /**
    * @param mixed $messageName
+   * @return $this
    */
   public function setMessageName($messageName) {
     $this->messageName = $messageName;
+    return $this;
   }
 
   /**
@@ -59,9 +65,11 @@ class MessageRequest extends Request {
 
   /**
    * @param mixed $processVariables
+   * @return $this
    */
   public function setProcessVariables($processVariables) {
     $this->processVariables = $processVariables;
+    return $this;
   }
 
   /**

@@ -32,9 +32,7 @@ namespace org\camunda\php\sdk;
 class camundaRestClient {
 
   private $engineUrl;
-  private $cookieFilePath = './';
-//  private $isAuthenticated;
-//  private $sessionId;
+  private $pathSeparator = '/';
 
   /**
    * @param String $engineUrl - URL of the rest api
@@ -64,11 +62,11 @@ class camundaRestClient {
    * @param $authenticationData array with username, password (, APIkey)
    */
   public function authenticate($authenticationData) {
-      // not used
+    // not used
   }
 
 
-/*---------------------- PROCESS ENGINE -------------------------------------*/
+  /*---------------------- PROCESS ENGINE -------------------------------------*/
 
   /**
    * Retrieves the names of all process engines available on your platform.
@@ -78,11 +76,11 @@ class camundaRestClient {
    */
   public function getEngineNames() {
     $query = 'engine';
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
 
-/*---------------------- PROCESS INSTANCES -------------------------------------*/
+  /*---------------------- PROCESS INSTANCES -------------------------------------*/
 
   /**
    * get a single process instance from the REST API
@@ -93,19 +91,24 @@ class camundaRestClient {
    */
   public function getSingleProcessInstance($id) {
     $query = 'process-instance/'.$id;
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
    * get all process instances from the REST API
-   *@link http://docs.camunda.org/api-references/rest/#!/process-instance/get-query
+   * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get-query
    *
    * @param Array $parameterArray
+   * @param bool $isPostRequest triggers a post request instead a get request
    * @return mixed returns the server response
    */
-  public function getProcessInstances($parameterArray = null) {
+  public function getProcessInstances($parameterArray = null, $isPostRequest = false) {
     $query = 'process-instance';
-    return $this->restGetRequest($query, $parameterArray);
+    if(!$isPostRequest) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
   }
 
   /**
@@ -113,35 +116,40 @@ class camundaRestClient {
    * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get-query-count
    *
    * @param Array $parameterArray
+   * @param bool $isPostRequest triggers a post request instead a get request
    * @return mixed returns the server response
    */
-  public function getProcessInstanceCount($parameterArray = null) {
+  public function getProcessInstanceCount($parameterArray = null, $isPostRequest = false) {
     $query = 'process-instance/count';
-    return $this->restGetRequest($query, $parameterArray);
+    if(!$isPostRequest) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
   }
 
   /**
    * get all process instances with POST-Request
    * @link http://docs.camunda.org/api-references/rest/#!/process-instance/post-query
    *
+   * @deprecated instead use getProcessInstances with $isPostRequest-Parameter
    * @param Array $parameterArray
    * @return mixed returns the server response
    */
   public function getProcessInstanceByPost($parameterArray = null) {
-    $query = 'process-instance';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->getProcessInstances($parameterArray, true);
   }
 
   /**
    * get count of all requested process instances with POST-Request
    * @link http://docs.camunda.org/api-references/rest/#!/process-instance/post-query-count
    *
+   * @deprecated instead use getProcessInstanceCount function with $isPostRequest-Parameter
    * @param Array $parameterArray
    * @return mixed returns the server response
    */
   public function getProcessInstanceCountByPost($parameterArray = null) {
-    $query = 'process-instance/count';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->getProcessInstanceCount($parameterArray, true);
   }
 
 
@@ -156,7 +164,7 @@ class camundaRestClient {
    */
   public function getSingleProcessVariable($id, $varId, $parameterArray = null) {
     $query = 'process-instance/'.$id.'/variables/'.$varId;
-    return $this->restGetRequest($query, $parameterArray);
+    return $this->restRequest('GET', $query, $parameterArray);
   }
 
   /**
@@ -165,11 +173,11 @@ class camundaRestClient {
    *
    * @param String $id Process-Instance ID
    * @param String $varId Variable ID
-   * @param mixed $value Variable value
+   * @param mixed $parameterArray Variable value
    */
-  public function putSingleProcessVariable($id, $varId, $value) {
+  public function putSingleProcessVariable($id, $varId, $parameterArray) {
     $query = 'process-instance/'.$id.'/variables/'.$varId;
-    $this->restPutRequest($query, $value);
+    $this->restRequest('PUT', $query, $parameterArray);
   }
 
   /**
@@ -181,7 +189,7 @@ class camundaRestClient {
    */
   public function deleteSingleProcessVariable($id, $varId) {
     $query = 'process-instance/'.$id.'/variables/'.$varId;
-    $this->restDeleteRequest($query);
+    $this->restRequest('DELETE', $query);
   }
 
   /**
@@ -193,7 +201,7 @@ class camundaRestClient {
    */
   public function getProcessVariables($id) {
     $query = 'process-instance/'.$id.'/variables';
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -206,7 +214,7 @@ class camundaRestClient {
    */
   public function updateOrRemoveProcessVariables($id, $parameterArray) {
     $query = 'process-instance/'.$id.'/variables';
-    $this->restPostRequest($query, $parameterArray);
+    $this->restRequest('POST', $query, $parameterArray);
   }
 
   /**
@@ -218,11 +226,23 @@ class camundaRestClient {
    */
   public function deleteProcessInstance($id, $reason) {
     $query = 'process-instance/'.$id;
-    $this->restDeleteRequest($query, $reason);
+    $this->restRequest('DELETE', $query);
+  }
+
+  /**
+   * get all activity instances from given process-instance
+   * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get-activity-instances
+   *
+   * @param String $id process instance id
+   * @return mixed server response
+   */
+  public function getActivityInstances($id) {
+    $query = 'process-instance/'.$id.'/activity-instances';
+    return $this->restRequest('GET', $query, null);
   }
 
 
-/*---------------------- EXECUTIONS -------------------------------------*/
+  /*---------------------- EXECUTIONS -------------------------------------*/
 
   /**
    * Retrieves a single execution according to the Execution interface in the engine
@@ -233,7 +253,7 @@ class camundaRestClient {
    */
   public function getSingleExecution($id) {
     $query = 'execution/'.$id;
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -242,11 +262,16 @@ class camundaRestClient {
    * @link http://docs.camunda.org/api-references/rest/#!/execution/get-query
    *
    * @param Array $parameterArray Request parameters
+   * @param bool $isPostRequest triggers a post request instead a get request
    * @return mixed returns the server response
    */
-  public function getExecutions($parameterArray = null) {
+  public function getExecutions($parameterArray = null, $isPostRequest = false) {
     $query = 'execution';
-    return $this->restGetRequest($query, $parameterArray);
+    if(!$isPostRequest) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
   }
 
   /**
@@ -254,35 +279,40 @@ class camundaRestClient {
    * @link http://docs.camunda.org/api-references/rest/#!/execution/get-query-count
    *
    * @param Array $parameterArray Request parameters
+   * @param bool $isPostRequest triggers a post request instead a get request
    * @return mixed returns the server response
    */
-  public function getExecutionCount($parameterArray = null) {
+  public function getExecutionsCount($parameterArray = null, $isPostRequest = false) {
     $query = 'execution/count';
-    return $this->restGetRequest($query, $parameterArray);
+    if(!$isPostRequest) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
   }
 
   /**
    * Query for executions that fulfill given parameters through a json object.
    * @link http://docs.camunda.org/api-references/rest/#!/execution/post-query
    *
+   * @deprecated use $isPostRequest-Parameter in normal getExecutions-function
    * @param Array $parameterArray Request Parameter
    * @return mixed returns the server response
    */
-  public function getExecutionByPost($parameterArray = null) {
-    $query = 'execution';
-    return $this->restPostRequest($query, $parameterArray);
+  public function getExecutionsByPost($parameterArray = null) {
+    return $this->getExecutions($parameterArray, true);
   }
 
   /**
    * Query for the number of executions that fulfill given parameters.
    * @link http://docs.camunda.org/api-references/rest/#!/execution/post-query-count
    *
+   * @deprecated use $isPostRequest-Parameter in normal getExecutionsCount-function
    * @param Array $parameterArray Request parameter
    * @return mixed returns the server response
    */
-  public function getExecutionCountByPost($parameterArray = null) {
-    $query = 'execution/count';
-    return $this->restPostRequest($query, $parameterArray);
+  public function getExecutionsCountByPost($parameterArray = null) {
+    return $this->getExecutionsCount($parameterArray, true);
   }
 
   /**
@@ -295,7 +325,7 @@ class camundaRestClient {
    */
   public function getLocalExecutionVariable($id, $varId) {
     $query = 'execution/'.$id.'/localVariables/'.$varId;
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -304,11 +334,11 @@ class camundaRestClient {
    *
    * @param String $id execution ID
    * @param String $varId variables ID
-   * @param mixed $value variables value
+   * @param mixed $parameterArray variables value
    */
-  public function putLocalExecutionVariable($id, $varId, $value) {
+  public function putLocalExecutionVariable($id, $varId, $parameterArray) {
     $query = 'execution/'.$id.'/localVariables/'.$varId;
-    $this->restPutRequest($query, $value);
+    $this->restRequest('PUT', $query, $parameterArray);
   }
 
   /**
@@ -321,7 +351,7 @@ class camundaRestClient {
    */
   public function deleteLocalExecutionVariable($id, $varId) {
     $query = 'execution/'.$id.'/localVariables/'.$varId;
-    $this->restDeleteRequest($query);
+    $this->restRequest('DELETE', $query);
   }
 
   /**
@@ -333,7 +363,7 @@ class camundaRestClient {
    */
   public function getLocalExecutionVariables($id) {
     $query = 'execution/'.$id.'/localVariables';
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -347,7 +377,7 @@ class camundaRestClient {
    */
   public function updateOrRemoveLocalExecutionVariables($id, $parameterArray) {
     $query = 'execution/'.$id.'/localVariables';
-    $this->restPostRequest($query, $parameterArray);
+    $this->restRequest('POST', $query, $parameterArray);
   }
 
   /**
@@ -359,7 +389,7 @@ class camundaRestClient {
    */
   public function getMessageEventSubscription($id, $messageName) {
     $query = 'execution/'.$id.'/messageSubscriptions/'.$messageName;
-    $this->restGetRequest($query, null);
+    $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -372,7 +402,7 @@ class camundaRestClient {
    */
   public function triggerMessageEventSubscription($id, $messageName, $parameterArray) {
     $query = 'execution/'.$id.'/messageSubscriptions/'.$messageName.'/trigger';
-    $this->restPostRequest($query, $parameterArray);
+    $this->restRequest('POST', $query, $parameterArray);
   }
 
   /**
@@ -382,14 +412,87 @@ class camundaRestClient {
    *
    * @param String $id
    * @param Array $parameterArray Request Parameter
+   * @return mixed
    */
   public function triggerExecution($id, $parameterArray) {
     $query = 'execution/'.$id.'/signal';
-    $this->restPostRequest($query, $parameterArray);
+    return $this->restRequest('POST', $query, $parameterArray);
   }
 
 
-/*---------------------- PROCESS DEFINITIONS -------------------------------------*/
+  /*---------------------- JOBS -------------------------------------*/
+  /**
+   * get single job
+   * @link http://docs.camunda.org/api-references/rest/#!/job/get
+   *
+   * @param String $id id of the job to fetch
+   * @return mixed returns the server response
+   */
+  public function getSingleJob($id) {
+    $query = 'job/'.$id;
+    return $this->restRequest('GET', $query, null);
+  }
+
+  /**
+   * get all jobs
+   * @link http://docs.camunda.org/api-references/rest/#!/job/get-query
+   * @link http://docs.camunda.org/api-references/rest/#!/job/post-query
+   *
+   * @param Array $parameterArray request body
+   * @param bool $isPostRequest switch for GET or POST requests
+   * @return mixed server response
+   */
+  public function getJobs($parameterArray, $isPostRequest = false) {
+    $query = 'job';
+    if($isPostRequest == false) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
+  }
+
+  /**
+   * get count of jobs
+   * @link http://docs.camunda.org/api-references/rest/#!/job/get-query-count
+   * @link http://docs.camunda.org/api-references/rest/#!/job/post-query-count
+   *
+   * @param Array $parameterArray request body
+   * @param bool $isPostRequest switch for GET or POST requests
+   * @return mixed server response
+   */
+  public function getJobCount($parameterArray, $isPostRequest = false) {
+    $query = 'job/count';
+    if($isPostRequest == false) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
+  }
+
+  /**
+   * set the amount of retries
+   * @link http://docs.camunda.org/api-references/rest/#!/job/put-set-job-retries
+   *
+   * @param String $id Id of the job
+   * @param Array $parameterArray request body
+   */
+  public function setJobRetries($id, $parameterArray) {
+    $query = 'job/'.$id.'/retries';
+    $this->restRequest('PUT', $query, $parameterArray);
+  }
+
+  /**
+   * start job execution
+   * @link http://docs.camunda.org/api-references/rest/#!/job/post-execute-job
+   *
+   * @param String $id Id of the job
+   */
+  public function executeJob($id) {
+    $query = 'job/'.$id.'/execute';
+    $this->restRequest('POST', $query, null);
+  }
+
+  /*---------------------- PROCESS DEFINITIONS -------------------------------------*/
 
   /**
    * get a single process definition from the REST API
@@ -400,7 +503,7 @@ class camundaRestClient {
    */
   public function getSingleProcessDefinition($id) {
     $query = 'process-definition/'.$id;
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -412,7 +515,7 @@ class camundaRestClient {
    */
   public function getProcessDefinitions($parameterArray = null) {
     $query = 'process-definition';
-    return $this->restGetRequest($query, $parameterArray);
+    return $this->restRequest('GET', $query, $parameterArray);
   }
 
   /**
@@ -424,19 +527,19 @@ class camundaRestClient {
    */
   public function getProcessDefinitionCount($parameterArray = null) {
     $query = 'process-definition/count';
-    return $this->restGetRequest($query, $parameterArray);
+    return $this->restRequest('GET', $query, $parameterArray);
   }
 
   /**
- * Retrieves the BPMN 2.0 XML of this process definition.
- * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-xml
- *
- * @param String $id id of the process definition
- * @return mixed returns the server response
- */
+   * Retrieves the BPMN 2.0 XML of this process definition.
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-xml
+   *
+   * @param String $id id of the process definition
+   * @return mixed returns the server response
+   */
   public function getBpmnXml($id) {
     $query = 'process-definition/'.$id.'/xml';
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -449,7 +552,7 @@ class camundaRestClient {
    */
   public function startProcessInstance($id, $processVariables = null) {
     $query = 'process-definition/'.$id.'/start';
-    return $this->restPostRequest($query, $processVariables);
+    return $this->restRequest('POST', $query, $processVariables);
   }
 
   /**
@@ -462,7 +565,7 @@ class camundaRestClient {
    */
   public function getProcessInstanceStatistics($parameterArray = null) {
     $query = 'process-definition/statistics';
-    return $this->restGetRequest($query, $parameterArray);
+    return $this->restRequest('GET', $query, $parameterArray);
   }
 
   /**
@@ -476,7 +579,7 @@ class camundaRestClient {
    */
   public function getActivityInstanceStatistics($id, $parameterArray = null) {
     $query = 'process-definition/'.$id.'/statistics';
-    return $this->restGetRequest($query, $parameterArray);
+    return $this->restRequest('GET', $query, $parameterArray);
   }
 
   /**
@@ -488,12 +591,12 @@ class camundaRestClient {
    * @return mixed returns the server response
    */
   public function getStartFormKey($id) {
-    $query = '/process-definition/'.$id.'/startForm';
-    return $this->restGetRequest($query, null);
+    $query = 'process-definition/'.$id.'/startForm';
+    return $this->restRequest('GET', $query, null);
   }
 
 
-/*---------------------- TASK OPERATIONS -------------------------------------*/
+  /*---------------------- TASK OPERATIONS -------------------------------------*/
 
   /**
    * Retrieves a single task by its id.
@@ -504,7 +607,7 @@ class camundaRestClient {
    */
   public function getSingleTask($id) {
     $query = 'task/'.$id;
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -512,11 +615,16 @@ class camundaRestClient {
    * @link http://docs.camunda.org/api-references/rest/#!/task/get-query
    *
    * @param Array $parameterArray url parameter
+   * @param bool $isPostRequest triggers a post request instead a get request
    * @return mixed returns the server-response
    */
-  public function getTasks($parameterArray = null) {
+  public function getTasks($parameterArray = null, $isPostRequest = false) {
     $query = 'task';
-    return $this->restGetRequest($query, $parameterArray);
+    if (!$isPostRequest) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
   }
 
   /**
@@ -524,35 +632,40 @@ class camundaRestClient {
    * @link http://docs.camunda.org/api-references/rest/#!/task/get-query-count
    *
    * @param Array $parameterArray url parameter
+   * @param bool $isPostRequest triggers a post request instead a get request
    * @return mixed returns the server response
    */
-  public function getTaskCount($parameterArray = null) {
+  public function getTaskCount($parameterArray = null, $isPostRequest = false) {
     $query = 'task/count';
-    return $this->restGetRequest($query, $parameterArray);
+    if (!$isPostRequest) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
   }
 
   /**
    * get all tasks from the rest api with POST-Request
    * @link http://docs.camunda.org/api-references/rest/#!/task/post-query
    *
+   * @deprecated instead use getTasks function with $isPostRequest-Parameter
    * @param Array $parameterArray url parameter
    * @return mixed returns the server-response
    */
   public function getTasksByPost($parameterArray = null) {
-    $query = 'task';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->getTasks($parameterArray, true);
   }
 
   /**
    * get count of all requested process definitions with POST-Request
    * @link http://docs.camunda.org/api-references/rest/#!/task/post-query-count
    *
+   * @deprecated instead use getTaskCount function with $isPostRequest-Parameter
    * @param Array $parameterArray url parameter
    * @return mixed returns the server response
    */
   public function getTaskCountByPost($parameterArray = null) {
-    $query = 'task/count';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->getTaskCount($parameterArray, true);
   }
 
   /**
@@ -565,7 +678,7 @@ class camundaRestClient {
    */
   public function getFormKey($id) {
     $query = 'task/'.$id.'/form';
-    return $this->restGetRequest($query, null);
+    return $this->restRequest('GET', $query, null);
   }
 
   /**
@@ -578,7 +691,7 @@ class camundaRestClient {
    */
   public function claimTask($id,$parameterArray) {
     $query = 'task/'.$id.'/claim';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->restRequest('POST', $query, $parameterArray);
   }
 
   /**
@@ -590,20 +703,20 @@ class camundaRestClient {
    */
   public function unclaimTask($id) {
     $query = 'task/'.$id.'/unclaim';
-    return $this->restPostRequest($query, null);
+    return $this->restRequest('POST', $query, null);
   }
 
   /**
- * Complete a task and update process variables.
- * @link http://docs.camunda.org/api-references/rest/#!/task/post-complete
- *
- * @param String $id id of the task
- * @param Array $parameterArray url parameter
- * @return mixed returns the server response
- */
+   * Complete a task and update process variables.
+   * @link http://docs.camunda.org/api-references/rest/#!/task/post-complete
+   *
+   * @param String $id id of the task
+   * @param Array $parameterArray url parameter
+   * @return mixed returns the server response
+   */
   public function completeTask($id,$parameterArray) {
     $query = 'task/'.$id.'/complete';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->restRequest('POST', $query, $parameterArray);
   }
 
   /**
@@ -616,7 +729,7 @@ class camundaRestClient {
    */
   public function resolveTask($id,$parameterArray) {
     $query = 'task/'.$id.'/resolve';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->restRequest('POST', $query, $parameterArray);
   }
 
   /**
@@ -629,11 +742,11 @@ class camundaRestClient {
    */
   public function delegateTask($id,$parameterArray) {
     $query = 'task/'.$id.'/delegate';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->restRequest('POST', $query, $parameterArray);
   }
 
 
-/*---------------------- MESSAGE OPERATIONS -------------------------------------*/
+  /*---------------------- MESSAGE OPERATIONS -------------------------------------*/
 
   /**
    * Deliver a message to the process engine to either trigger a message start or intermediate message catching event.
@@ -644,213 +757,427 @@ class camundaRestClient {
    */
   public function message($parameterArray) {
     $query = 'message';
-    return $this->restPostRequest($query, $parameterArray);
+    return $this->restRequest('POST', $query, $parameterArray);
   }
 
 
-/*---------------------- IDENTITY OPERATIONS -------------------------------------*/
+  /*---------------------- VARIABLE INSTANCE OPERATIONS -------------------------------------*/
+
 
   /**
-   * Gets the groups of a user and all users that share a group with the given user.
-   * @link http://docs.camunda.org/api-references/rest/#!/identity/get-group-info
+   * get all variable instances
+   * @link http://docs.camunda.org/api-references/rest/#!/variable-instance/get-query
+   * @link http://docs.camunda.org/api-references/rest/#!/variable-instance/post-query
    *
-   * @param Array $parameterArray url parameter
-   * @return mixed returns the server-response
+   * @param Array $parameterArray request body
+   * @param bool $isPostRequest switch for GET or POST requests
+   * @return mixed server response
    */
-  public function getUserGroups($parameterArray) {
-    $query = '/identity/groups';
-    return $this->restGetRequest($query, $parameterArray);
+  public function getVariableInstances($parameterArray = null, $isPostRequest = false) {
+    $query = 'variable-instance';
+    if($isPostRequest == false) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
+
+  }
+
+  /**
+   * get amount of variable instances
+   * @link http://docs.camunda.org/api-references/rest/#!/variable-instance/get-query-count
+   * @link http://docs.camunda.org/api-references/rest/#!/variable-instance/post-query-count
+   *
+   * @param Array $parameterArray request body
+   * @param bool $isPostRequest switch for GET or POST request
+   * @return mixed server response
+   */
+  public function getVariableInstancesCount($parameterArray = null, $isPostRequest = false) {
+    $query = 'variable-instance/count';
+    if($isPostRequest == false) {
+      return $this->restRequest('GET', $query, $parameterArray);
+    } else {
+      return $this->restRequest('POST', $query, $parameterArray);
+    }
+  }
+
+  /*---------------------- IDENTITY OPERATIONS -------------------------------------*/
+
+  /**
+   * Gets the groups of a user.
+   * This feature is deprecated and will be removed with the next version!
+   *
+   * @param String $userId user Id
+   * @return mixed returns the server-response
+   * @deprecated  No longer used by rest API and not recommended
+   */
+  public function getUserGroups($userId) {
+    $parameterArray = array(
+      'member' => $userId
+    );
+    return $this->getGroups($parameterArray);
   }
 
 
-/*---------------------- REQUEST OPERATIONS -------------------------------------*/
+  /*---------------------- GROUP OPERATIONS -------------------------------------*/
+
+  /**
+   * create a new group
+   * @link http://docs.camunda.org/api-references/rest/#!/group/post-create
+   *
+   * @param Array $parameterArray
+   */
+  public function createSingleGroup($parameterArray) {
+    $query = 'group/create';
+    $this->restRequest('POST', $query, $parameterArray);
+  }
+
+  /**
+   * add a member to a group
+   * @link http://docs.camunda.org/api-references/rest/#!/group/members/put
+   *
+   * @param String $groupId
+   * @param String $userId
+   */
+  public function addGroupMember($groupId, $userId) {
+    $query = 'group/'.$groupId.'/members/'.$userId;
+    $this->restRequest('PUT', $query, null);
+  }
+
+  /**
+   * removes the group with the given id
+   * @link http://docs.camunda.org/api-references/rest/#!/group/delete
+   *
+   * @param String $id group id
+   */
+  public function deleteSingleGroup($id) {
+    $query = 'group/'.$id;
+    $this->restRequest('DELETE', $query);
+  }
+
+  /**
+   * removes the given user from the group
+   * @link http://docs.camunda.org/api-references/rest/#!/group/members/delete
+   *
+   * @param $groupId
+   * @param $userId
+   */
+  public function removeGroupMember($groupId, $userId){
+    $query = 'group/'.$groupId.'/members/'.$userId;
+    $this->restRequest('DELETE', $query);
+  }
+
+  /**
+   * get group by given id
+   * @link http://docs.camunda.org/api-references/rest/#!/group/get
+   *
+   * @param String $id group id
+   * @return mixed server response
+   */
+  public function getSingleGroup($id) {
+    $query = 'group/'.$id;
+    return $this->restRequest('GET', $query, null);
+  }
+
+  /**
+   * get all groups by given parameters
+   * @link http://docs.camunda.org/api-references/rest/#!/group/get-query
+   *
+   * @param Array $parameterArray request body
+   * @return mixed server response
+   */
+  public function getGroups($parameterArray = null) {
+    $query = 'group';
+    return $this->restRequest('GET', $query, $parameterArray);
+  }
+
+  /**
+   * get amount of groups
+   * @link http://docs.camunda.org/api-references/rest/#!/group/get-query-count
+   *
+   * @param Array $parameterArray request body
+   * @return mixed server response
+   */
+  public function getGroupsCount($parameterArray = null) {
+    $query = 'group/count';
+    return $this->restRequest('GET', $query, $parameterArray);
+  }
+
+  /**
+   * update group by given id
+   * @link http://docs.camunda.org/api-references/rest/#!/group/put-update
+   *
+   * @param String $id group id
+   * @param Array $parameterArray request body
+   */
+  public function updateSingleGroup($id, $parameterArray) {
+    $query = 'group/'.$id;
+    $this->restRequest('PUT', $query, $parameterArray);
+  }
+
+
+  /*---------------------- USER OPERATIONS -------------------------------------*/
+
+  /**
+   * create new user
+   * @link http://docs.camunda.org/api-references/rest/#!/user/post-create
+   *
+   * @param Array $parameterArray  request body
+   * @return mixed server response
+   */
+  public function createSingleUser($parameterArray) {
+    $query = 'user/create';
+    return $this->restRequest('POST', $query, $parameterArray);
+  }
+
+  /**
+   * remove user
+   * @link http://docs.camunda.org/api-references/rest/#!/user/delete
+   *
+   * @param String $id user Id
+   */
+  public function deleteSingleUser($id) {
+    $query = 'user/'.$id;
+    $this->restRequest('DELETE', $query);
+  }
+
+  /**
+   * get the profile of the given user
+   * @link http://docs.camunda.org/api-references/rest/#!/user/get
+   *
+   * @param $id
+   * @return mixed
+   */
+  public function getUserProfile($id) {
+    $query = 'user/'.$id.'/profile';
+    return $this->restRequest('GET', $query, null);
+  }
+
+  /**
+   * get a list of users
+   * @link http://docs.camunda.org/api-references/rest/#!/user/get-query
+   *
+   * @param Array $parameterArray request body
+   * @return mixed server response
+   */
+  public function getUsers($parameterArray = null) {
+    $query = 'user';
+    return $this->restRequest('GET', $query, $parameterArray);
+  }
+
+
+  /**
+   * get count of users
+   * @link http://docs.camunda.org/api-references/rest/#!/user/get-query-count
+   *
+   * @param Array $parameterArray request body
+   * @return mixed server response
+   */
+  public function getUserCount($parameterArray = null) {
+    $query = 'user/count';
+    return $this->restRequest('GET', $query, $parameterArray);
+  }
+
+  /**
+   * update the profile of a user
+   * @link http://docs.camunda.org/api-references/rest/#!/user/put-update-profile
+   *
+   * @param String $id user Id
+   * @param Array $parameterArray request body
+   */
+  public function updateUserProfile($id, $parameterArray) {
+    $query = 'user/'.$id.'/profile';
+    $this->restRequest('PUT', $query, $parameterArray);
+  }
+
+  /**
+   * update the password of the given user
+   * @link http://docs.camunda.org/api-references/rest/#!/user/put-update-credentials
+   *
+   * @param String $id
+   * @param Array $parameterArray
+   */
+  public function updateUserCredentials($id, $parameterArray) {
+    $query = 'user/'.$id.'/credentials';
+    $this->restRequest('PUT', $query, $parameterArray);
+  }
+
+
+  /*---------------------- REQUEST OPERATIONS -------------------------------------*/
+
   /**
    * requests the data from the rest api as GET-REQUEST via curl or with stream api fallback
    *
+   * @deprecated
    * @param String $query asked query of the rest api
    * @param Array $parameterArray parameters for filter
    * @return mixed returns the server-response
    */
   private function restGetRequest($query, $parameterArray) {
-    $requestString = '/'. $query;
-
-
-    if($parameterArray != null && !empty($parameterArray)) {
-      $requestString .= '?';
-      $i = 0;
-      $countParameters = count($parameterArray);
-
-      foreach($parameterArray AS $id => $value) {
-        if($i == ($countParameters - 1)) {
-          $requestString .= $id.'='.$value;
-        } else {
-          $requestString .= $id.'='.$value.'&';
-          $i++;
-        }
-      }
-    }
-    if($this->checkCurl()) {
-      $ch = curl_init($this->engineUrl.$requestString);
-      curl_setopt ($ch, CURLOPT_COOKIEJAR, $this->cookieFilePath);
-      curl_setopt ($ch, CURLOPT_COOKIEFILE, $this->cookieFilePath);
-      curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-
-      $request = curl_exec($ch);
-      curl_close($ch);
-    } else {
-     $request = file_get_contents($this->engineUrl.$requestString);
-    }
-      return json_decode($request);
+    $this->restRequest('GET', $query, $parameterArray);
   }
 
   /**
    * requests the data from the rest api as POST-REQUEST via curl or with stream api fallback
    *
+   * @deprecated
    * @param String $query asked query of the rest api
    * @param Array $parameterArray parameters for filter
    * @return mixed returns the server-response
    */
   private function restPostRequest($query, $parameterArray) {
-    if($parameterArray == null ||empty($parameterArray)) {
-      $dataString = '{}';
-    } else {
-      $dataString = json_encode($parameterArray);
-    }
-    $requestString = '/'.$query;
-
-
-    if($this->checkCurl()) {
-      $ch = curl_init($this->engineUrl.$requestString);
-      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'Content-Length: '.strlen($dataString)
-      ));
-
-      $request = curl_exec($ch);
-      echo $request;
-      curl_close($ch);
-    } else {
-      $streamContext = stream_context_create(array(
-          'http' => array(
-            'method' => 'POST',
-            'header' => 'Content-Type: application/json'."\r\n"
-                        .'Content-Length:'.strlen($dataString)."\r\n",
-            'content' => $dataString
-          )
-        )
-      );
-
-      $request = file_get_contents($this->engineUrl.$requestString, null, $streamContext);
-    }
-
-    return json_decode($request);
-
+    $this->restRequest('POST', $query, $parameterArray);
   }
 
+
   /**
-   * requests the data from the rest api as POST-REQUEST via curl or with stream api fallback
+   * requests the data from the rest api as PUT-REQUEST via curl or with stream api fallback
    *
+   * @deprecated
    * @param String $query asked query of the rest api
-   * @param String $value Put parameters
+   * @param Array $parameterArray Put parameters
    * @return mixed returns the server-response
    */
-  private function restPutRequest($query, $value) {
-    $dataString = '{"value":'.$value.'}';
-
-
-    if($this->checkCurl()) {
-      $ch = curl_init($this->engineUrl.$query);
-      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'Content-Length: '.strlen($dataString)
-      ));
-
-      $request = curl_exec($ch);
-      echo $request;
-      curl_close($ch);
-    } else {
-      $streamContext = stream_context_create(array(
-          'http' => array(
-            'method' => 'PUT',
-            'header' => 'Content-Type: application/json'."\r\n"
-                .'Content-Length:'.strlen($dataString)."\r\n",
-            'content' => $dataString
-          )
-        )
-      );
-
-      $request = file_get_contents($this->engineUrl.$query, null, $streamContext);
-    }
-
-    return json_decode($request);
+  private function restPutRequest($query, $parameterArray) {
+    $this->restRequest('PUT', $query, $parameterArray);
 
   }
 
   /**
    * requests a deletion of data from the REST API via DELETE
    *
+   * @deprecated
    * @param String $query asked query of the rest api
-   * @param String $value Reason of deletion (optional
    * @return mixed returns the server-response
    */
-  private function restDeleteRequest($query, $value = '') {
-    if(!empty($value)) {
-      $dataString = '{"deleteReason":'.$value.'}';
+  private function restDeleteRequest($query) {
+    $this->restRequest('DELETE', $query);
+  }
 
-      if($this->checkCurl()) {
-        $ch = curl_init($this->engineUrl.$query);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-          'Content-Type: application/json',
-          'Content-Length: '.strlen($dataString)
-        ));
+  /**
+   * Sends the query with the parameters as body or parameter-string.
+   *
+   * @param String $method Request method
+   * @param String $query Resource path
+   * @param Array $parameters parameters for request
+   * @return mixed
+   */
+  private function restRequest($method, $query, $parameters = null) {
+    $this->engineUrl = preg_replace('/\/$/', '', $this->engineUrl);
 
-        $request = curl_exec($ch);
-        echo $request;
-        curl_close($ch);
-      } else {
-        $streamContext = stream_context_create(array(
-            'http' => array(
-              'method' => 'PUT',
-              'header' => 'Content-Type: application/json'."\r\n"
-                  .'Content-Length:'.strlen($dataString)."\r\n",
-              'content' => $dataString
-            )
-          )
-        );
-
-        $request = file_get_contents($this->engineUrl.$query, null, $streamContext);
+    if(strtoupper($method) != 'GET') {
+      if($parameters == null) {
+        $parameters = (object) array();
       }
+      $data = json_encode($parameters);
     } else {
-      if($this->checkCurl()) {
-        $ch = curl_init($this->engineUrl.$query);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-
-        $request = curl_exec($ch);
-        echo $request;
-        curl_close($ch);
-      } else {
-        $streamContext = stream_context_create(array(
-            'http' => array(
-              'method' => 'PUT'
-            )
-          )
-        );
-
-        $request = file_get_contents($this->engineUrl.$query, null, $streamContext);
+      $data = '?';
+      $tmp = array();
+      if($parameters != null) {
+        foreach($parameters AS $index => $key) {
+          $tmp[] = $index.'='.$key;
+        }
       }
+      $data .= implode('&', $tmp);
     }
 
-    return json_decode($request);
+    $query = preg_replace('/^\//', '', $query);
 
+    switch(strtoupper($method)) {
+      case 'DELETE':
+        if($this->checkCurl()) {
+          $ch = curl_init($this->engineUrl.$this->pathSeparator.$query);
+          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+          curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: '.strlen($data)
+          ));
+          $request = curl_exec($ch);
+          curl_close($ch);
+        } else {
+          $streamContext = stream_context_create(array(
+              'http' => array(
+                'method' => 'PUT',
+                'header' => 'Content-Type: application/json'."\r\n"
+                .'Content-Length:'.strlen($data)."\r\n",
+                'content' => $data
+              )
+            )
+          );
+
+          $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query, null, $streamContext);
+        }
+        break;
+      case 'PUT':
+        if($this->checkCurl()) {
+          $ch = curl_init($this->engineUrl.$this->pathSeparator.$query);
+          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+          curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: '.strlen($data)
+          ));
+
+          $request = curl_exec($ch);
+          curl_close($ch);
+        } else {
+          $streamContext = stream_context_create(array(
+              'http' => array(
+                'method' => 'PUT',
+                'header' => 'Content-Type: application/json'."\r\n"
+                .'Content-Length:'.strlen($data)."\r\n",
+                'content' => $data
+              )
+            )
+          );
+
+          $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query, null, $streamContext);
+        }
+        break;
+      case 'POST':
+        if($this->checkCurl()) {
+          $ch = curl_init($this->engineUrl.$this->pathSeparator.$query);
+          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+          curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: '.strlen($data)
+          ));
+          $request = curl_exec($ch);
+          curl_close($ch);
+        } else {
+          $streamContext = stream_context_create(array(
+              'http' => array(
+                'method' => 'POST',
+                'header' => 'Content-Type: application/json'."\r\n"
+                .'Content-Length:'.strlen($data)."\r\n",
+                'content' => $data
+              )
+            )
+          );
+
+          $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query, null, $streamContext);
+        }
+        break;
+      case 'GET':
+      default:
+        if($this->checkCurl()) {
+          $ch = curl_init($this->engineUrl.$this->pathSeparator.$query.$data);
+          curl_setopt($ch, CURLOPT_COOKIEJAR, './');
+          curl_setopt($ch, CURLOPT_COOKIEFILE, './');
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          $request = curl_exec($ch);
+          curl_close($ch);
+        } else {
+          $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query.$data);
+        }
+        break;
+    }
+    return json_decode($request);
   }
 
   private function checkCurl() {

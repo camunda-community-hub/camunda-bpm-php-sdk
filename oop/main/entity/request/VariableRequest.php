@@ -11,16 +11,18 @@ namespace org\camunda\php\sdk\entity\request;
 
 
 class VariableRequest extends Request {
-  private $value;
-  private $type;
-  private $modifications;
-  private $deletions;
+  protected $value;
+  protected $type;
+  protected $modifications;
+  protected $deletions;
 
   /**
    * @param mixed $deletions
+   * @return $this
    */
   public function setDeletions($deletions) {
     $this->deletions = $deletions;
+    return $this;
   }
 
   /**
@@ -32,9 +34,11 @@ class VariableRequest extends Request {
 
   /**
    * @param mixed $modifications
+   * @return $this
    */
   public function setModifications($modifications) {
     $this->modifications = $modifications;
+    return $this;
   }
 
   /**
@@ -46,9 +50,11 @@ class VariableRequest extends Request {
 
   /**
    * @param mixed $type
+   * @return $this
    */
   public function setType($type) {
     $this->type = $type;
+    return $this;
   }
 
   /**
@@ -63,6 +69,7 @@ class VariableRequest extends Request {
    */
   public function setValue($value) {
     $this->value = $value;
+    return $this;
   }
 
   /**

@@ -12,11 +12,12 @@ namespace org\camunda\php\sdk\entity\request;
 
 class Request {
 
-  public function cast(\stdClass $object) {
-    foreach($object AS $index => $value) {
-      $this->$index = $value;
+  public function iterate() {
+    $tmp = array();
+    foreach($this AS $index => $value) {
+      $tmp[$index] = $value;
     }
 
-    return $this;
+    return $tmp;
   }
 }

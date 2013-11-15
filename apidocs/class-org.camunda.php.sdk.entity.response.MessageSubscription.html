@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class org\camunda\php\sdk\entity\response\MessageSubscription | camunda BPM PHP SDK</title>
+
+	<script type="text/javascript" src="resources/combined.js?522072721"></script>
+	<script type="text/javascript" src="elementlist.js?3582084375"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822" />
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609" />
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">camunda BPM PHP SDK</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-org.camunda.php.sdk.entity.response.html" title="Summary of org\camunda\php\sdk\entity\response"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="camunda-bpm-php-sdk-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="" />
+			<input type="hidden" name="ie" value="UTF-8" />
+			<input type="text" name="q" class="search-query" placeholder="Search" />
+		</form>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-org.html">org<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.html">camunda<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.html">php<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.html">sdk<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.entity.html">entity<span></span></a>
+						<ul>
+				<li><a href="namespace-org.camunda.php.sdk.entity.request.html">request</a>
+						</li>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.entity.response.html">response</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-org.camunda.php.sdk.helper.html">helper</a>
+						</li>
+				<li><a href="namespace-org.camunda.php.sdk.service.html">service</a>
+						</li>
+							</ul></li></ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Activity.html">Activity</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Authorization.html">Authorization</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Execution.html">Execution</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Form.html">Form</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Group.html">Group</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.HistoricActivityInstance.html">HistoricActivityInstance</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.HistoricProcessInstance.html">HistoricProcessInstance</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.HistoricVariableInstance.html">HistoricVariableInstance</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Identity.html">Identity</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.IdentityLink.html">IdentityLink</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Job.html">Job</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Message.html">Message</a></li>
+				<li class="active"><a href="class-org.camunda.php.sdk.entity.response.MessageSubscription.html">MessageSubscription</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.ProcessDefinition.html">ProcessDefinition</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.ProcessInstance.html">ProcessInstance</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.ResourceOption.html">ResourceOption</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Statistic.html">Statistic</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Task.html">Task</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.User.html">User</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.Variable.html">Variable</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.response.VariableInstance.html">VariableInstance</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class MessageSubscription</h1>
+
+
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-org.camunda.php.sdk.helper.CastHelper.html"><span>org\camunda\php\sdk\helper\CastHelper</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>org\camunda\php\sdk\entity\response\MessageSubscription</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-org.html">org</a>\<a href="namespace-org.camunda.html">camunda</a>\<a href="namespace-org.camunda.php.html">php</a>\<a href="namespace-org.camunda.php.sdk.html">sdk</a>\<a href="namespace-org.camunda.php.sdk.entity.html">entity</a>\<a href="namespace-org.camunda.php.sdk.entity.response.html">response</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#14-107" title="Go to source code">entity/response/MessageSubscription.php</a><br />
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped" id="methods">
+		<tr data-order="setActivityId" id="_setActivityId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setActivityId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#22-27" title="Go to source code">setActivityId</a>( <span>mixed <var>$activityId</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$activityId</var></dt>
+						<dd><code>mixed</code><br>$activityId</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getActivityId" id="_getActivityId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getActivityId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#29-34" title="Go to source code">getActivityId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setEventName" id="_setEventName">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setEventName">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#36-41" title="Go to source code">setEventName</a>( <span>mixed <var>$eventName</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$eventName</var></dt>
+						<dd><code>mixed</code><br>$eventName</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getEventName" id="_getEventName">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getEventName">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#43-48" title="Go to source code">getEventName</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setEventType" id="_setEventType">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setEventType">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#50-55" title="Go to source code">setEventType</a>( <span>mixed <var>$eventType</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$eventType</var></dt>
+						<dd><code>mixed</code><br>$eventType</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getEventType" id="_getEventType">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getEventType">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#57-62" title="Go to source code">getEventType</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setExecutionId" id="_setExecutionId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setExecutionId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#64-69" title="Go to source code">setExecutionId</a>( <span>mixed <var>$executionId</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$executionId</var></dt>
+						<dd><code>mixed</code><br>$executionId</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getExecutionId" id="_getExecutionId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getExecutionId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#71-76" title="Go to source code">getExecutionId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setId" id="_setId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#78-83" title="Go to source code">setId</a>( <span>mixed <var>$id</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd><code>mixed</code><br>$id</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getId" id="_getId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#85-90" title="Go to source code">getId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setProcessInstanceId" id="_setProcessInstanceId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setProcessInstanceId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#92-97" title="Go to source code">setProcessInstanceId</a>( <span>mixed <var>$processInstanceId</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$processInstanceId</var></dt>
+						<dd><code>mixed</code><br>$processInstanceId</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getProcessInstanceId" id="_getProcessInstanceId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getProcessInstanceId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#99-104" title="Go to source code">getProcessInstanceId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+		<h3>Methods inherited from <a href="class-org.camunda.php.sdk.helper.CastHelper.html#methods">org\camunda\php\sdk\helper\CastHelper</a></h3>
+		<p class="elementList">
+			<code><a href="class-org.camunda.php.sdk.helper.CastHelper.html#_cast">cast()</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.helper.CastHelper.html#_iterate">iterate()</a></code>
+		</p>
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+
+
+
+		<h2>Properties summary</h2>
+		<table class="summary table table-bordered table-striped" id="properties">
+		<tr data-order="id" id="$id">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#15" title="Go to source code"><var>$id</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$id" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="eventType" id="$eventType">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#16" title="Go to source code"><var>$eventType</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$eventType" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="eventName" id="$eventName">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#17" title="Go to source code"><var>$eventName</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$eventName" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="executionId" id="$executionId">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#18" title="Go to source code"><var>$executionId</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$executionId" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="processInstanceId" id="$processInstanceId">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#19" title="Go to source code"><var>$processInstanceId</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$processInstanceId" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="activityId" id="$activityId">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.response.MessageSubscription.html#20" title="Go to source code"><var>$activityId</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$activityId" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		</table>
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		camunda BPM PHP SDK API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</body>
+</html>

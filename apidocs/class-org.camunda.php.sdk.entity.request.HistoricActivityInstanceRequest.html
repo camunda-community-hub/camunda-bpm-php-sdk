@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class org\camunda\php\sdk\entity\request\HistoricActivityInstanceRequest | camunda BPM PHP SDK</title>
+
+	<script type="text/javascript" src="resources/combined.js?522072721"></script>
+	<script type="text/javascript" src="elementlist.js?3582084375"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822" />
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609" />
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">camunda BPM PHP SDK</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-org.camunda.php.sdk.entity.request.html" title="Summary of org\camunda\php\sdk\entity\request"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="camunda-bpm-php-sdk-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="" />
+			<input type="hidden" name="ie" value="UTF-8" />
+			<input type="text" name="q" class="search-query" placeholder="Search" />
+		</form>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-org.html">org<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.html">camunda<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.html">php<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.html">sdk<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.entity.html">entity<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.entity.request.html">request</a>
+						</li>
+				<li><a href="namespace-org.camunda.php.sdk.entity.response.html">response</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-org.camunda.php.sdk.helper.html">helper</a>
+						</li>
+				<li><a href="namespace-org.camunda.php.sdk.service.html">service</a>
+						</li>
+							</ul></li></ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-org.camunda.php.sdk.entity.request.AuthorizationRequest.html">AuthorizationRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.CredentialsRequest.html">CredentialsRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.ExecutionRequest.html">ExecutionRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.GroupRequest.html">GroupRequest</a></li>
+				<li class="active"><a href="class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html">HistoricActivityInstanceRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.HistoricProcessInstanceRequest.html">HistoricProcessInstanceRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.HistoricVariableInstanceRequest.html">HistoricVariableInstanceRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.IdentityLinksRequest.html">IdentityLinksRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.IdentityRequest.html">IdentityRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.JobRequest.html">JobRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.MessageRequest.html">MessageRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.MessageSubscriptionRequest.html">MessageSubscriptionRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.ProcessDefinitionRequest.html">ProcessDefinitionRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.ProcessInstanceRequest.html">ProcessInstanceRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.ProfileRequest.html">ProfileRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.Request.html">Request</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.StatisticRequest.html">StatisticRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.TaskRequest.html">TaskRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.UserRequest.html">UserRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.VariableInstanceRequest.html">VariableInstanceRequest</a></li>
+				<li><a href="class-org.camunda.php.sdk.entity.request.VariableRequest.html">VariableRequest</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class HistoricActivityInstanceRequest</h1>
+
+
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-org.camunda.php.sdk.entity.request.Request.html"><span>org\camunda\php\sdk\entity\request\Request</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>org\camunda\php\sdk\entity\request\HistoricActivityInstanceRequest</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-org.html">org</a>\<a href="namespace-org.camunda.html">camunda</a>\<a href="namespace-org.camunda.php.html">php</a>\<a href="namespace-org.camunda.php.sdk.html">sdk</a>\<a href="namespace-org.camunda.php.sdk.entity.html">entity</a>\<a href="namespace-org.camunda.php.sdk.entity.request.html">request</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#13-226" title="Go to source code">entity/request/HistoricActivityInstanceRequest.php</a><br />
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped" id="methods">
+		<tr data-order="setActivityId" id="_setActivityId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setActivityId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#29-34" title="Go to source code">setActivityId</a>( <span>mixed <var>$activityId</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$activityId</var></dt>
+						<dd><code>mixed</code><br>$activityId</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getActivityId" id="_getActivityId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getActivityId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#36-41" title="Go to source code">getActivityId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setActivityInstanceId" id="_setActivityInstanceId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setActivityInstanceId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#43-48" title="Go to source code">setActivityInstanceId</a>( <span>mixed <var>$activityInstanceId</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$activityInstanceId</var></dt>
+						<dd><code>mixed</code><br>$activityInstanceId</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getActivityInstanceId" id="_getActivityInstanceId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getActivityInstanceId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#50-55" title="Go to source code">getActivityInstanceId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setActivityName" id="_setActivityName">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setActivityName">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#57-62" title="Go to source code">setActivityName</a>( <span>mixed <var>$activityName</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$activityName</var></dt>
+						<dd><code>mixed</code><br>$activityName</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getActivityName" id="_getActivityName">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getActivityName">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#64-69" title="Go to source code">getActivityName</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setActivityType" id="_setActivityType">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setActivityType">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#71-76" title="Go to source code">setActivityType</a>( <span>mixed <var>$activityType</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$activityType</var></dt>
+						<dd><code>mixed</code><br>$activityType</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getActivityType" id="_getActivityType">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getActivityType">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#78-83" title="Go to source code">getActivityType</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setExecutionId" id="_setExecutionId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setExecutionId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#85-90" title="Go to source code">setExecutionId</a>( <span>mixed <var>$executionId</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$executionId</var></dt>
+						<dd><code>mixed</code><br>$executionId</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getExecutionId" id="_getExecutionId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getExecutionId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#92-97" title="Go to source code">getExecutionId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setFinished" id="_setFinished">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setFinished">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#99-104" title="Go to source code">setFinished</a>( <span>mixed <var>$finished</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$finished</var></dt>
+						<dd><code>mixed</code><br>$finished</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getFinished" id="_getFinished">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getFinished">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#106-111" title="Go to source code">getFinished</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setFirstResult" id="_setFirstResult">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setFirstResult">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#113-118" title="Go to source code">setFirstResult</a>( <span>mixed <var>$firstResult</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$firstResult</var></dt>
+						<dd><code>mixed</code><br>$firstResult</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getFirstResult" id="_getFirstResult">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getFirstResult">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#120-125" title="Go to source code">getFirstResult</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setMaxResults" id="_setMaxResults">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setMaxResults">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#127-132" title="Go to source code">setMaxResults</a>( <span>mixed <var>$maxResults</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$maxResults</var></dt>
+						<dd><code>mixed</code><br>$maxResults</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getMaxResults" id="_getMaxResults">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getMaxResults">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#134-139" title="Go to source code">getMaxResults</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setProcessDefinitionId" id="_setProcessDefinitionId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setProcessDefinitionId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#141-146" title="Go to source code">setProcessDefinitionId</a>( <span>mixed <var>$processDefinitionId</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$processDefinitionId</var></dt>
+						<dd><code>mixed</code><br>$processDefinitionId</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getProcessDefinitionId" id="_getProcessDefinitionId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getProcessDefinitionId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#148-153" title="Go to source code">getProcessDefinitionId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setProcessInstanceId" id="_setProcessInstanceId">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setProcessInstanceId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#155-160" title="Go to source code">setProcessInstanceId</a>( <span>mixed <var>$processInstanceId</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$processInstanceId</var></dt>
+						<dd><code>mixed</code><br>$processInstanceId</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getProcessInstanceId" id="_getProcessInstanceId">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getProcessInstanceId">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#162-167" title="Go to source code">getProcessInstanceId</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setSortBy" id="_setSortBy">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setSortBy">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#169-174" title="Go to source code">setSortBy</a>( <span>mixed <var>$sortBy</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$sortBy</var></dt>
+						<dd><code>mixed</code><br>$sortBy</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSortBy" id="_getSortBy">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getSortBy">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#176-181" title="Go to source code">getSortBy</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setSortOrder" id="_setSortOrder">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setSortOrder">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#183-188" title="Go to source code">setSortOrder</a>( <span>mixed <var>$sortOrder</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$sortOrder</var></dt>
+						<dd><code>mixed</code><br>$sortOrder</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSortOrder" id="_getSortOrder">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getSortOrder">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#190-195" title="Go to source code">getSortOrder</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setTaskAssignee" id="_setTaskAssignee">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setTaskAssignee">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#197-202" title="Go to source code">setTaskAssignee</a>( <span>mixed <var>$taskAssignee</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$taskAssignee</var></dt>
+						<dd><code>mixed</code><br>$taskAssignee</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getTaskAssignee" id="_getTaskAssignee">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getTaskAssignee">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#204-209" title="Go to source code">getTaskAssignee</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setUnfinished" id="_setUnfinished">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setUnfinished">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#211-216" title="Go to source code">setUnfinished</a>( <span>mixed <var>$unfinished</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$unfinished</var></dt>
+						<dd><code>mixed</code><br>$unfinished</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUnfinished" id="_getUnfinished">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getUnfinished">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#218-223" title="Go to source code">getUnfinished</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+		<h3>Methods inherited from <a href="class-org.camunda.php.sdk.entity.request.Request.html#methods">org\camunda\php\sdk\entity\request\Request</a></h3>
+		<p class="elementList">
+			<code><a href="class-org.camunda.php.sdk.entity.request.Request.html#_iterate">iterate()</a></code>
+		</p>
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+
+
+
+		<h2>Properties summary</h2>
+		<table class="summary table table-bordered table-striped" id="properties">
+		<tr data-order="activityInstanceIds" id="$activityInstanceIds">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#14" title="Go to source code"><var>$activityInstanceIds</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$activityInstanceIds" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="processInstanceId" id="$processInstanceId">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#15" title="Go to source code"><var>$processInstanceId</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$processInstanceId" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="processDefinitionId" id="$processDefinitionId">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#16" title="Go to source code"><var>$processDefinitionId</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$processDefinitionId" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="executionId" id="$executionId">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#17" title="Go to source code"><var>$executionId</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$executionId" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="activityId" id="$activityId">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#18" title="Go to source code"><var>$activityId</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$activityId" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="activityName" id="$activityName">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#19" title="Go to source code"><var>$activityName</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$activityName" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="activityType" id="$activityType">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#20" title="Go to source code"><var>$activityType</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$activityType" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="taskAssignee" id="$taskAssignee">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#21" title="Go to source code"><var>$taskAssignee</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$taskAssignee" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="finished" id="$finished">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#22" title="Go to source code"><var>$finished</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$finished" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="unfinished" id="$unfinished">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#23" title="Go to source code"><var>$unfinished</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$unfinished" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="sortBy" id="$sortBy">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#24" title="Go to source code"><var>$sortBy</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$sortBy" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="sortOrder" id="$sortOrder">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#25" title="Go to source code"><var>$sortOrder</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$sortOrder" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="firstResult" id="$firstResult">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#26" title="Go to source code"><var>$firstResult</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$firstResult" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="maxResults" id="$maxResults">
+			<td class="attributes"><code>
+				protected  
+				mixed
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-org.camunda.php.sdk.entity.request.HistoricActivityInstanceRequest.html#27" title="Go to source code"><var>$maxResults</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$maxResults" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		</table>
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		camunda BPM PHP SDK API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</body>
+</html>

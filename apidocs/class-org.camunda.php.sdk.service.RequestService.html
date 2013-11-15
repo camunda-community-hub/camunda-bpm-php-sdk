@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class org\camunda\php\sdk\service\RequestService | camunda BPM PHP SDK</title>
+
+	<script type="text/javascript" src="resources/combined.js?522072721"></script>
+	<script type="text/javascript" src="elementlist.js?3582084375"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822" />
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609" />
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">camunda BPM PHP SDK</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-org.camunda.php.sdk.service.html" title="Summary of org\camunda\php\sdk\service"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="camunda-bpm-php-sdk-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="" />
+			<input type="hidden" name="ie" value="UTF-8" />
+			<input type="text" name="q" class="search-query" placeholder="Search" />
+		</form>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-org.html">org<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.html">camunda<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.html">php<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.html">sdk<span></span></a>
+						<ul>
+				<li><a href="namespace-org.camunda.php.sdk.entity.html">entity<span></span></a>
+						<ul>
+				<li><a href="namespace-org.camunda.php.sdk.entity.request.html">request</a>
+						</li>
+				<li><a href="namespace-org.camunda.php.sdk.entity.response.html">response</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-org.camunda.php.sdk.helper.html">helper</a>
+						</li>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.service.html">service</a>
+						</li>
+							</ul></li></ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-org.camunda.php.sdk.service.AuthorizationService.html">AuthorizationService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.ExecutionService.html">ExecutionService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.GroupService.html">GroupService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.HistoryService.html">HistoryService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.IdentityService.html">IdentityService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.JobService.html">JobService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.MessageService.html">MessageService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.ProcessDefinitionService.html">ProcessDefinitionService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.ProcessEngineService.html">ProcessEngineService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.ProcessInstanceService.html">ProcessInstanceService</a></li>
+				<li class="active"><a href="class-org.camunda.php.sdk.service.RequestService.html">RequestService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.TaskService.html">TaskService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.UserService.html">UserService</a></li>
+				<li><a href="class-org.camunda.php.sdk.service.VariableInstanceService.html">VariableInstanceService</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class RequestService</h1>
+
+
+
+
+
+	<div>
+		<h3>Direct known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-org.camunda.php.sdk.service.AuthorizationService.html">org\camunda\php\sdk\service\AuthorizationService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.ExecutionService.html">org\camunda\php\sdk\service\ExecutionService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.TaskService.html">org\camunda\php\sdk\service\TaskService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.UserService.html">org\camunda\php\sdk\service\UserService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.VariableInstanceService.html">org\camunda\php\sdk\service\VariableInstanceService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.GroupService.html">org\camunda\php\sdk\service\GroupService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.HistoryService.html">org\camunda\php\sdk\service\HistoryService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.IdentityService.html">org\camunda\php\sdk\service\IdentityService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.JobService.html">org\camunda\php\sdk\service\JobService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.MessageService.html">org\camunda\php\sdk\service\MessageService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.ProcessDefinitionService.html">org\camunda\php\sdk\service\ProcessDefinitionService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.ProcessEngineService.html">org\camunda\php\sdk\service\ProcessEngineService</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.service.ProcessInstanceService.html">org\camunda\php\sdk\service\ProcessInstanceService</a></code>
+		</p>
+	</div>
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-org.html">org</a>\<a href="namespace-org.camunda.html">camunda</a>\<a href="namespace-org.camunda.php.html">php</a>\<a href="namespace-org.camunda.php.sdk.html">sdk</a>\<a href="namespace-org.camunda.php.sdk.service.html">service</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-org.camunda.php.sdk.service.RequestService.html#17-309" title="Go to source code">service/RequestService.php</a><br />
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped" id="methods">
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#24-26" title="Go to source code">__construct</a>( <span>mixed <var>$restApiUrl</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setRequestObject" id="_setRequestObject">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setRequestObject">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#28-33" title="Go to source code">setRequestObject</a>( <span><code><a href="class-org.camunda.php.sdk.entity.request.Request.html">org\camunda\php\sdk\entity\request\Request</a></code> <var>$requestObject</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$requestObject</var></dt>
+						<dd><code><code><a href="class-org.camunda.php.sdk.entity.request.Request.html">org\camunda\php\sdk\entity\request\Request</a></code></code><br>$requestObject</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getRequestObject" id="_getRequestObject">
+
+			<td class="attributes"><code>
+				 protected 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getRequestObject">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#35-40" title="Go to source code">getRequestObject</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setRequestMethod" id="_setRequestMethod">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setRequestMethod">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#42-47" title="Go to source code">setRequestMethod</a>( <span>mixed <var>$requestMethod</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$requestMethod</var></dt>
+						<dd><code>mixed</code><br>$requestMethod</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getRequestMethod" id="_getRequestMethod">
+
+			<td class="attributes"><code>
+				 protected 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getRequestMethod">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#49-54" title="Go to source code">getRequestMethod</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setRequestUrl" id="_setRequestUrl">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setRequestUrl">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#56-61" title="Go to source code">setRequestUrl</a>( <span>mixed <var>$requestUrl</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$requestUrl</var></dt>
+						<dd><code>mixed</code><br>$requestUrl</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getRequestUrl" id="_getRequestUrl">
+
+			<td class="attributes"><code>
+				 protected 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getRequestUrl">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#63-68" title="Go to source code">getRequestUrl</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setHttpStatusCode" id="_setHttpStatusCode">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setHttpStatusCode">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#70-75" title="Go to source code">setHttpStatusCode</a>( <span>mixed <var>$http_status_code</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$http_status_code</var></dt>
+						<dd><code>mixed</code><br>$http_status_code</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getHttpStatusCode" id="_getHttpStatusCode">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getHttpStatusCode">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#77-82" title="Go to source code">getHttpStatusCode</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="execute" id="_execute">
+
+			<td class="attributes"><code>
+				 protected 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_execute">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.service.RequestService.html#86-292" title="Go to source code">execute</a>( )</code>
+
+			<div class="description short">
+				
+<p>executes the rest request</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>executes the rest request</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br>server response<br />
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code>Exception</code><br />
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		camunda BPM PHP SDK API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</body>
+</html>

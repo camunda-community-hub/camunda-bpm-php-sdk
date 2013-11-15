@@ -23,7 +23,8 @@
     <div class="row-fluid">
       <section class="span2">
         <a href="https://github.com/camunda/camunda-bpm-php-sdk">
-          <img class="fork-me-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="fork me on GitHub"
+          <img class="fork-me-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
+               alt="fork me on GitHub" />
         </a>
         <div class="well">
           <ul class="nav nav-list">
@@ -57,14 +58,16 @@
         <h2 id="gettingStarted">Getting Started</h2>
         <h3 id="installation">Installation</h3>
         <p>
-          The fastest way to get started with the SDK is to download the full github repository as zip and extract the
-          <strong><i>camundaRestClient.php</i></strong> from main/sdk/camundaRestClient.php to your project folder and
-          include it via:
+          The fastest way to get started with the SDK is to add the
+          <a href="https://packagist.org/packages/camunda/camunda-bpm-php-sdk">package</a> from packagist via composer.
         </p>
-        <code>include_once('camundaRestClient.php');</code>
+        <p>
+          to initialize the package you could then use the composer autoload.php (see composer doc for the how to
+          instructions).
+        </p>
         <h3 id="using">Using the sdk</h3>
         <p>
-          After the inclusion of camundaRestClient.php you can instantiate the API and use it to get your requested data.
+          After the inclusion you can instantiate the API and use it to get your requested data.
           Below is a simple example which shows how to use the API. If you want to know more about the API you can have
           a look into the sdk's <a href="apidocs">API-Documentation</a>.
         </p>
@@ -72,24 +75,26 @@
         <p>In this example we will request all process definitions and output the deployment id of each definition.</p>
         <h5 id="code">Code:</h5>
         <code>
-          $restRequest = new RestRequest('http://localhost:8080/engine-rest');
-          $processDefinitions = $restRequest->getProcessDefinitions;
+          $camundaAPI = new \org\camunda\php\sdk\Api('http://localhost:8080/engine-rest');
+          $processDefinitionRequest = new \org\camunda\php\sdk\entity\request\ProcessDefinitionRequest();
+          $processDefinitions = $camundaAPI->$processDefinition->getDefinitions($processDefinitionRequest);
 
           foreach($processDefinitions AS $data) {
-            echo 'Process deployment id: ' . $data->deploymentId . '&lt;br /&gt;';
+            echo 'Process deployment id: ' . $data->getDeploymentId() . '&lt;br /&gt;';
           }
         </code>
         <h5 id="explanation">Explanation:</h5>
         <p>
           Instantiate the rest client (this example uses our prepackaged tomcat release in a local installation):<br />
           <code>
-          $restRequest = new RestRequest('http://localhost:8080/engine-rest');
+            $camundaAPI = new \org\camunda\php\sdk\Api('http://localhost:8080/engine-rest');
           </code>
         </p>
         <p>
           Get all process definitions:<br />
           <code>
-          $processDefinitions = $restRequest->getProcessDefinitions();
+            $processDefinitionRequest = new \org\camunda\php\sdk\entity\request\ProcessDefinitionRequest();
+            $processDefinitions = $camundaAPI->$processDefinition->getDefinitions($processDefinitionRequest);
           </code>
         </p>
         <p>

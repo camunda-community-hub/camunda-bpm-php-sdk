@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class org\camunda\php\sdk\helper\CastHelper | camunda BPM PHP SDK</title>
+
+	<script type="text/javascript" src="resources/combined.js?522072721"></script>
+	<script type="text/javascript" src="elementlist.js?3582084375"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822" />
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609" />
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">camunda BPM PHP SDK</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-org.camunda.php.sdk.helper.html" title="Summary of org\camunda\php\sdk\helper"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="camunda-bpm-php-sdk-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="" />
+			<input type="hidden" name="ie" value="UTF-8" />
+			<input type="text" name="q" class="search-query" placeholder="Search" />
+		</form>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-org.html">org<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.html">camunda<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.html">php<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.html">sdk<span></span></a>
+						<ul>
+				<li><a href="namespace-org.camunda.php.sdk.entity.html">entity<span></span></a>
+						<ul>
+				<li><a href="namespace-org.camunda.php.sdk.entity.request.html">request</a>
+						</li>
+				<li><a href="namespace-org.camunda.php.sdk.entity.response.html">response</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-org.camunda.php.sdk.helper.html">helper</a>
+						</li>
+				<li><a href="namespace-org.camunda.php.sdk.service.html">service</a>
+						</li>
+							</ul></li></ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-org.camunda.php.sdk.helper.CastHelper.html">CastHelper</a></li>
+				<li><a href="class-org.camunda.php.sdk.helper.DiagramHelper.html">DiagramHelper</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class CastHelper</h1>
+
+
+
+
+
+	<div>
+		<h3>Direct known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-org.camunda.php.sdk.entity.response.Activity.html">org\camunda\php\sdk\entity\response\Activity</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Authorization.html">org\camunda\php\sdk\entity\response\Authorization</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Job.html">org\camunda\php\sdk\entity\response\Job</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Message.html">org\camunda\php\sdk\entity\response\Message</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.MessageSubscription.html">org\camunda\php\sdk\entity\response\MessageSubscription</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.ProcessDefinition.html">org\camunda\php\sdk\entity\response\ProcessDefinition</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.ProcessInstance.html">org\camunda\php\sdk\entity\response\ProcessInstance</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.ResourceOption.html">org\camunda\php\sdk\entity\response\ResourceOption</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Statistic.html">org\camunda\php\sdk\entity\response\Statistic</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Task.html">org\camunda\php\sdk\entity\response\Task</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.User.html">org\camunda\php\sdk\entity\response\User</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Variable.html">org\camunda\php\sdk\entity\response\Variable</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Execution.html">org\camunda\php\sdk\entity\response\Execution</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.VariableInstance.html">org\camunda\php\sdk\entity\response\VariableInstance</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Form.html">org\camunda\php\sdk\entity\response\Form</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Group.html">org\camunda\php\sdk\entity\response\Group</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.HistoricActivityInstance.html">org\camunda\php\sdk\entity\response\HistoricActivityInstance</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.HistoricProcessInstance.html">org\camunda\php\sdk\entity\response\HistoricProcessInstance</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.HistoricVariableInstance.html">org\camunda\php\sdk\entity\response\HistoricVariableInstance</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.Identity.html">org\camunda\php\sdk\entity\response\Identity</a></code>, 
+			<code><a href="class-org.camunda.php.sdk.entity.response.IdentityLink.html">org\camunda\php\sdk\entity\response\IdentityLink</a></code>
+		</p>
+	</div>
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-org.html">org</a>\<a href="namespace-org.camunda.html">camunda</a>\<a href="namespace-org.camunda.php.html">php</a>\<a href="namespace-org.camunda.php.sdk.html">sdk</a>\<a href="namespace-org.camunda.php.sdk.helper.html">helper</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-org.camunda.php.sdk.helper.CastHelper.html#13-46" title="Go to source code">helper/CastHelper.php</a><br />
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped" id="methods">
+		<tr data-order="cast" id="_cast">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_cast">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.helper.CastHelper.html#15-28" title="Go to source code">cast</a>( <span>stdClass <var>$object</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Helps to cast a standard class object into a specific class object</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Helps to cast a standard class object into a specific class object</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$object</var></dt>
+						<dd><code>stdClass</code><br>$object</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br>$this<br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="iterate" id="_iterate">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_iterate">#</a>
+			<code><a href="source-class-org.camunda.php.sdk.helper.CastHelper.html#30-44" title="Go to source code">iterate</a>( )</code>
+
+			<div class="description short">
+				
+<p>provides a possible way to iterate over all non public methods without
+implementation of the more heavy Iterator class</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>provides a possible way to iterate over all non public methods without
+implementation of the more heavy Iterator class</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>array</code><br />
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		camunda BPM PHP SDK API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</body>
+</html>

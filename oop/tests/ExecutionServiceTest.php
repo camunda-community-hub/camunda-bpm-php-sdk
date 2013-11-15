@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace org\camunda\php\tests\TestExecutionService;
+namespace org\camunda\php\tests;
 use org\camunda\php\sdk\entity\request\ExecutionRequest;
 use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\service\ExecutionService;
@@ -16,10 +16,12 @@ include("../../vendor/autoload.php");
 
 class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
   protected static $restApi;
-  protected $i = 0;
+  protected static $es;
 
   public static function setUpBeforeClass() {
     self::$restApi = 'http://localhost:8080/engine-rest';
+    print("\n\nCLASS: " . __CLASS__ . "\n");
+    self::$es = new ExecutionService(self::$restApi);
   }
 
   public static function tearDownAfterClass() {
@@ -31,14 +33,13 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getSingleExecution() {
-    $pes = new ExecutionService(self::$restApi);
-    $ei = $pes->getExecutions(new ExecutionRequest())->execution_1;
+    $ei = self::$es->getExecutions(new ExecutionRequest())->execution_1;
 
     $this->assertEquals(
       $ei->getProcessInstanceId(),
-      $pes->getExecution($ei->getId())->getProcessInstanceId()
+      self::$es->getExecution($ei->getId())->getProcessInstanceId()
     );
-    
+
   }
 
   //--------------------------------  TEST GET EXECUTIONS  ----------------------------------------
@@ -46,20 +47,18 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getExecutions() {
-    $pes = new ExecutionService(self::$restApi);
-    $this->assertNotEmpty(get_object_vars($pes->getExecutions(new ExecutionRequest())));
+    $this->assertNotEmpty(get_object_vars(self::$es->getExecutions(new ExecutionRequest())));
 
     $er = new ExecutionRequest();
     $er->setActive(true);
-    $this->assertNotEmpty(get_object_vars($pes->getExecutions($er)));
+    $this->assertNotEmpty(get_object_vars(self::$es->getExecutions($er)));
 
-    $pes = new ExecutionService(self::$restApi);
-    $this->assertNotEmpty(get_object_vars($pes->getExecutions(new ExecutionRequest(), true)));
+    $this->assertNotEmpty(get_object_vars(self::$es->getExecutions(new ExecutionRequest(), true)));
 
     $er = new ExecutionRequest();
     $er->setActive(true);
-    $this->assertNotEmpty(get_object_vars($pes->getExecutions($er, true)));
-    
+    $this->assertNotEmpty(get_object_vars(self::$es->getExecutions($er, true)));
+
   }
 
   //--------------------------------  TEST GET EXECUTION COUNT  ----------------------------------------
@@ -67,23 +66,22 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getExecutionCount() {
-    $pes = new ExecutionService(self::$restApi);
-    $eic = $pes->getCount(new ExecutionRequest());
-    $eic2 = count(get_object_vars($pes->getExecutions(new ExecutionRequest())));
+    $eic = self::$es->getCount(new ExecutionRequest());
+    $eic2 = count(get_object_vars(self::$es->getExecutions(new ExecutionRequest())));
     $this->assertEquals($eic, $eic2);
 
-    $eic = $pes->getCount(new ExecutionRequest(), true);
-    $eic2 = count(get_object_vars($pes->getExecutions(new ExecutionRequest(), true)));
+    $eic = self::$es->getCount(new ExecutionRequest(), true);
+    $eic2 = count(get_object_vars(self::$es->getExecutions(new ExecutionRequest(), true)));
     $this->assertEquals($eic, $eic2);
 
     $er = new ExecutionRequest();
     $er->setActive(true);
-    $eic = $pes->getCount($er);
-    $eic2 = count(get_object_vars($pes->getExecutions($er)));
+    $eic = self::$es->getCount($er);
+    $eic2 = count(get_object_vars(self::$es->getExecutions($er)));
 
     $this->assertEquals($eic, $eic2);
 
-    
+
   }
 
   //--------------------------------  TEST GET LOCAL EXECUTION VARIABLE  ----------------------------------------
@@ -91,15 +89,14 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getLocalExecutionVariable() {
-    $pes = new ExecutionService(self::$restApi);
-    $ei = $pes->getExecutions(new ExecutionRequest())->execution_1;
+    $ei = self::$es->getExecutions(new ExecutionRequest())->execution_1;
     $ev = new VariableRequest();
-    $ev->setValue("test")->setType('String');
-    $pes->putExecutionVariable($ei->getId(), 'testVariable', $ev);
-    $this->assertEquals('test', $pes->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
+    $ev->setValue("testValue")->setType('String');
+    self::$es->putExecutionVariable($ei->getId(), 'testVariable', $ev);
+    $this->assertEquals('testValue', self::$es->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
 
-    $pes->deleteExecutionVariable($ei->getId(), 'testVariable');
-    
+    self::$es->deleteExecutionVariable($ei->getId(), 'testVariable');
+
   }
 
   //--------------------------------  TEST PUT LOCAL EXECUTION VARIABLE  ----------------------------------------
@@ -107,16 +104,15 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function putLocalExecutionVariable() {
-    $pes = new ExecutionService(self::$restApi);
-    $ei = $pes->getExecutions(new ExecutionRequest())->execution_1;
+    $ei = self::$es->getExecutions(new ExecutionRequest())->execution_1;
 
     $ev = new VariableRequest();
-    $ev->setValue("test")->setType('String');
-    $pes->putExecutionVariable($ei->getId(), 'testVariable', $ev);
-    $this->assertEquals('test', $pes->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
+    $ev->setValue("testValue")->setType('String');
+    self::$es->putExecutionVariable($ei->getId(), 'testVariable', $ev);
+    $this->assertEquals('testValue', self::$es->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
 
-    $pes->deleteExecutionVariable($ei->getId(), 'testVariable');
-    
+    self::$es->deleteExecutionVariable($ei->getId(), 'testVariable');
+
   }
 
   //--------------------------------  TEST PUT LOCAL EXECUTION VARIABLE  ----------------------------------------
@@ -124,17 +120,20 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function deleteLocalExecutionVariable() {
-    $pes = new ExecutionService(self::$restApi);
-    $ei = $pes->getExecutions(new ExecutionRequest())->execution_1;
+    $ei = self::$es->getExecutions(new ExecutionRequest())->execution_1;
 
     $ev = new VariableRequest();
-    $ev->setValue("test")->setType('String');
-    $pes->putExecutionVariable($ei->getId(), 'testVariable', $ev);
-    $this->assertEquals('test', $pes->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
+    $ev->setValue("testValue")->setType('String');
+    self::$es->putExecutionVariable($ei->getId(), 'testVariable', $ev);
+    $this->assertEquals('testValue', self::$es->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
 
-    $pes->deleteExecutionVariable($ei->getId(), 'testVariable');
-    $this->assertNull($pes->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
-    
+    self::$es->deleteExecutionVariable($ei->getId(), 'testVariable');
+    try {
+      self::$es->getExecutionVariable($ei->getId(), 'testVariable')->getValue();
+    } catch(\Exception $ex) {
+      $this->assertStringStartsWith('Error! HTTP Status Code: 404', $ex->getMessage());
+    }
+
   }
 
   //--------------------------------  TEST GET LOCAL EXECUTION VARIABLES  ----------------------------------------
@@ -142,37 +141,35 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getLocalExecutionVariables() {
-    $pes = new ExecutionService(self::$restApi);
-    $ei = $pes->getExecutions(new ExecutionRequest())->execution_1;
+    $ei = self::$es->getExecutions(new ExecutionRequest())->execution_1;
 
     $ev = new VariableRequest();
-    $ev->setValue("test")->setType('String');
-    $pes->putExecutionVariable($ei->getId(), 'testVariable', $ev);
+    $ev->setValue("testValue")->setType('String');
+    self::$es->putExecutionVariable($ei->getId(), 'testVariable', $ev);
 
-    $this->assertGreaterThan(0, count(get_object_vars($pes->getExecutionVariables($ei->getId()))));
+    $this->assertGreaterThan(0, count(get_object_vars(self::$es->getExecutionVariables($ei->getId()))));
     $this->assertEquals(
-      'test',
-      $pes->getExecutionVariables($ei->getId())->variable_testVariable->getValue()
+      'testValue',
+      self::$es->getExecutionVariables($ei->getId())->variable_testVariable->getValue()
     );
-    $pes->deleteExecutionVariable($ei->getId(), 'testVariable');
-    
+    self::$es->deleteExecutionVariable($ei->getId(), 'testVariable');
+
   }
 
   //--------------------------------  TEST UPDATE AND DELETE PROCESS VARIABLES  ----------------------------------------
   /**
    * @test
    */
-  public function updateAndDeleteProcessVariables() {
-    $pes = new ExecutionService(self::$restApi);
-    $ei = $pes->getExecutions(new ExecutionRequest())->execution_1;
+  public function updateAndDeleteExecutionVariables() {
+    $ei = self::$es->getExecutions(new ExecutionRequest())->execution_1;
 
     $ev = new VariableRequest();
     $ev->setValue('testValue')->setType('String');
-    $pes->putExecutionVariable($ei->getId(),'testVariable', $ev);
+    self::$es->putExecutionVariable($ei->getId(),'testVariable', $ev);
 
     $ev = new VariableRequest();
     $ev->setValue('testValue2')->setType('String');
-    $pes->putExecutionVariable($ei->getId(), 'testVariable2', $ev);
+    self::$es->putExecutionVariable($ei->getId(), 'testVariable2', $ev);
 
     $ev = new VariableRequest();
     $pm = array();
@@ -182,20 +179,20 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
     $pm['testVariable2']->setValue('newTestValue2');
     $ev->setModifications($pm);
 
-    $pes->updateOrDeleteExecutionVariables($ei->getId(), $ev);
-    $this->assertEquals('newTestValue', $pes->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
-    $this->assertEquals('newTestValue2', $pes->getExecutionVariable($ei->getId(), 'testVariable2')->getValue());
+    self::$es->updateOrDeleteExecutionVariables($ei->getId(), $ev);
+    $this->assertEquals('newTestValue', self::$es->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
+    $this->assertEquals('newTestValue2', self::$es->getExecutionVariable($ei->getId(), 'testVariable2')->getValue());
 
-    $pvc = count(get_object_vars($pes->getExecutionVariables($ei->getId())));
+    $pvc = count(get_object_vars(self::$es->getExecutionVariables($ei->getId())));
 
     $ev = new VariableRequest();
     $pm = array('testVariable', 'testVariable2');
     $ev->setDeletions($pm);
-    $pes->updateOrDeleteExecutionVariables($ei->getId(), $ev);
+    self::$es->updateOrDeleteExecutionVariables($ei->getId(), $ev);
 
-    $this->assertEquals($pvc - 2, count(get_object_vars($pes->getExecutionVariables($ei->getId()))));
+    $this->assertEquals($pvc - 2, count(get_object_vars(self::$es->getExecutionVariables($ei->getId()))));
 
-    
+
   }
 
   //--------------------------------  TEST TRIGGER EXECUTION  ----------------------------------------

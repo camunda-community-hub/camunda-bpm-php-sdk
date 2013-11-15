@@ -28,6 +28,7 @@ namespace org\camunda\php\sdk;
  *
  * Class camundaAPI
  * @package org\camunda\php\sdk
+ * @deprecated Use OOP way now!
  */
 class camundaRestClient {
 
@@ -65,6 +66,127 @@ class camundaRestClient {
     // not used
   }
 
+  /*---------------------- Authorization --------------------------------------*/
+  /**
+   * Removes an authorization by id
+   * @Link http://docs.camunda.org/latest/api-references/rest/#authorization-delete-authorization
+   *
+   * @param String $id authorization ID
+   */
+  public function deleteAuthorization($id) {
+    $query = 'authorization/'. $id;
+    $this->restRequest('DELETE', $query);
+  }
+
+  /**
+   * Retrieves a single authorization by id.
+   * @Link http://docs.camunda.org/latest/api-references/rest/#authorization-get-single-authorization
+   *
+   * @param String $id authorization ID
+   * @return mixed
+   */
+  public function getAuthorization($id) {
+    $query = 'authorization/'.$id;
+    return $this->restRequest('GET', $query, null);
+  }
+
+  /**
+   * Performs an authorization check for the currently authenticated user.
+   * @Link http://docs.camunda.org/latest/api-references/rest/#authorization-perform-an-authorization-check
+   *
+   * @param $parameterArray
+   * @return mixed
+   */
+  public function checkAuthorization($parameterArray) {
+    $checkerArray = array(
+      0 => 'permissionName',
+      1 => 'resourceName',
+      2 => 'resourceType');
+
+    // Checker for required variables
+    foreach($checkerArray AS $value) {
+      if(isset($request[$value]) && ($request[$value] != null || $request[$value] != '')) {
+        continue;
+      } else {
+        return "Please fill all required variables!";
+      }
+    }
+
+    $query = 'authorization/check';
+    return $this->restRequest('GET', $query, $parameterArray);
+  }
+
+  /**
+   * Query for a list of authorizations using a list of parameters. The size of the result set can be retrieved by
+   * using the get authorization count method.
+   * @Link http://docs.camunda.org/latest/api-references/rest/#authorization-get-authorizations
+   *
+   * @param $parameterArray
+   * @return mixed
+   */
+  public function getAuthorizations($parameterArray) {
+    $query = 'authorization/';
+    return $this->restRequest('GET', $query, $parameterArray);
+  }
+
+  /**
+   * Query for authorizations using a list of parameters and retrieves the count.
+   * @Link http://docs.camunda.org/latest/api-references/rest/#authorization-get-authorizations-count
+   *
+   * @param $parameterArray
+   * @return mixed
+   */
+  public function getCount($parameterArray) {
+    $query = 'authorization/count';
+    return $this->restRequest('GET', $query, $parameterArray);
+  }
+
+  /**
+   * Allows checking for the set of available operations that the currently authenticated user can perform.
+   * @Link http://docs.camunda.org/latest/api-references/rest/#authorization-authorization-resource-options
+
+   * @return mixed
+   */
+  public function getResourceOption() {
+    $query = 'authorization';
+    return $this->restRequest('OPTIONS', $query, null);
+  }
+
+
+  /**
+   * Allows checking for the set of available operations that the currently authenticated user can perform.
+   * @Link http://docs.camunda.org/latest/api-references/rest/#authorization-authorization-resource-options
+   *
+   * @param String $id
+   * @return mixed
+   */
+  public function getResourceInstanceOption($id) {
+    $query = 'authorization/'.$id;
+    return $this->restRequest('OPTIONS', $query, null);
+  }
+
+  /**
+   * Creates a new authorization
+   * @Link http://docs.camunda.org/latest/api-references/rest/#authorization-create-a-new-authorization
+   *
+   * @param Array $parameterArray
+   * @return mixed
+   *
+   */
+  public function createAuthorization($parameterArray) {
+    $query = 'authorization/create';
+    return $this->restRequest('POST', $query, $parameterArray);
+  }
+
+  /**
+   * Updates a single authorization.
+   * @link http://docs.camunda.org/latest/api-references/rest/#authorization-update-a-single-authorization
+   *
+   */
+  public function updateAuthorization($id, $parameterArray) {
+    $query = 'authorization/'.$id;
+    $this->restRequest('PUT', $query, $parameterArray);
+  }
 
   /*---------------------- PROCESS ENGINE -------------------------------------*/
 
@@ -805,17 +927,17 @@ class camundaRestClient {
 
   /**
    * Gets the groups of a user.
-   * This feature is deprecated and will be removed with the next version!
+   * @link http://docs.camunda.org/7.0/api-references/rest/#identity-get-a-users-groups
    *
    * @param String $userId user Id
    * @return mixed returns the server-response
-   * @deprecated  No longer used by rest API and not recommended
    */
   public function getUserGroups($userId) {
     $parameterArray = array(
-      'member' => $userId
+      "userId" => $userId
     );
-    return $this->getGroups($parameterArray);
+    $query = 'identity/groups';
+    return $this->restRequest('GET', $query, $parameterArray);
   }
 
 
@@ -887,7 +1009,7 @@ class camundaRestClient {
    * @return mixed server response
    */
   public function getGroups($parameterArray = null) {
-    $query = 'group';
+    $query = 'identity/group';
     return $this->restRequest('GET', $query, $parameterArray);
   }
 
@@ -1082,8 +1204,27 @@ class camundaRestClient {
     }
 
     $query = preg_replace('/^\//', '', $query);
-
+    $http_status_code = 0;
     switch(strtoupper($method)) {
+      case 'OPTIONS':
+        if($this->checkCurl()) {
+          $ch = curl_init($this->engineUrl.$this->pathSeparator.$query);
+          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'OPTIONS');
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          $request = curl_exec($ch);
+          $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          curl_close($ch);
+        } else {
+          $streamContext = stream_context_create(array(
+              'http' => array(
+                'method' => 'OPTIONS'
+              )
+            )
+          );
+          $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query, null, $streamContext);
+          $http_status_code = substr($http_response_header[0], 9, 3);
+        }
+        break;
       case 'DELETE':
         if($this->checkCurl()) {
           $ch = curl_init($this->engineUrl.$this->pathSeparator.$query);
@@ -1095,6 +1236,7 @@ class camundaRestClient {
             'Content-Length: '.strlen($data)
           ));
           $request = curl_exec($ch);
+          $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
           curl_close($ch);
         } else {
           $streamContext = stream_context_create(array(
@@ -1108,6 +1250,7 @@ class camundaRestClient {
           );
 
           $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query, null, $streamContext);
+          $http_status_code = substr($http_response_header[0], 9, 3);
         }
         break;
       case 'PUT':
@@ -1122,6 +1265,7 @@ class camundaRestClient {
           ));
 
           $request = curl_exec($ch);
+          $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
           curl_close($ch);
         } else {
           $streamContext = stream_context_create(array(
@@ -1135,6 +1279,7 @@ class camundaRestClient {
           );
 
           $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query, null, $streamContext);
+          $http_status_code = substr($http_response_header[0], 9, 3);
         }
         break;
       case 'POST':
@@ -1148,6 +1293,7 @@ class camundaRestClient {
             'Content-Length: '.strlen($data)
           ));
           $request = curl_exec($ch);
+          $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
           curl_close($ch);
         } else {
           $streamContext = stream_context_create(array(
@@ -1161,6 +1307,7 @@ class camundaRestClient {
           );
 
           $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query, null, $streamContext);
+          $http_status_code = substr($http_response_header[0], 9, 3);
         }
         break;
       case 'GET':
@@ -1171,9 +1318,11 @@ class camundaRestClient {
           curl_setopt($ch, CURLOPT_COOKIEFILE, './');
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           $request = curl_exec($ch);
+          $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
           curl_close($ch);
         } else {
           $request = file_get_contents($this->engineUrl.$this->pathSeparator.$query.$data);
+          $http_status_code = substr($http_response_header[0], 9, 3);
         }
         break;
     }

@@ -7,16 +7,19 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace org\camunda\php\tests\TestProcessEngineService;
+namespace org\camunda\php\tests;
 use org\camunda\php\sdk\service\ProcessEngineService;
 
 include('../../vendor/autoload.php');
 
 class ProcessEngineServiceTest extends \PHPUnit_Framework_TestCase {
   protected static $restApi;
+  protected static $pes;
 
   public static function setUpBeforeClass() {
     self::$restApi = 'http://localhost:8080/engine-rest';
+    print("\n\nCLASS: " . __CLASS__ . "\n");
+    self::$pes = new ProcessEngineService(self::$restApi);
   }
 
   public static function tearDownAfterClass() {
@@ -28,7 +31,6 @@ class ProcessEngineServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getEngineNames() {
-    $pes = new ProcessEngineService(self::$restApi);
-    $this->assertEquals('default', $pes->getEngineNames()->engine_0->name);
+    $this->assertEquals('default', self::$pes->getEngineNames()->engine_0->name);
   }
 }

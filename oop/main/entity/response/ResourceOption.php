@@ -13,51 +13,19 @@ namespace org\camunda\php\sdk\entity\response;
 use org\camunda\php\sdk\helper\CastHelper;
 
 class ResourceOption extends CastHelper {
-  protected $method;
-  protected $href;
-  protected $rel;
+  protected $links;
 
   /**
-   * @param mixed $href
+   * @param mixed $links
    */
-  public function setHref($href) {
-    $this->href = $href;
+  public function setLinks($links) {
+    $this->links = $links;
   }
 
   /**
    * @return mixed
    */
-  public function getHref() {
-    return $this->href;
+  public function getLinks() {
+    return $this->links;
   }
-
-  /**
-   * @param mixed $method
-   */
-  public function setMethod($method) {
-    $this->method = $method;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getMethod() {
-    return $this->method;
-  }
-
-  /**
-   * @param mixed $rel
-   */
-  public function setRel($rel) {
-    $this->rel = $rel;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getRel() {
-    return $this->rel;
-  }
-
-
 }

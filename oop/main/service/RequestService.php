@@ -274,13 +274,20 @@ class RequestService {
         break;
     }
 
-    if($this->http_status_code == 200) {
+    if(preg_match('/(^10|^20)[0-9]/', $this->http_status_code)) {
       $this->reset();
       return json_decode($request);
     } else {
       $this->reset();
-      $error = json_decode($request);
-      throw new \Exception("Error! HTTP Status Code: " .$this->http_status_code. " -- ErrorType: ". $error->type . " -- Error Message: ". $error->message);
+      if($request != null && $request != "" && !empty($request)) {
+        $error = json_decode($request);
+      } else {
+        $error = new \stdClass();
+        $error->type = "Not found!";
+        $error->message = "No Message!";
+      }
+      throw new \Exception("Error! HTTP Status Code: " .$this->http_status_code. " -- ErrorType: ". $error->type . " --
+      Error Message: ". $error->message);
     }
   }
 

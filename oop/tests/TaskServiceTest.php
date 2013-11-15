@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace org\camunda\php\tests\TestTaskService;
+namespace org\camunda\php\tests;
 use org\camunda\php\sdk\entity\request\CredentialsRequest;
 use org\camunda\php\sdk\entity\request\ProfileRequest;
 use org\camunda\php\sdk\entity\request\TaskRequest;
@@ -19,9 +19,14 @@ include('../../vendor/autoload.php');
 
 class TaskServiceTest extends \PHPUnit_Framework_TestCase {
   protected static $restApi;
+  protected static $ts;
+  protected static $us;
 
   public static function setUpBeforeClass() {
     self::$restApi = 'http://localhost:8080/engine-rest';
+    self::$ts = new TaskService(self::$restApi);
+    self::$us = new UserService(self::$restApi);
+    print("\n\nCLASS: " . __CLASS__ . "\n");
   }
 
   public static function tearDownAfterClass() {
@@ -33,11 +38,10 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getSingleTask() {
-    $ts = new TaskService(self::$restApi);
-    $tasks = $ts->getTasks(new TaskRequest());
+    $tasks = self::$ts->getTasks(new TaskRequest());
     foreach($tasks AS $task) {
       if(!preg_match('/^waitStates\:.*|^calledProcess:.*/', $task->getProcessDefinitionId())) {
-        $this->assertEquals('demo', $ts->getTask($task->getId())->getAssignee());
+        $this->assertEquals('demo', self::$ts->getTask($task->getId())->getAssignee());
         break;
       }
     };
@@ -48,19 +52,18 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getTasks() {
-    $ts = new TaskService(self::$restApi);
-    $this->assertGreaterThan(0,count(get_object_vars($ts->getTasks(new TaskRequest()))));
-    $this->assertGreaterThan(0,count(get_object_vars($ts->getTasks(new TaskRequest(), true))));
+    $this->assertGreaterThan(0,count(get_object_vars(self::$ts->getTasks(new TaskRequest()))));
+    $this->assertGreaterThan(0,count(get_object_vars(self::$ts->getTasks(new TaskRequest(), true))));
 
     $tr = new TaskRequest();
     $tr->setAssignee('demo');
-    $this->assertGreaterThan(0,count(get_object_vars($ts->getTasks($tr, true))));
-    $this->assertGreaterThan(0,count(get_object_vars($ts->getTasks($tr))));
+    $this->assertGreaterThan(0,count(get_object_vars(self::$ts->getTasks($tr, true))));
+    $this->assertGreaterThan(0,count(get_object_vars(self::$ts->getTasks($tr))));
 
-    $tasks = $ts->getTasks(new TaskRequest());
+    $tasks = self::$ts->getTasks(new TaskRequest());
     foreach($tasks AS $task) {
       if(!preg_match('/^waitStates\:.*|^calledProcess:.*/', $task->getProcessDefinitionId())) {
-        $this->assertEquals('demo', $ts->getTask($task->getId())->getAssignee());
+        $this->assertEquals('demo', self::$ts->getTask($task->getId())->getAssignee());
         break;
       }
     };
@@ -71,14 +74,13 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getTaskCount() {
-    $ts = new TaskService(self::$restApi);
-    $this->assertGreaterThan(0, $ts->getCount(new TaskRequest()));
-    $this->assertGreaterThan(0, $ts->getCount(new TaskRequest(), true));
+    $this->assertGreaterThan(0, self::$ts->getCount(new TaskRequest()));
+    $this->assertGreaterThan(0, self::$ts->getCount(new TaskRequest(), true));
 
     $tr = new TaskRequest();
     $tr->setAssignee('demo');
-    $this->assertGreaterThan(0, $ts->getCount($tr));
-    $this->assertGreaterThan(0, $ts->getCount($tr, true));
+    $this->assertGreaterThan(0, self::$ts->getCount($tr));
+    $this->assertGreaterThan(0, self::$ts->getCount($tr, true));
   }
 
   //--------------------------------  TEST GET FORM KEY  ----------------------------------------
@@ -86,11 +88,10 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function getFormKey() {
-    $ts = new TaskService(self::$restApi);
-    $tasks = $ts->getTasks(new TaskRequest());
+    $tasks = self::$ts->getTasks(new TaskRequest());
     foreach($tasks AS $task) {
       if(!preg_match('/^waitStates\:.*|^calledProcess:.*/', $task->getProcessDefinitionId())) {
-        $this->assertEquals('embedded:app:forms/assign-approver.html', $ts->getFormKey($task->getId())->getKey());
+        $this->assertEquals('embedded:app:forms/assign-approver.html', self::$ts->getFormKey($task->getId())->getKey());
         break;
       }
     }
@@ -101,9 +102,6 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function claimTask() {
-    $ts = new TaskService(self::$restApi);
-    $us = new UserService(self::$restApi);
-
     $ur = new UserRequest();
     $up = new ProfileRequest();
     $uc = new CredentialsRequest();
@@ -113,21 +111,21 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
         ->setEmail('stefan.hentschel@camunda.com');
     $uc->setPassword('654321');
     $ur->setProfile($up)->setCredentials($uc);
-    $us->createUser($ur);
+    self::$us->createUser($ur);
 
-    $task = $ts->getTasks(new TaskRequest())->task_1;
+    $task = self::$ts->getTasks(new TaskRequest())->task_1;
     $tr = new TaskRequest();
     $tr->setUserId('shentschel');
-    $ts->unclaimTask($task->getId());
-    $ts->claimTask($task->getId(), $tr);
+    self::$ts->unclaimTask($task->getId());
+    self::$ts->claimTask($task->getId(), $tr);
 
-    $this->assertEquals('shentschel', $ts->getTask($task->getId())->getAssignee());
-    $ts->unclaimTask($task->getId());
-    $ts->getTask($task->getId())->getAssignee();
+    $this->assertEquals('shentschel', self::$ts->getTask($task->getId())->getAssignee());
+    self::$ts->unclaimTask($task->getId());
+    self::$ts->getTask($task->getId())->getAssignee();
     $tr->setUserId('demo');
-    $ts->claimTask($task->getId(), $tr);
-    $ts->getTask($task->getId())->getAssignee();
-    $us->deleteUser('shentschel');
+    self::$ts->claimTask($task->getId(), $tr);
+    self::$ts->getTask($task->getId())->getAssignee();
+    self::$us->deleteUser('shentschel');
 
   }
 
@@ -136,9 +134,6 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function unclaimTask() {
-    $ts = new TaskService(self::$restApi);
-    $us = new UserService(self::$restApi);
-
     $ur = new UserRequest();
     $up = new ProfileRequest();
     $uc = new CredentialsRequest();
@@ -148,17 +143,17 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
         ->setEmail('stefan.hentschel@camunda.com');
     $uc->setPassword('654321');
     $ur->setProfile($up)->setCredentials($uc);
-    $us->createUser($ur);
+    self::$us->createUser($ur);
 
-    $task = $ts->getTasks(new TaskRequest())->task_1;
+    $task = self::$ts->getTasks(new TaskRequest())->task_1;
     $tr = new TaskRequest();
     $tr->setUserId('shentschel');
-    $ts->unclaimTask($task->getId());
+    self::$ts->unclaimTask($task->getId());
 
-    $this->assertNull($ts->getTask($task->getId())->getAssignee());
+    $this->assertNull(self::$ts->getTask($task->getId())->getAssignee());
     $tr->setUserId('demo');
-    $ts->claimTask($task->getId(), $tr);
-    $us->deleteUser('shentschel');
+    self::$ts->claimTask($task->getId(), $tr);
+    self::$us->deleteUser('shentschel');
 
   }
 
@@ -191,9 +186,6 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
    * @test
    */
   public function delegateTask() {
-    $ts = new TaskService(self::$restApi);
-    $us = new UserService(self::$restApi);
-
     $ur = new UserRequest();
     $up = new ProfileRequest();
     $uc = new CredentialsRequest();
@@ -203,34 +195,31 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
         ->setEmail('stefan.hentschel@camunda.com');
     $uc->setPassword('654321');
     $ur->setProfile($up)->setCredentials($uc);
-    $us->createUser($ur);
+    self::$us->createUser($ur);
 
-    $tasks = $ts->getTasks(new TaskRequest());
+    $tasks = self::$ts->getTasks(new TaskRequest());
     $tr = new TaskRequest();
     $tr->setUserId('shentschel');
 
     foreach($tasks AS $task) {
       if(!preg_match('/^waitStates\:.*/', $task->getProcessDefinitionId())) {
-        $ts->delegateTask($task->getId(), $tr);
-        $this->assertEquals('PENDING', $ts->getTask($task->getId())->getDelegationState());
-        $ts->unclaimTask($task->getId(), $tr);
+        self::$ts->delegateTask($task->getId(), $tr);
+        $this->assertEquals('PENDING', self::$ts->getTask($task->getId())->getDelegationState());
+        self::$ts->unclaimTask($task->getId(), $tr);
         $tr->setUserId('demo');
-        $ts->claimTask($task->getId(), $tr);
+        self::$ts->claimTask($task->getId(), $tr);
         break;
       }
     };
 
-    $us->deleteUser('shentschel');
+    self::$us->deleteUser('shentschel');
   }
 
   //--------------------------------  TEST TAKEOVER TASK  ----------------------------------------
   /**
    * @test
    */
-  public function takeoverTask() {
-    $ts = new TaskService(self::$restApi);
-    $us = new UserService(self::$restApi);
-
+  public function setAssignee() {
     $ur = new UserRequest();
     $up = new ProfileRequest();
     $uc = new CredentialsRequest();
@@ -240,19 +229,46 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
         ->setEmail('stefan.hentschel@camunda.com');
     $uc->setPassword('654321');
     $ur->setProfile($up)->setCredentials($uc);
-    $us->createUser($ur);
+    self::$us->createUser($ur);
 
-    $task = $ts->getTasks(new TaskRequest())->task_1;
+    $task = self::$ts->getTasks(new TaskRequest())->task_1;
     $tr = new TaskRequest();
     $tr->setUserId('shentschel');
-    $ts->takeTask($task->getId(), $tr);
+    self::$ts->setAssignee($task->getId(), $tr);
 
-    $this->assertEquals('shentschel', $ts->getTask($task->getId())->getAssignee());
+    $this->assertEquals('shentschel', self::$ts->getTask($task->getId())->getAssignee());
 
     $tr = new TaskRequest();
     $tr->setUserId('demo');
-    $ts->takeTask($task->getId(), $tr);
+    self::$ts->setAssignee($task->getId(), $tr);
 
-    $us->deleteUser($up->getId());
+    self::$us->deleteUser($up->getId());
   }
+
+//  /**
+//   * @test
+//   */
+//  public function getIdentityLinks() {
+//    $this->markTestIncomplete(
+//      'This test has not been implemented yet.'
+//    );
+//  }
+//
+//  /**
+//   * @test
+//   */
+//  public function addIdentityLinks() {
+//    $this->markTestIncomplete(
+//      'This test has not been implemented yet.'
+//    );
+//  }
+//
+//  /**
+//   * @test
+//   */
+//  public function deleteIdentityLinks() {
+//    $this->markTestIncomplete(
+//      'This test has not been implemented yet.'
+//    );
+//  }
 }

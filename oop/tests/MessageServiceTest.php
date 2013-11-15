@@ -7,14 +7,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace org\camunda\php\tests\TestMessageService;
+namespace org\camunda\php\tests;
 
+use org\camunda\php\sdk\service\MessageService;
+
+include('../../vendor/autoload.php');
 
 class MessageServiceTest extends \PHPUnit_Framework_TestCase {
   protected static $restApi;
+  protected static $ms;
 
   public static function setUpBeforeClass() {
     self::$restApi = 'http://localhost:8080/engine-rest';
+    print("\n\nCLASS: " . __CLASS__ . "\n");
+    self::$ms = new MessageService(self::$restApi);
   }
 
   public static function tearDownAfterClass() {

@@ -13,7 +13,8 @@
   ],
 
   "require": {
-    "php": ">=5.3.0"
+    "php": ">=5.3.0",
+    "phpunit/phpunit": "3.7.21"
   },
 
   "require-dev": {
@@ -30,8 +31,6 @@
   },
 
   "autoload": {
-    "psr-0": {
-      "org\\camunda\\php\\sdk\\": "main/sdk/"
-    }
+    "classmap": [ "oop/main/", "procedual/main"]
   }
 }

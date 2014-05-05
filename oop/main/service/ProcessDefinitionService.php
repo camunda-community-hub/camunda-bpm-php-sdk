@@ -130,6 +130,30 @@ class ProcessDefinitionService extends RequestService {
   }
 
   /**
+   * Instantiates a given process definition.
+   * @link http://docs.camunda.org/api-references/rest/#!/process-definition/post-start-process-instance
+   *
+   * @param String $key process definition key
+   * @param ProcessDefinitionRequest $request variables
+   * @throws \Exception
+   * @return \org\camunda\php\sdk\entity\response\ProcessInstance $this started process instance
+   */
+  public function startInstanceByKey($key, ProcessDefinitionRequest $request) {
+    $processInstance = new ProcessInstance();
+    $this->setRequestUrl('/process-definition/key/'.$key.'/start');
+    $this->setRequestObject($request);
+    $this->setRequestMethod('POST');
+
+    try {
+      return $processInstance->cast($this->execute());
+    } catch (Exception $e) {
+      throw $e;
+    }
+  }
+
+
+
+  /**
    * Retrieves process instances statistics
    * @link http://docs.camunda.org/api-references/rest/#!/process-definition/get-statistics
    *

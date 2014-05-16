@@ -10,6 +10,6 @@
   ],
 
   "require": {
-   "camunda/camunda-bpm-php-sdk": "dev-1.1.0-dev"
+   "camunda/camunda-bpm-php-sdk": "1.1.1"
   }
 }

@@ -168,7 +168,6 @@ class ProcessInstanceService extends RequestService {
    * @return object list of variables
    */
   public function getProcessVariables($id) {
-    $variable = new Variable();
     $this->setRequestUrl('/process-instance/'.$id.'/variables');
     $this->setRequestObject(null);
     $this->setRequestMethod('GET');
@@ -177,6 +176,7 @@ class ProcessInstanceService extends RequestService {
       $prepare = $this->execute();
       $response = array();
       foreach ($prepare AS $index => $data) {
+        $variable = new Variable();
         $response['variable_' . $index] = $variable->cast($data);
       }
       return (object)$response;

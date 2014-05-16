@@ -77,7 +77,7 @@
         <code>
           $camundaAPI = new \org\camunda\php\sdk\Api('http://localhost:8080/engine-rest');
           $processDefinitionRequest = new \org\camunda\php\sdk\entity\request\ProcessDefinitionRequest();
-          $processDefinitions = $camundaAPI->$processDefinition->getDefinitions($processDefinitionRequest);
+          $processDefinitions = $camundaAPI->processDefinition->getDefinitions($processDefinitionRequest);
 
           foreach($processDefinitions AS $data) {
             echo 'Process deployment id: ' . $data->getDeploymentId() . '&lt;br /&gt;';

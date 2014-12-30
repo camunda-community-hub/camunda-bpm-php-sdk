@@ -12,6 +12,7 @@ use org\camunda\php\sdk\entity\request\CredentialsRequest;
 use org\camunda\php\sdk\entity\request\ProfileRequest;
 use org\camunda\php\sdk\entity\request\TaskRequest;
 use org\camunda\php\sdk\entity\request\UserRequest;
+use org\camunda\php\sdk\entity\request\IdentityLinksRequest;
 use org\camunda\php\sdk\service\TaskService;
 use org\camunda\php\sdk\service\UserService;
 
@@ -245,30 +246,46 @@ class TaskServiceTest extends \PHPUnit_Framework_TestCase {
     self::$us->deleteUser($up->getId());
   }
 
-//  /**
-//   * @test
-//   */
-//  public function getIdentityLinks() {
-//    $this->markTestIncomplete(
-//      'This test has not been implemented yet.'
-//    );
-//  }
-//
-//  /**
-//   * @test
-//   */
-//  public function addIdentityLinks() {
-//    $this->markTestIncomplete(
-//      'This test has not been implemented yet.'
-//    );
-//  }
-//
-//  /**
-//   * @test
-//   */
-//  public function deleteIdentityLinks() {
-//    $this->markTestIncomplete(
-//      'This test has not been implemented yet.'
-//    );
-//  }
+  //--------------------------------  TEST GET IDENTITY LINKS  ----------------------------------------
+  /**
+   * @test
+   */
+  public function getIdentityLinks() {
+    $task = self::$ts->getTasks(new TaskRequest())->task_0;
+    $ilr = new IdentityLinksRequest();
+    $ilr->setType('assignee');
+    $ilr->setUserId('demo');
+
+    $il = self::$ts->getIdentityLinks($task->getId(), $ilr)->identityLink_0;
+    $this->assertEquals('assignee', $il->getType());
+    $this->assertEquals('demo', $il->getUserId());
+  }
+
+  //--------------------------------  TEST ADD IDENTITY LINK  ----------------------------------------
+  /**
+   * @test
+   */
+  public function addIdentityLinks() {
+    $task = self::$ts->getTasks(new TaskRequest())->task_0;
+    $ilr = new IdentityLinksRequest();
+    $ilr->setType('candidate');
+    $ilr->setGroupId('demo');
+
+    self::$ts->addIdentityLink($task->getId(), $ilr);
+    $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getIdentityLinks($task->getId(), $ilr))));
+  }
+
+  //--------------------------------  TEST DELETE IDENTITY LINK  ----------------------------------------
+  /**
+   * @test
+   */
+  public function deleteIdentityLinks() {
+    $task = self::$ts->getTasks(new TaskRequest())->task_0;
+    $ilr = new IdentityLinksRequest();
+    $ilr->setType('candidate');
+    $ilr->setGroupId('demo');
+
+    self::$ts->deleteIdentityLink($task->getId(), $ilr);
+    $this->assertEquals(0, count(get_object_vars(self::$ts->getIdentityLinks($task->getId(), $ilr))));
+  }
 }

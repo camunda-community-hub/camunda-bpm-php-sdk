@@ -236,68 +236,74 @@ class TaskService extends RequestService {
     }
   }
 
-//  /**
-//   *  Gets the identity links for a task, which are the users and groups that are in some relation to it
-//   * (including assignee and owner).
-//   * @link http://docs.camunda.org/latest/api-references/rest/#task-get-identity-links
-//   *
-//   * @param String $id task ID
-//   * @param IdentityLinksRequest $request
-//   * @throws \Exception
-//   * @return IdentityLink $this
-//   */
-//  public function getIdentityLinks($id, IdentityLinksRequest $request) {
-//    $identityLink = new IdentityLink();
-//    $this->setRequestUrl('/task/'.$id.'/identity-links');
-//    $this->setRequestObject($request);
-//    $this->setRequestMethod('GET');
-//
-//    try {
-//      return $identityLink->cast($this->execute());
-//    } catch (Exception $e) {
-//      throw $e;
-//    }
-//  }
-//
-//  /**
-//   * Adds an identity link to a task. Can be used to link any user or group to a task and specify and relation.
-//   * @link http://docs.camunda.org/latest/api-references/rest/#task-add-identity-link
-//   *
-//   * @param String $id task ID
-//   * @param IdentityLinksRequest $request
-//   * @throws \Exception
-//   */
-//  public function addIdentityLink($id, IdentityLinksRequest $request) {
-//    $this->setRequestUrl('/task/'.$id.'/identity-links');
-//    $this->setRequestObject($request);
-//    $this->setRequestMethod('POST');
-//
-//    try {
-//      $this->execute();
-//    } catch (Exception $e) {
-//      throw $e;
-//    }
-//  }
-//
-//  /**
-//   * Removes an identity link from a task.
-//   * @link http://docs.camunda.org/latest/api-references/rest/#task-delete-identity-link
-//   *
-//   * @param String $id task ID
-//   * @param IdentityLinksRequest $request
-//   * @throws \Exception
-//   */
-//  public function deleteIdentityLink($id, IdentityLinksRequest $request) {
-//    $this->setRequestUrl('/task/'.$id.'/identity-links/delete');
-//    $this->setRequestObject($request);
-//    $this->setRequestMethod('POST');
-//
-//    try {
-//      $this->execute();
-//    } catch (Exception $e) {
-//      throw $e;
-//    }
-//  }
+  /**
+   *  Gets the identity links for a task, which are the users and groups that are in some relation to it
+   * (including assignee and owner).
+   * @link http://docs.camunda.org/latest/api-references/rest/#task-get-identity-links
+   *
+   * @param String $id task ID
+   * @param IdentityLinksRequest $request
+   * @throws \Exception
+   * @return IdentityLink $this
+   */
+  public function getIdentityLinks($id, IdentityLinksRequest $request) {
+    $identityLink = new IdentityLink();
+    $this->setRequestUrl('/task/'.$id.'/identity-links');
+    $this->setRequestObject($request);
+    $this->setRequestMethod('GET');
+
+    try {
+      $prepare = $this->execute();
+      $response = array();
+      foreach ($prepare AS $index => $data) {
+        $identityLink = new IdentityLink();
+        $response['identityLink_' . $index] = $identityLink->cast($data);
+      }
+      return (object)$response;
+    } catch (Exception $e) {
+      throw $e;
+    }
+  }
+
+  /**
+   * Adds an identity link to a task. Can be used to link any user or group to a task and specify and relation.
+   * @link http://docs.camunda.org/latest/api-references/rest/#task-add-identity-link
+   *
+   * @param String $id task ID
+   * @param IdentityLinksRequest $request
+   * @throws \Exception
+   */
+  public function addIdentityLink($id, IdentityLinksRequest $request) {
+    $this->setRequestUrl('/task/'.$id.'/identity-links');
+    $this->setRequestObject($request);
+    $this->setRequestMethod('POST');
+
+    try {
+      $this->execute();
+    } catch (Exception $e) {
+      throw $e;
+    }
+  }
+
+  /**
+   * Removes an identity link from a task.
+   * @link http://docs.camunda.org/latest/api-references/rest/#task-delete-identity-link
+   *
+   * @param String $id task ID
+   * @param IdentityLinksRequest $request
+   * @throws \Exception
+   */
+  public function deleteIdentityLink($id, IdentityLinksRequest $request) {
+    $this->setRequestUrl('/task/'.$id.'/identity-links/delete');
+    $this->setRequestObject($request);
+    $this->setRequestMethod('POST');
+
+    try {
+      $this->execute();
+    } catch (Exception $e) {
+      throw $e;
+    }
+  }
 
   /**
    * Do a fast takeover of the task. So you don't need first to unclaim

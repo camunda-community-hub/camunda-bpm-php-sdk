@@ -14,9 +14,12 @@ use Exception;
 use org\camunda\php\sdk\entity\request\HistoricActivityInstanceRequest;
 use org\camunda\php\sdk\entity\request\HistoricProcessInstanceRequest;
 use org\camunda\php\sdk\entity\request\HistoricVariableInstanceRequest;
+use org\camunda\php\sdk\entity\request\HistoricActivityStatisticRequest;
 use org\camunda\php\sdk\entity\response\HistoricActivityInstance;
 use org\camunda\php\sdk\entity\response\HistoricProcessInstance;
 use org\camunda\php\sdk\entity\response\HistoricVariableInstance;
+use org\camunda\php\sdk\entity\response\HistoricActivityStatistic;
+
 
 class HistoryService extends RequestService {
 
@@ -177,6 +180,33 @@ class HistoryService extends RequestService {
 
     try {
       return $this->execute()->count;
+    } catch (Exception $e) {
+      throw $e;
+    }
+  }
+
+  /**
+   * Get a list of historic activity instances statistics of the given process definition id
+   * @link http://docs.camunda.org/api-references/rest/#history-get-historic-activity-statistics
+   *
+   * @param String $id process definition id
+   * @param HistoricActivityStatisticRequest $request parameters
+   * @throws \Exception
+   * @return object list of historic activity instance statistics
+   */
+  public function getHistoricActivityStatistic($id, HistoricActivityStatisticRequest $request) {
+    $this->setRequestUrl('/history/process-definition/'.$id.'/statistics');
+    $this->setRequestObject($request);
+    $this->setRequestMethod('GET');
+
+    try {
+      $prepare = $this->execute();
+      $response = array();
+      foreach ($prepare AS $index => $data) {
+        $statistic = new HistoricActivityStatistic();
+        $response['statistic_' . $index] = $statistic->cast($data);
+      }
+      return (object)$response;
     } catch (Exception $e) {
       throw $e;
     }

@@ -11,6 +11,7 @@ namespace org\camunda\php\tests;
 use org\camunda\php\sdk\entity\request\HistoricActivityInstanceRequest;
 use org\camunda\php\sdk\entity\request\HistoricProcessInstanceRequest;
 use org\camunda\php\sdk\entity\request\HistoricVariableInstanceRequest;
+use org\camunda\php\sdk\entity\request\HistoricActivityStatisticRequest;
 use org\camunda\php\sdk\service\HistoryService;
 
 include('../../vendor/autoload.php');
@@ -82,5 +83,14 @@ class HistoryServiceTest extends \PHPUnit_Framework_TestCase {
     $this->assertNotEquals(0, $variableInstanceCount);
     $this->assertNotNull($variableInstanceCount);
     $this->assertNotEmpty($variableInstanceCount);
+  }
+
+  /**
+   * @test
+   */
+  public function testGetHistoricActivityStatistics() {
+    $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())->definition_0->getId();
+    $has = self::$hs->getHistoricActivityStatistic($pdi, new HistoricActivityStatisticRequest())->statistic_0->getId();
+    $this->assertNotEmpty('UserTask_1', $has);
   }
 }

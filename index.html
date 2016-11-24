@@ -1,34 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 <head>
+  <meta charset=utf-8>
+  <meta http-equiv=X-UA-Compatible content="IE=edge">
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
   <title>Camunda BPM PHP SDK</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="assets/vendor/twitter/bootstrap/css/bootstrap.css" />
-  <link rel="stylesheet" type="text/css" href="assets/vendor/twitter/bootstrap/css/bootstrap-responsive.css" />
-  <link rel="stylesheet" type="text/css" href="assets/app/css/app.css" />
 
-  <script src="assets/vendor/jquery/js/jquery-1.9.1.js" language="javascript" type="text/javascript"></script>
-  <script src="assets/vendor/twitter/bootstrap/js/bootstrap.js" language="javascript" type="text/javascript"></script>
 
+  <script src="./assets/vendor/prism.js"></script>
+  <link rel="stylesheet" href="./assets/vendor/prism.css">
+
+
+  <link rel="stylesheet" href="./assets/css/styles.min.css">
+
+  <link rel=icon href="./img/favicon.ico">
 </head>
 <body>
-  <header id="navigation" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a href="index.html" class="brand">Camunda BPM PHP SDK</a>
-      </div>
+  <header class="cam-brand-header">
+    <div class="container">
+      <a class="navbar-brand" href="./index.html" title="Camunda BPM PHP SDK">
+        <span class="brand-logo"></span>
+        <span class="brand-name">Camunda BPM PHP SDK</span>
+      </a>
+
+      <nav class="app-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/camunda/camunda-bpm-php-sdk">GitHub Repository</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
-  <div class="container-fluid container-fixed-top">
-    <div class="row-fluid">
-      <section class="span2">
-        <a href="https://github.com/camunda/camunda-bpm-php-sdk">
-          <img class="fork-me-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
-               alt="fork me on GitHub" />
-        </a>
-        <div class="well">
+
+
+  <div class="container container-fixed-top">
+    <div class="row">
+      <section class="col-xs-4 col-md-3">
+        <div>
           <ul class="nav nav-list">
-            <li><a href="#">Top</a></li>
             <li><a href="#introduce">Introduction</a></li>
             <li><a href="#gettingStarted">Getting Started</a></li>
             <li><a href="#architecture">Architecture Overview</a></li>
@@ -45,11 +56,12 @@
             <li class="divider"></li>
             <li class="nav-header">Documentation</li>
             <li><a href="apidocs">SDK API</a></li>
-            <li><a href="http://docs.camunda.org">camunda BPM</a></li>
+            <li><a href="http://docs.camunda.org">Camunda BPM</a></li>
           </ul>
         </div>
       </section>
-      <section class="span8">
+
+      <section class="col-xs-8 col-md-9">
         <h2 id="introduce">Introduction</h2>
         <p>
           The <strong>Camunda BPM PHP SDK</strong> enables PHP developers to easily integrate the <a href="http://www.camunda.org">camunda BPM</a> process
@@ -74,49 +86,49 @@
         <h4 id="example">Example:</h4>
         <p>In this example we will request all process definitions and output the deployment id of each definition.</p>
         <h5 id="code">Code:</h5>
-        <code>
-          $camundaAPI = new \org\camunda\php\sdk\Api('http://localhost:8080/engine-rest');
-          $processDefinitionRequest = new \org\camunda\php\sdk\entity\request\ProcessDefinitionRequest();
-          $processDefinitions = $camundaAPI->processDefinition->getDefinitions($processDefinitionRequest);
+        <pre class="language-php"><code>
+$camundaAPI = new \org\camunda\php\sdk\Api('http://localhost:8080/engine-rest');
+$processDefinitionRequest = new \org\camunda\php\sdk\entity\request\ProcessDefinitionRequest();
+$processDefinitions = $camundaAPI->processDefinition->getDefinitions($processDefinitionRequest);
 
-          foreach($processDefinitions AS $data) {
-            echo 'Process deployment id: ' . $data->getDeploymentId() . '&lt;br /&gt;';
-          }
-        </code>
+foreach($processDefinitions AS $data) {
+  echo 'Process deployment id: ' . $data->getDeploymentId() . '&lt;br /&gt;';
+}
+        </code></pre>
         <h5 id="explanation">Explanation:</h5>
         <p>
           Instantiate the rest client (this example uses our prepackaged tomcat release in a local installation):<br />
-          <code>
-            $camundaAPI = new \org\camunda\php\sdk\Api('http://localhost:8080/engine-rest');
-          </code>
+          <pre class="language-php"><code>
+$camundaAPI = new \org\camunda\php\sdk\Api('http://localhost:8080/engine-rest');
+          </code></pre>
         </p>
         <p>
           Get all process definitions:<br />
-          <code>
-            $processDefinitionRequest = new \org\camunda\php\sdk\entity\request\ProcessDefinitionRequest();
-            $processDefinitions = $camundaAPI->$processDefinition->getDefinitions($processDefinitionRequest);
-          </code>
+          <pre class="language-php"><code>
+$processDefinitionRequest = new \org\camunda\php\sdk\entity\request\ProcessDefinitionRequest();
+$processDefinitions = $camundaAPI->$processDefinition->getDefinitions($processDefinitionRequest);
+          </code></pre>
         </p>
         <p>
           output the deployment id for each process definition:<br />
-          <code>
-          foreach($processDefinitions AS $data) {
-            echo 'Process Deployment ID: ' . . $data->deploymentId . '&lt;br /&gt;';
-          }
-          </code>
+          <pre class="language-php"><code>
+foreach($processDefinitions AS $data) {
+  echo 'Process Deployment ID: ' . . $data->deploymentId . '&lt;br /&gt;';
+}
+          </code></pre>
         </p>
         <p>
           <i class="quote">"It is nice to see some code but what can we do with this?"</i> ... I think this is one of
           the most essential questions about this API. Lets say we do some html magic and create an web application.
           It could be an application like this:
         </p>
-        <img src="assets/img/example1.PNG" />
+        <img class="responsive img-thumbnail" src="assets/img/example1.PNG" />
         <br />
         <br />
         <p>
           Now as you can see we have some output but you can also do a step more and show some details :-)
         </p>
-        <img src="assets/img/example2.PNG" />
+        <img class="responsive img-thumbnail" src="assets/img/example2.PNG" />
         <br />
         <br />
         <p>
@@ -131,7 +143,7 @@
           The project will provide a client library which authenticates against the REST Api and provide PHP
           developers with a native API for interacting with the process engine:
         </p>
-        <img src="assets/img/php.png">
+        <img class="responsive img-thumbnail" src="assets/img/php.png">
         <br />
         <p>
           While the camunda BPM project stays focused on Java as primary programming language, we believe that it is
@@ -142,5 +154,15 @@
     </div>
   </div>
 
+
+  <footer class="cam-brand-footer">
+    <div class="container">
+      <div class="col-xs-8">
+      </div>
+      <div class="text-right col-xs-4">
+        &copy; Camunda services GmbH 2016, All Rights Reserved
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

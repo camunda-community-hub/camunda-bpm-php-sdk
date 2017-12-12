@@ -10,217 +10,246 @@
 namespace org\camunda\php\sdk\entity\request;
 
 
-class HistoricActivityInstanceRequest extends Request {
-  protected $activityInstanceIds;
-  protected $processInstanceId;
-  protected $processDefinitionId;
-  protected $executionId;
-  protected $activityId;
-  protected $activityName;
-  protected $activityType;
-  protected $taskAssignee;
-  protected $finished;
-  protected $unfinished;
-  protected $sortBy;
-  protected $sortOrder;
-  protected $firstResult;
-  protected $maxResults;
+class HistoricActivityInstanceRequest extends Request
+{
+    protected $activityInstanceIds;
+    protected $processInstanceId;
+    protected $processDefinitionId;
+    protected $executionId;
+    protected $activityId;
+    protected $activityName;
+    protected $activityType;
+    protected $taskAssignee;
+    protected $finished;
+    protected $unfinished;
+    protected $sortBy;
+    protected $sortOrder;
+    protected $firstResult;
+    protected $maxResults;
 
-  /**
-   * @param mixed $activityId
-   */
-  public function setActivityId($activityId) {
-    $this->activityId = $activityId;
-  }
+    /**
+     * @param mixed $activityId
+     */
+    public function setActivityId($activityId)
+    {
+        $this->activityId = $activityId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getActivityId() {
-    return $this->activityId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getActivityId()
+    {
+        return $this->activityId;
+    }
 
-  /**
-   * @param mixed $activityInstanceId
-   */
-  public function setActivityInstanceId($activityInstanceId) {
-    $this->activityInstanceId = $activityInstanceId;
-  }
+    /**
+     * @param mixed $activityInstanceId
+     */
+    public function setActivityInstanceId($activityInstanceId)
+    {
+        $this->activityInstanceId = $activityInstanceId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getActivityInstanceId() {
-    return $this->activityInstanceId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getActivityInstanceId()
+    {
+        return $this->activityInstanceId;
+    }
 
-  /**
-   * @param mixed $activityName
-   */
-  public function setActivityName($activityName) {
-    $this->activityName = $activityName;
-  }
+    /**
+     * @param mixed $activityName
+     */
+    public function setActivityName($activityName)
+    {
+        $this->activityName = $activityName;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getActivityName() {
-    return $this->activityName;
-  }
+    /**
+     * @return mixed
+     */
+    public function getActivityName()
+    {
+        return $this->activityName;
+    }
 
-  /**
-   * @param mixed $activityType
-   */
-  public function setActivityType($activityType) {
-    $this->activityType = $activityType;
-  }
+    /**
+     * @param mixed $activityType
+     */
+    public function setActivityType($activityType)
+    {
+        $this->activityType = $activityType;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getActivityType() {
-    return $this->activityType;
-  }
+    /**
+     * @return mixed
+     */
+    public function getActivityType()
+    {
+        return $this->activityType;
+    }
 
-  /**
-   * @param mixed $executionId
-   */
-  public function setExecutionId($executionId) {
-    $this->executionId = $executionId;
-  }
+    /**
+     * @param mixed $executionId
+     */
+    public function setExecutionId($executionId)
+    {
+        $this->executionId = $executionId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getExecutionId() {
-    return $this->executionId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getExecutionId()
+    {
+        return $this->executionId;
+    }
 
-  /**
-   * @param mixed $finished
-   */
-  public function setFinished($finished) {
-    $this->finished = $finished;
-  }
+    /**
+     * @param mixed $finished
+     */
+    public function setFinished($finished)
+    {
+        $this->finished = $finished;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getFinished() {
-    return $this->finished;
-  }
+    /**
+     * @return mixed
+     */
+    public function getFinished()
+    {
+        return $this->finished;
+    }
 
-  /**
-   * @param mixed $firstResult
-   */
-  public function setFirstResult($firstResult) {
-    $this->firstResult = $firstResult;
-  }
+    /**
+     * @param mixed $firstResult
+     */
+    public function setFirstResult($firstResult)
+    {
+        $this->firstResult = $firstResult;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getFirstResult() {
-    return $this->firstResult;
-  }
+    /**
+     * @return mixed
+     */
+    public function getFirstResult()
+    {
+        return $this->firstResult;
+    }
 
-  /**
-   * @param mixed $maxResults
-   */
-  public function setMaxResults($maxResults) {
-    $this->maxResults = $maxResults;
-  }
+    /**
+     * @param mixed $maxResults
+     */
+    public function setMaxResults($maxResults)
+    {
+        $this->maxResults = $maxResults;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getMaxResults() {
-    return $this->maxResults;
-  }
+    /**
+     * @return mixed
+     */
+    public function getMaxResults()
+    {
+        return $this->maxResults;
+    }
 
-  /**
-   * @param mixed $processDefinitionId
-   */
-  public function setProcessDefinitionId($processDefinitionId) {
-    $this->processDefinitionId = $processDefinitionId;
-  }
+    /**
+     * @param mixed $processDefinitionId
+     */
+    public function setProcessDefinitionId($processDefinitionId)
+    {
+        $this->processDefinitionId = $processDefinitionId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getProcessDefinitionId() {
-    return $this->processDefinitionId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getProcessDefinitionId()
+    {
+        return $this->processDefinitionId;
+    }
 
-  /**
-   * @param mixed $processInstanceId
-   */
-  public function setProcessInstanceId($processInstanceId) {
-    $this->processInstanceId = $processInstanceId;
-  }
+    /**
+     * @param mixed $processInstanceId
+     */
+    public function setProcessInstanceId($processInstanceId)
+    {
+        $this->processInstanceId = $processInstanceId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getProcessInstanceId() {
-    return $this->processInstanceId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getProcessInstanceId()
+    {
+        return $this->processInstanceId;
+    }
 
-  /**
-   * @param mixed $sortBy
-   */
-  public function setSortBy($sortBy) {
-    $this->sortBy = $sortBy;
-  }
+    /**
+     * @param mixed $sortBy
+     */
+    public function setSortBy($sortBy)
+    {
+        $this->sortBy = $sortBy;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getSortBy() {
-    return $this->sortBy;
-  }
+    /**
+     * @return mixed
+     */
+    public function getSortBy()
+    {
+        return $this->sortBy;
+    }
 
-  /**
-   * @param mixed $sortOrder
-   */
-  public function setSortOrder($sortOrder) {
-    $this->sortOrder = $sortOrder;
-  }
+    /**
+     * @param mixed $sortOrder
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getSortOrder() {
-    return $this->sortOrder;
-  }
+    /**
+     * @return mixed
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
 
-  /**
-   * @param mixed $taskAssignee
-   */
-  public function setTaskAssignee($taskAssignee) {
-    $this->taskAssignee = $taskAssignee;
-  }
+    /**
+     * @param mixed $taskAssignee
+     */
+    public function setTaskAssignee($taskAssignee)
+    {
+        $this->taskAssignee = $taskAssignee;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getTaskAssignee() {
-    return $this->taskAssignee;
-  }
+    /**
+     * @return mixed
+     */
+    public function getTaskAssignee()
+    {
+        return $this->taskAssignee;
+    }
 
-  /**
-   * @param mixed $unfinished
-   */
-  public function setUnfinished($unfinished) {
-    $this->unfinished = $unfinished;
-  }
+    /**
+     * @param mixed $unfinished
+     */
+    public function setUnfinished($unfinished)
+    {
+        $this->unfinished = $unfinished;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getUnfinished() {
-    return $this->unfinished;
-  }
+    /**
+     * @return mixed
+     */
+    public function getUnfinished()
+    {
+        return $this->unfinished;
+    }
 
 
 }

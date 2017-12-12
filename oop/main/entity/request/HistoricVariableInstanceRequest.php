@@ -10,127 +10,144 @@
 namespace org\camunda\php\sdk\entity\request;
 
 
-class HistoricVariableInstanceRequest extends Request {
-  protected $variableName;
-  protected $variableNameLike;
-  protected $variableValue;
-  protected $processInstanceId;
-  protected $sortBy;
-  protected $sortOrder;
-  protected $firstResult;
-  protected $maxResults;
+class HistoricVariableInstanceRequest extends Request
+{
+    protected $variableName;
+    protected $variableNameLike;
+    protected $variableValue;
+    protected $processInstanceId;
+    protected $sortBy;
+    protected $sortOrder;
+    protected $firstResult;
+    protected $maxResults;
 
-  /**
-   * @param mixed $firstResult
-   */
-  public function setFirstResult($firstResult) {
-    $this->firstResult = $firstResult;
-  }
+    /**
+     * @param mixed $firstResult
+     */
+    public function setFirstResult($firstResult)
+    {
+        $this->firstResult = $firstResult;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getFirstResult() {
-    return $this->firstResult;
-  }
+    /**
+     * @return mixed
+     */
+    public function getFirstResult()
+    {
+        return $this->firstResult;
+    }
 
-  /**
-   * @param mixed $maxResults
-   */
-  public function setMaxResults($maxResults) {
-    $this->maxResults = $maxResults;
-  }
+    /**
+     * @param mixed $maxResults
+     */
+    public function setMaxResults($maxResults)
+    {
+        $this->maxResults = $maxResults;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getMaxResults() {
-    return $this->maxResults;
-  }
+    /**
+     * @return mixed
+     */
+    public function getMaxResults()
+    {
+        return $this->maxResults;
+    }
 
-  /**
-   * @param mixed $processInstanceId
-   */
-  public function setProcessInstanceId($processInstanceId) {
-    $this->processInstanceId = $processInstanceId;
-  }
+    /**
+     * @param mixed $processInstanceId
+     */
+    public function setProcessInstanceId($processInstanceId)
+    {
+        $this->processInstanceId = $processInstanceId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getProcessInstanceId() {
-    return $this->processInstanceId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getProcessInstanceId()
+    {
+        return $this->processInstanceId;
+    }
 
-  /**
-   * @param mixed $sortBy
-   */
-  public function setSortBy($sortBy) {
-    $this->sortBy = $sortBy;
-  }
+    /**
+     * @param mixed $sortBy
+     */
+    public function setSortBy($sortBy)
+    {
+        $this->sortBy = $sortBy;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getSortBy() {
-    return $this->sortBy;
-  }
+    /**
+     * @return mixed
+     */
+    public function getSortBy()
+    {
+        return $this->sortBy;
+    }
 
-  /**
-   * @param mixed $sortOrder
-   */
-  public function setSortOrder($sortOrder) {
-    $this->sortOrder = $sortOrder;
-  }
+    /**
+     * @param mixed $sortOrder
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getSortOrder() {
-    return $this->sortOrder;
-  }
+    /**
+     * @return mixed
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
 
-  /**
-   * @param mixed $variableName
-   */
-  public function setVariableName($variableName) {
-    $this->variableName = $variableName;
-  }
+    /**
+     * @param mixed $variableName
+     */
+    public function setVariableName($variableName)
+    {
+        $this->variableName = $variableName;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getVariableName() {
-    return $this->variableName;
-  }
+    /**
+     * @return mixed
+     */
+    public function getVariableName()
+    {
+        return $this->variableName;
+    }
 
-  /**
-   * @param mixed $variableNameLike
-   */
-  public function setVariableNameLike($variableNameLike) {
-    $this->variableNameLike = $variableNameLike;
-  }
+    /**
+     * @param mixed $variableNameLike
+     */
+    public function setVariableNameLike($variableNameLike)
+    {
+        $this->variableNameLike = $variableNameLike;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getVariableNameLike() {
-    return $this->variableNameLike;
-  }
+    /**
+     * @return mixed
+     */
+    public function getVariableNameLike()
+    {
+        return $this->variableNameLike;
+    }
 
-  /**
-   * @param mixed $variableValue
-   */
-  public function setVariableValue($variableValue) {
-    $this->variableValue = $variableValue;
-  }
+    /**
+     * @param mixed $variableValue
+     */
+    public function setVariableValue($variableValue)
+    {
+        $this->variableValue = $variableValue;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getVariableValue() {
-    return $this->variableValue;
-  }
+    /**
+     * @return mixed
+     */
+    public function getVariableValue()
+    {
+        return $this->variableValue;
+    }
 
 
 }

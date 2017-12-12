@@ -10,14 +10,16 @@
 namespace org\camunda\php\sdk\entity\request;
 
 
-class Request {
+class Request
+{
 
-  public function iterate() {
-    $tmp = array();
-    foreach($this AS $index => $value) {
-      $tmp[$index] = $value;
+    public function iterate()
+    {
+        $tmp = [];
+        foreach ($this as $index => $value) {
+            $tmp[$index] = $value;
+        }
+
+        return $tmp;
     }
-
-    return $tmp;
-  }
 }

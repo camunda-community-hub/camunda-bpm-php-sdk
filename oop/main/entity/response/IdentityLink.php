@@ -12,52 +12,59 @@ namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
 
-class IdentityLink extends CastHelper {
-  protected $userId;
-  protected $groupId;
-  protected $type;
+class IdentityLink extends CastHelper
+{
+    protected $userId;
+    protected $groupId;
+    protected $type;
 
-  /**
-   * @param mixed $groupId
-   */
-  public function setGroupId($groupId) {
-    $this->groupId = $groupId;
-  }
+    /**
+     * @param mixed $groupId
+     */
+    public function setGroupId($groupId)
+    {
+        $this->groupId = $groupId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getGroupId() {
-    return $this->groupId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getGroupId()
+    {
+        return $this->groupId;
+    }
 
-  /**
-   * @param mixed $type
-   */
-  public function setType($type) {
-    $this->type = $type;
-  }
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getType() {
-    return $this->type;
-  }
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
-  /**
-   * @param mixed $userId
-   */
-  public function setUserId($userId) {
-    $this->userId = $userId;
-  }
+    /**
+     * @param mixed $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getUserId() {
-    return $this->userId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
 
 
 }

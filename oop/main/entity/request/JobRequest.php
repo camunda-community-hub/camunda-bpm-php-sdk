@@ -10,243 +10,273 @@
 namespace org\camunda\php\sdk\entity\request;
 
 
-class JobRequest extends Request {
-  protected $jobId;
-  protected $processInstanceId;
-  protected $executionId;
-  protected $withRetriesLeft;
-  protected $executable;
-  protected $timers;
-  protected $messages;
-  protected $dueDate;
+class JobRequest extends Request
+{
+    protected $jobId;
+    protected $processInstanceId;
+    protected $executionId;
+    protected $withRetriesLeft;
+    protected $executable;
+    protected $timers;
+    protected $messages;
+    protected $dueDate;
 
-  /**
-   * @param mixed $dueDate
-   */
-  public function setDueDate($dueDate) {
-    $this->dueDate = $dueDate;
-  }
+    /**
+     * @param mixed $dueDate
+     */
+    public function setDueDate($dueDate)
+    {
+        $this->dueDate = $dueDate;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getDueDate() {
-    return $this->dueDate;
-  }
-  protected $dueDates;
-  protected $withException;
-  protected $sortBy;
-  protected $sortOrder;
-  protected $firstResult;
-  protected $maxResults;
+    /**
+     * @return mixed
+     */
+    public function getDueDate()
+    {
+        return $this->dueDate;
+    }
 
-  /**
-   * @param mixed $dueDates
-   * @return $this
-   */
-  public function setDueDates($dueDates) {
-    $this->dueDates = $dueDates;
-    return $this;
-  }
+    protected $dueDates;
+    protected $withException;
+    protected $sortBy;
+    protected $sortOrder;
+    protected $firstResult;
+    protected $maxResults;
 
-  /**
-   * @return mixed
-   */
-  public function getDueDates() {
-    return $this->dueDates;
-  }
+    /**
+     * @param mixed $dueDates
+     * @return $this
+     */
+    public function setDueDates($dueDates)
+    {
+        $this->dueDates = $dueDates;
+        return $this;
+    }
 
-  /**
-   * @param mixed $executable
-   * @return $this
-   */
-  public function setExecutable($executable) {
-    $this->executable = $executable;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getDueDates()
+    {
+        return $this->dueDates;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getExecutable() {
-    return $this->executable;
-  }
+    /**
+     * @param mixed $executable
+     * @return $this
+     */
+    public function setExecutable($executable)
+    {
+        $this->executable = $executable;
+        return $this;
+    }
 
-  /**
-   * @param mixed $executionId
-   * @return $this
-   */
-  public function setExecutionId($executionId) {
-    $this->executionId = $executionId;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getExecutable()
+    {
+        return $this->executable;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getExecutionId() {
-    return $this->executionId;
-  }
+    /**
+     * @param mixed $executionId
+     * @return $this
+     */
+    public function setExecutionId($executionId)
+    {
+        $this->executionId = $executionId;
+        return $this;
+    }
 
-  /**
-   * @param mixed $firstResult
-   * @return $this
-   */
-  public function setFirstResult($firstResult) {
-    $this->firstResult = $firstResult;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getExecutionId()
+    {
+        return $this->executionId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getFirstResult() {
-    return $this->firstResult;
-  }
+    /**
+     * @param mixed $firstResult
+     * @return $this
+     */
+    public function setFirstResult($firstResult)
+    {
+        $this->firstResult = $firstResult;
+        return $this;
+    }
 
-  /**
-   * @param mixed $jobId
-   * @return $this
-   */
-  public function setJobId($jobId) {
-    $this->jobId = $jobId;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getFirstResult()
+    {
+        return $this->firstResult;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getJobId() {
-    return $this->jobId;
-  }
+    /**
+     * @param mixed $jobId
+     * @return $this
+     */
+    public function setJobId($jobId)
+    {
+        $this->jobId = $jobId;
+        return $this;
+    }
 
-  /**
-   * @param mixed $maxResults
-   * @return $this
-   */
-  public function setMaxResults($maxResults) {
-    $this->maxResults = $maxResults;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getJobId()
+    {
+        return $this->jobId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getMaxResults() {
-    return $this->maxResults;
-  }
+    /**
+     * @param mixed $maxResults
+     * @return $this
+     */
+    public function setMaxResults($maxResults)
+    {
+        $this->maxResults = $maxResults;
+        return $this;
+    }
 
-  /**
-   * @param mixed $messages
-   * @return $this
-   */
-  public function setMessages($messages) {
-    $this->messages = $messages;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getMaxResults()
+    {
+        return $this->maxResults;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getMessages() {
-    return $this->messages;
-  }
+    /**
+     * @param mixed $messages
+     * @return $this
+     */
+    public function setMessages($messages)
+    {
+        $this->messages = $messages;
+        return $this;
+    }
 
-  /**
-   * @param mixed $processInstanceId
-   * @return $this
-   */
-  public function setProcessInstanceId($processInstanceId) {
-    $this->processInstanceId = $processInstanceId;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getProcessInstanceId() {
-    return $this->processInstanceId;
-  }
+    /**
+     * @param mixed $processInstanceId
+     * @return $this
+     */
+    public function setProcessInstanceId($processInstanceId)
+    {
+        $this->processInstanceId = $processInstanceId;
+        return $this;
+    }
 
-  /**
-   * @param mixed $sortBy
-   * @return $this
-   */
-  public function setSortBy($sortBy) {
-    $this->sortBy = $sortBy;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getProcessInstanceId()
+    {
+        return $this->processInstanceId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getSortBy() {
-    return $this->sortBy;
-  }
+    /**
+     * @param mixed $sortBy
+     * @return $this
+     */
+    public function setSortBy($sortBy)
+    {
+        $this->sortBy = $sortBy;
+        return $this;
+    }
 
-  /**
-   * @param mixed $sortOrder
-   * @return $this
-   */
-  public function setSortOrder($sortOrder) {
-    $this->sortOrder = $sortOrder;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getSortBy()
+    {
+        return $this->sortBy;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getSortOrder() {
-    return $this->sortOrder;
-  }
+    /**
+     * @param mixed $sortOrder
+     * @return $this
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+        return $this;
+    }
 
-  /**
-   * @param mixed $timers
-   * @return $this
-   */
-  public function setTimers($timers) {
-    $this->timers = $timers;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getTimers() {
-    return $this->timers;
-  }
+    /**
+     * @param mixed $timers
+     * @return $this
+     */
+    public function setTimers($timers)
+    {
+        $this->timers = $timers;
+        return $this;
+    }
 
-  /**
-   * @param mixed $withException
-   * @return $this
-   */
-  public function setWithException($withException) {
-    $this->withException = $withException;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getTimers()
+    {
+        return $this->timers;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getWithException() {
-    return $this->withException;
-  }
+    /**
+     * @param mixed $withException
+     * @return $this
+     */
+    public function setWithException($withException)
+    {
+        $this->withException = $withException;
+        return $this;
+    }
 
-  /**
-   * @param mixed $withRetriesLeft
-   * @return $this
-   */
-  public function setWithRetriesLeft($withRetriesLeft) {
-    $this->withRetriesLeft = $withRetriesLeft;
-    return $this;
-  }
+    /**
+     * @return mixed
+     */
+    public function getWithException()
+    {
+        return $this->withException;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getWithRetriesLeft() {
-    return $this->withRetriesLeft;
-  }
+    /**
+     * @param mixed $withRetriesLeft
+     * @return $this
+     */
+    public function setWithRetriesLeft($withRetriesLeft)
+    {
+        $this->withRetriesLeft = $withRetriesLeft;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWithRetriesLeft()
+    {
+        return $this->withRetriesLeft;
+    }
 
 
 }

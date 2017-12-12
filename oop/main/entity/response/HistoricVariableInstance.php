@@ -12,67 +12,76 @@ namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
 
-class HistoricVariableInstance extends CastHelper {
-  protected $name;
-  protected $type;
-  protected $value;
-  protected $processInstanceId;
+class HistoricVariableInstance extends CastHelper
+{
+    protected $name;
+    protected $type;
+    protected $value;
+    protected $processInstanceId;
 
-  /**
-   * @param mixed $name
-   */
-  public function setName($name) {
-    $this->name = $name;
-  }
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getName() {
-    return $this->name;
-  }
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-  /**
-   * @param mixed $processInstanceId
-   */
-  public function setProcessInstanceId($processInstanceId) {
-    $this->processInstanceId = $processInstanceId;
-  }
+    /**
+     * @param mixed $processInstanceId
+     */
+    public function setProcessInstanceId($processInstanceId)
+    {
+        $this->processInstanceId = $processInstanceId;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getProcessInstanceId() {
-    return $this->processInstanceId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getProcessInstanceId()
+    {
+        return $this->processInstanceId;
+    }
 
-  /**
-   * @param mixed $type
-   */
-  public function setType($type) {
-    $this->type = $type;
-  }
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getType() {
-    return $this->type;
-  }
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
-  /**
-   * @param mixed $value
-   */
-  public function setValue($value) {
-    $this->value = $value;
-  }
+    /**
+     * @param mixed $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getValue() {
-    return $this->value;
-  }
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
 
 
 }

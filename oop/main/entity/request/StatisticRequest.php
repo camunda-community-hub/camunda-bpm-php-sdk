@@ -9,58 +9,65 @@
 
 namespace org\camunda\php\sdk\entity\request;
 
-class StatisticRequest extends Request {
-  protected $failedJobs;
-  protected $incidents;
-  protected $incidentsForType;
+class StatisticRequest extends Request
+{
+    protected $failedJobs;
+    protected $incidents;
+    protected $incidentsForType;
 
-  /**
-   * @param mixed $failedJobs
-   * @return $this
-   */
-  public function setFailedJobs($failedJobs) {
-    $this->failedJobs = $failedJobs;
-    return $this;
-  }
+    /**
+     * @param mixed $failedJobs
+     * @return $this
+     */
+    public function setFailedJobs($failedJobs)
+    {
+        $this->failedJobs = $failedJobs;
+        return $this;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getFailedJobs() {
-    return $this->failedJobs;
-  }
+    /**
+     * @return mixed
+     */
+    public function getFailedJobs()
+    {
+        return $this->failedJobs;
+    }
 
-  /**
-   * @param mixed $incidents
-   * @return $this
-   */
-  public function setIncidents($incidents) {
-    $this->incidents = $incidents;
-    return $this;
-  }
+    /**
+     * @param mixed $incidents
+     * @return $this
+     */
+    public function setIncidents($incidents)
+    {
+        $this->incidents = $incidents;
+        return $this;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getIncidents() {
-    return $this->incidents;
-  }
+    /**
+     * @return mixed
+     */
+    public function getIncidents()
+    {
+        return $this->incidents;
+    }
 
-  /**
-   * @param mixed $incidentsForType
-   * @return $this
-   */
-  public function setIncidentsForType($incidentsForType) {
-    $this->incidentsForType = $incidentsForType;
-    return $this;
-  }
+    /**
+     * @param mixed $incidentsForType
+     * @return $this
+     */
+    public function setIncidentsForType($incidentsForType)
+    {
+        $this->incidentsForType = $incidentsForType;
+        return $this;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getIncidentsForType() {
-    return $this->incidentsForType;
-  }
+    /**
+     * @return mixed
+     */
+    public function getIncidentsForType()
+    {
+        return $this->incidentsForType;
+    }
 
 
 }

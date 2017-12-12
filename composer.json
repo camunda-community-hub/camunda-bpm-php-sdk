@@ -9,27 +9,31 @@
     {
       "name": "Stefan Hentschel",
       "email": "stefan.hentschel@camunda.com"
+    },
+    {
+      "name": "Dmytriy Serpokrylenko",
+      "email": "dserpokrylenko@provectus.com"
     }
   ],
 
   "require": {
-    "php": ">=5.3.0"
+    "php": ">=7.1.0"
   },
 
   "require-dev": {
-    "phpunit/phpunit": "~4.6.0"
+    "phpunit/phpunit": "~6.0.0"
   },
 
   "archive": {
     "exclude": [
-      "/procedual/test",
-      "/procedual/test/*",
       "/oop/test",
       "/oop/test/*"
     ]
   },
 
   "autoload": {
-    "classmap": [ "oop/main/", "procedual/main"]
+    "classmap": [
+      "oop/main/"
+    ]
   }
 }

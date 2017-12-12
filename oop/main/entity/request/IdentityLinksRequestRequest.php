@@ -10,57 +10,64 @@
 namespace org\camunda\php\sdk\entity\request;
 
 
-class IdentityLinksRequest extends Request {
-  protected $userId;
-  protected $groupId;
-  protected $type;
+class IdentityLinksRequest extends Request
+{
+    protected $userId;
+    protected $groupId;
+    protected $type;
 
-  /**
-   * @param mixed $userId
-   * @return $this
-   */
-  public function setUserId($userId) {
-    $this->userId = $userId;
-    return $this;
-  }
+    /**
+     * @param mixed $userId
+     * @return $this
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+        return $this;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getUserId() {
-    return $this->userId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
 
-  /**
-   * @param mixed $groupId
-   * @return $this
-   */
-  public function setGroupId($groupId) {
-    $this->groupId = $groupId;
-    return $this;
-  }
+    /**
+     * @param mixed $groupId
+     * @return $this
+     */
+    public function setGroupId($groupId)
+    {
+        $this->groupId = $groupId;
+        return $this;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getGroupId() {
-    return $this->groupId;
-  }
+    /**
+     * @return mixed
+     */
+    public function getGroupId()
+    {
+        return $this->groupId;
+    }
 
-  /**
-   * @param mixed $type
-   * @return $this
-   */
-  public function setType($type) {
-    $this->type = $type;
-    return $this;
-  }
+    /**
+     * @param mixed $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getType() {
-    return $this->type;
-  }
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
 }

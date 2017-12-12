@@ -12,52 +12,59 @@ namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
 
-class Group extends CastHelper {
-  protected $id;
-  protected $name;
-  protected $type;
+class Group extends CastHelper
+{
+    protected $id;
+    protected $name;
+    protected $type;
 
-  /**
-   * @param mixed $id
-   */
-  public function setId($id) {
-    $this->id = $id;
-  }
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getId() {
-    return $this->id;
-  }
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-   * @param mixed $name
-   */
-  public function setName($name) {
-    $this->name = $name;
-  }
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getName() {
-    return $this->name;
-  }
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-  /**
-   * @param mixed $type
-   */
-  public function setType($type) {
-    $this->type = $type;
-  }
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getType() {
-    return $this->type;
-  }
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
 
 }

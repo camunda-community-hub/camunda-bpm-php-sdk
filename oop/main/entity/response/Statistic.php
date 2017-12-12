@@ -11,82 +11,93 @@ namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
 
-class Statistic extends CastHelper{
-  protected $id;
-  protected $instances;
-  protected $failedJobs;
-  protected $definition;
-  protected $incidents;
+class Statistic extends CastHelper
+{
+    protected $id;
+    protected $instances;
+    protected $failedJobs;
+    protected $definition;
+    protected $incidents;
 
-  /**
-   * @param mixed $definition
-   */
-  public function setDefinition($definition) {
-    $this->definition = $definition;
-  }
+    /**
+     * @param mixed $definition
+     */
+    public function setDefinition($definition)
+    {
+        $this->definition = $definition;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getDefinition() {
-    return $this->definition;
-  }
+    /**
+     * @return mixed
+     */
+    public function getDefinition()
+    {
+        return $this->definition;
+    }
 
-  /**
-   * @param mixed $failedJobs
-   */
-  public function setFailedJobs($failedJobs) {
-    $this->failedJobs = $failedJobs;
-  }
+    /**
+     * @param mixed $failedJobs
+     */
+    public function setFailedJobs($failedJobs)
+    {
+        $this->failedJobs = $failedJobs;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getFailedJobs() {
-    return $this->failedJobs;
-  }
+    /**
+     * @return mixed
+     */
+    public function getFailedJobs()
+    {
+        return $this->failedJobs;
+    }
 
-  /**
-   * @param mixed $id
-   */
-  public function setId($id) {
-    $this->id = $id;
-  }
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getId() {
-    return $this->id;
-  }
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-   * @param mixed $incidents
-   */
-  public function setIncidents($incidents) {
-    $this->incidents = $incidents;
-  }
+    /**
+     * @param mixed $incidents
+     */
+    public function setIncidents($incidents)
+    {
+        $this->incidents = $incidents;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getIncidents() {
-    return $this->incidents;
-  }
+    /**
+     * @return mixed
+     */
+    public function getIncidents()
+    {
+        return $this->incidents;
+    }
 
-  /**
-   * @param mixed $instances
-   */
-  public function setInstances($instances) {
-    $this->instances = $instances;
-  }
+    /**
+     * @param mixed $instances
+     */
+    public function setInstances($instances)
+    {
+        $this->instances = $instances;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getInstances() {
-    return $this->instances;
-  }
+    /**
+     * @return mixed
+     */
+    public function getInstances()
+    {
+        return $this->instances;
+    }
 
 
 }

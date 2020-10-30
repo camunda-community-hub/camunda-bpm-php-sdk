@@ -233,7 +233,6 @@ class ProcessInstanceRequest extends Request {
     return $this->variables;
   }
   
-  
   /**
    * @param mixed $businessKeyLike
    * @return $this
@@ -249,5 +248,4 @@ class ProcessInstanceRequest extends Request {
   public function getBusinessKeyLike() {
   	return $this->businessKeyLike;
   }
-  
 }

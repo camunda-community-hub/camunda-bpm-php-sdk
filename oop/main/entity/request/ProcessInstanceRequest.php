@@ -23,6 +23,7 @@ class ProcessInstanceRequest extends Request {
   protected $deleteReason;
   protected $firstResult;
   protected $maxResults;
+  protected $businessKeyLike;
 
   /**
    * @param mixed $active
@@ -231,6 +232,20 @@ class ProcessInstanceRequest extends Request {
   public function getVariables() {
     return $this->variables;
   }
-
-
+  
+  /**
+   * @param mixed $businessKeyLike
+   * @return $this
+   */
+  public function setBusinessKeyLike($businessKeyLike) {
+  	$this->businessKeyLike = $businessKeyLike;
+  	return $this;
+  }
+  
+  /**
+   * @return mixed
+   */
+  public function getBusinessKeyLike() {
+  	return $this->businessKeyLike;
+  }
 }
